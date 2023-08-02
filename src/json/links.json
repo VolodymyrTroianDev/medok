@@ -1,0 +1,24 @@
+{
+    "links": [
+        {
+          "name": "location",
+          "url": "https://www.google.com/maps/search/48%C2%B049'51.3%22N+23%C2%B023'19.7%22E?sa=X&ved=2ahUKEwjmtLmHysv5AhXBjqQKHQzmDB4Q8gF6BAgCEAE"
+        },
+        {
+          "name": "email",
+          "url": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSMVxdhhBtkHGGnPpRXcTNpkmJCMmsKNnTfgPRzrggmbMfkSPfMNNXMXCGMgRQJQQJMhpvKl"
+        },
+        {
+          "name": "telegram",
+          "url": "https://t.me/medok_karpatskyjj"
+        },
+        {
+          "name": "instagram",
+          "url": "https://www.instagram.com/medok_karpatskyj/"
+        },
+        {
+          "name": "facebook",
+          "url": ""
+        }
+      ]
+}

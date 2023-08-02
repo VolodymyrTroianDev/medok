@@ -1,0 +1,55 @@
+<template>
+  <div class="basket" :class="{ active: store.openBasketModal }" v-click-away="closeBasket" >
+    <img class="absolute right-0 p-5 cursor-pointer" src="../../../assets/images/svg/basket/basket-close-btn.svg" alt="" @click="store.openBasketModal = false">
+    <div class="font-marck-script text-center text-[48px] mt-[30px]">
+      {{ $t("basket.basket") }}
+    </div>
+    <div class="">
+      <img v-show="store.emptyBasket" src="../../../assets/images/svg/basket/empty-icon.svg" alt="" class="w-full h-full">
+    </div>
+    <div class="basket-footer">
+      <div class="text-white text-center text-[17px] p-3">{{ $t("basket.total") }}</div>
+      <div class="flex justify-around flex-wrap md:flex-nowrap gap-4">
+        <button class="basket-btn">{{ $t("basket.clearBasket") }}</button>
+        <button class="basket-btn">{{ $t("basket.goToOrder") }}</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useGeneralStore } from "../../../store/generalStore";
+const closeBasket = () => {
+  store.openBasketModal = false
+}
+const store = useGeneralStore();
+</script>
+
+<style scoped lang="scss">
+.basket {
+  box-shadow: 0 0 26px rgba(139, 54, 0, 0.13);
+  @apply
+  fixed max-w-[500px]
+  w-full h-full
+  top-0 right-0
+  bg-white
+  flex z-[51]
+  ease-in-out
+  transform
+  translate-x-full
+  duration-500
+  transition
+  flex-col
+  justify-between
+}
+.active {
+  @apply transform translate-x-0
+}
+.basket-footer {
+  background-image: url("../../../assets/images/svg/basket/basket-footer.svg");
+  @apply w-full h-[152px]
+}
+.basket-btn {
+  @apply font-semibold border rounded-full text-white w-[200px] h-[35px] text-[14px]
+}
+</style>
