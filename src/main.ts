@@ -8,26 +8,38 @@ import "@fontsource/marck-script";
 import AOS from "aos";
 import configureAOS from "../aoc.configure";
 import CustomComponets from "./components/CustomUI/import"
-import moment from "moment";
 import './assets/style.scss'
 import "aos/dist/aos.css";
 const pinia = createPinia();
-const app = createApp(App);
+let app;
 /*Directives */
 import directives from "./directives/index";
-for (let index = 0; index < Object.keys(CustomComponets).length; index++) {
-  const element = Object.keys(CustomComponets)[index];
-  app.component(element, CustomComponets[element]);
-}
+import {firebaseConfig} from "@/libs/firebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
-app.config.globalProperties.$moment = moment;
-directives.forEach((directive) => {
-  app.directive(directive.name, directive);
+const firebase = initializeApp(firebaseConfig);
+const db = getFirestore(firebase);
+export { db };
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (!app) {
+    app = createApp(App)
+    app
+      .use(i18n)
+      .use(VueClickAway)
+      .use(router)
+      .use(pinia)
+      .mount("#app");
+    AOS.init(configureAOS);
+  }
+  for (let index = 0; index < Object.keys(CustomComponets).length; index++) {
+    const element = Object.keys(CustomComponets)[index];
+    app.component(element, CustomComponets[element]);
+  }
+  console.log(user)
+  directives.forEach((directive) => {
+    app.directive(directive.name, directive);
+  });
 });
-app
-    .use(i18n)
-    .use(VueClickAway)
-    .use(router)
-    .use(pinia)
-    .mount("#app");
-AOS.init(configureAOS);

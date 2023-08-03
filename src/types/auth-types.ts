@@ -1,0 +1,21 @@
+export interface Login {
+  email: string,
+  password: string
+}
+export interface authStore {
+  uid:string,
+  statusLogin:boolean,
+  isLoading:boolean,
+  email:string | null,
+  name:string | null,
+  photoProfile?: string | null,
+  userInfo?: object | null,
+}
+export interface Errors {
+  login:ErrorsInterface
+  register:ErrorsInterface
+}
+export interface ErrorsInterface {
+  status?:boolean,
+  text?:string
+}

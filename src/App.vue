@@ -26,16 +26,27 @@
 </template>
 
 <script setup lang="ts">
+import { useGeneralStore } from "@/store/generalStore";
+import { defineAsyncComponent, onMounted } from "vue";
+import { useAuthenticationStore } from "@/store/authStore";
+const store = useGeneralStore();
+const auth = useAuthenticationStore();
 
-import LoginModal from "@/components/Modals/Login.vue";
-import RegistrationModal from "@/components/Modals/Registration.vue";
-import {useGeneralStore} from "@/store/generalStore";
-import {defineAsyncComponent} from "vue";
+store.statusLoader = true;
 
+onMounted(async () => {
+  await auth.checkAuthSession();
+  store.statusLoader = false;
+})
 const Basket = defineAsyncComponent(
   () => import("@/components/Modals/Basket/Basket.vue")
 );
-const store = useGeneralStore();
+const LoginModal = defineAsyncComponent(
+  () => import("@/components/Modals/Login.vue")
+);
+const RegistrationModal = defineAsyncComponent(
+  () => import("@/components/Modals/Registration.vue")
+);
 </script>
 <style lang="scss">
 .modal {

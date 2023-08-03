@@ -33,6 +33,7 @@
       class="fixed top-0
       bg-bg-mobile-filter
       h-screen
+      500px:h-[58px]
       z-[1]
       -translate-x-full
       500px:-translate-x-0

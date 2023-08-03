@@ -38,21 +38,30 @@
 import { useGeneralStore } from "@/store/generalStore";
 import { ref } from "vue";
 import OAuth from "@/components/CustomUI/OAuth.vue";
-import axios from "axios";
+import { useAuthenticationStore } from "@/store/authStore";
+import { useI18n } from "vue-i18n";
+import { Login } from "@/types/auth-types";
 const store = useGeneralStore();
-const dataLogin = ref({
+const auth = useAuthenticationStore();
+const { t } = useI18n()
+const dataLogin = ref<Login>({
   email: "",
   password: ""
 })
 
 const login = async () => {
-
+ try {
+   store.statusLoader = true;
+   await auth.login(dataLogin.value)
+   closeModalLogin();
+   setTimeout(()=>{
+     store.statusLoader = false;
+   },500)
+ } catch (e) {
+   console.error(e)
+ }
 }
 const closeModalLogin = () => {
   store.openLoginModal = false;
 };
-const updateEmail = (val) => {
-  console.log(val)
-}
-
 </script>
