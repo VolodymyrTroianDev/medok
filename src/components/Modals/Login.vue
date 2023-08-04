@@ -1,5 +1,5 @@
 <template>
-  <div class="modal h-[520px] md:h-[494px]" v-click-away="closeModalLogin">
+  <div class="modal h-[520px] md:h-[494px]" v-on-click-outside="closeModalLogin">
     <ModalContainer> {{ $t("modals.auth") }}</ModalContainer>
     <div class="mt-[30px]">
       <div class="flex flex-col gap-[22px]">
@@ -18,13 +18,16 @@
         </div>
         <span class="text-custom-blue cursor-pointer hover:opacity-[0.7] transition-opacity">{{ $t("modals.forgotPassword") }}</span>
       </div>
+      <div class="" v-show="auth.Errors.login.status">{{ auth.Errors.login.text }}</div>
       <button class="red-btn" @click="login">{{ $t("modals.login") }}</button>
       <OAuth/>
       <div class="text-center sm:text-start">
         {{ $t("modals.account") }}
         <button
           class="text-custom-blue cursor-pointer hover:opacity-[0.7] transition-opacity"
-          @click="(store.openLoginModal = false), (store.openRegistrationModal = true)"
+          @click="
+          (store.openLoginModal = false),
+          (store.openRegistrationModal = true)"
         >
           {{ $t("modals.register") }}
         </button>
@@ -41,6 +44,8 @@ import OAuth from "@/components/CustomUI/OAuth.vue";
 import { useAuthenticationStore } from "@/store/authStore";
 import { useI18n } from "vue-i18n";
 import { Login } from "@/types/auth-types";
+import { vOnClickOutside } from '@vueuse/components'
+
 const store = useGeneralStore();
 const auth = useAuthenticationStore();
 const { t } = useI18n()
@@ -51,12 +56,7 @@ const dataLogin = ref<Login>({
 
 const login = async () => {
  try {
-   store.statusLoader = true;
-   await auth.login(dataLogin.value)
-   closeModalLogin();
-   setTimeout(()=>{
-     store.statusLoader = false;
-   },500)
+   await auth.loginUser(dataLogin.value)
  } catch (e) {
    console.error(e)
  }

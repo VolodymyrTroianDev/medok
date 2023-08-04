@@ -24,7 +24,10 @@
       "registration": "Registration",
       "now": "now!",
       "confirmed":"The order is successful",
-      "thanks":"Thank you for choosing our products"
+      "thanks":"Thank you for choosing our products",
+      "passwordNotMatch": "Passwords do not match",
+      "mailMandatory": "Mail is mandatory",
+      "enterPassword": "Fill in the password"
   },
   "about": {
       "subTitle": "About us",

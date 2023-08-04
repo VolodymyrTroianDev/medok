@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-6" @click="toggleDropdown()" v-click-away="closeDropdown">
+  <div class="relative w-6" @click="toggleDropdown()" v-on-click-outside="closeDropdown">
     <UaImg class="cursor-pointer rounded w-6" v-show="GeneralStore.useLanguage === 'ua'"/>
     <UkImg class="cursor-pointer rounded w-6" v-show="GeneralStore.useLanguage === 'en'"/>
     <Transition>
@@ -19,6 +19,8 @@ import { setItem } from "@/services/LocalStorage";
 import { onMounted, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
+import { vOnClickOutside } from '@vueuse/components'
+
 const { locale } = useI18n();
 const router = useRouter();
 const GeneralStore = useGeneralStore();

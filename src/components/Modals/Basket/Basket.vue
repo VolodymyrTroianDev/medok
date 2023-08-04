@@ -1,5 +1,5 @@
 <template>
-  <div class="basket" :class="{ active: store.openBasketModal }" v-click-away="closeBasket" >
+  <div class="basket" :class="{ active: store.openBasketModal }" v-on-click-outside="closeBasket" >
     <img class="absolute right-0 p-5 cursor-pointer" src="../../../assets/images/svg/basket/basket-close-btn.svg" alt="" @click="store.openBasketModal = false">
     <div class="font-marck-script text-center text-[48px] mt-[30px]">
       {{ $t("basket.basket") }}
@@ -19,6 +19,7 @@
 
 <script setup lang="ts">
 import { useGeneralStore } from "../../../store/generalStore";
+import { vOnClickOutside } from '@vueuse/components'
 const closeBasket = () => {
   store.openBasketModal = false
 }

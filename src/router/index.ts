@@ -8,6 +8,7 @@ import Blog from "@/views/Blogs/Blog.vue";
 import Products from "@/views/Products/Products.vue";
 import i18n from "@/localization/i18n";
 import ProductItems from "@/views/Products/ProductItems.vue";
+import Profile from "@/views/Profile/Profile.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -57,6 +58,14 @@ const routes: Array<RouteRecordRaw> = [
         component: ProductItems,
       },
     ],
+  },
+  {
+    path: "/:locale/profile",
+    name: "Profile",
+    components: {
+      default: Profile,
+      Header,
+    },
   },
 ];
 

@@ -38,7 +38,6 @@ onAuthStateChanged(auth, (user) => {
     const element = Object.keys(CustomComponets)[index];
     app.component(element, CustomComponets[element]);
   }
-  console.log(user)
   directives.forEach((directive) => {
     app.directive(directive.name, directive);
   });

@@ -11,6 +11,16 @@
       @click="openFilterMenu"
       src="../../assets/images/svg/filter-icon.svg" alt="" class="cursor-pointer 500px:hidden"
     >
+    <div class="flex gap-4 items-center cursor-pointer hover:scale-105 transition ease-in-out delay-150" @click="$router.push({ name: 'Profile' })" v-show="auth.state.statusLogin">
+      <img
+        :src="auth.state.photoProfile"
+        alt=""
+        width="45"
+        height="45"
+        class="rounded-full bg-white"
+      />
+      <div class="text-white text-base font-semibold" v-show="auth.state.email || auth.state.name">{{ auth.state.email || auth.state.name }}</div>
+    </div>
     <button
       v-if="!auth.state.statusLogin"
       class="text-white font-semibold transform hover:-translate-y-1 transition-all duration-300"

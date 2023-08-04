@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   FacebookAuthProvider,
-  sendPasswordResetEmail,
+  sendEmailVerification
 } from "firebase/auth";
 import {
   getStorage,
@@ -21,6 +21,7 @@ import {getItem, setItem} from "@/services/LocalStorage";
 import {useI18n} from "vue-i18n";
 import {authStore, Errors, Login} from "@/types/auth-types";
 import LoginEnum from "@/enums/LoginEnum";
+import {useGeneralStore} from "@/store/generalStore";
 
 export const useAuthenticationStore = defineStore("authentication", () => {
   const state = reactive<authStore>({
@@ -39,16 +40,18 @@ export const useAuthenticationStore = defineStore("authentication", () => {
       register: {status: false, text: ""},
     }
   )
-  const auth = getAuth();
+  const auth:any = getAuth();
+  const general = useGeneralStore();
 
-  const login = async (data: Login) => {
-    state.isLoading = true;
+  const loginUser = async (data: Login) => {
+    general.statusLoader = true;
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password)
       state.statusLogin = true;
-      state.statusLogin = true;
-      setItem("uid", auth.currentUser.uid);
-    } catch (e) {
+      setItem("uid", state.uid);
+      general.statusLoader = false;
+      checkOpenModal();
+    } catch (e:any) {
         Errors.login.status = true;
       switch (e.code) {
         case LoginEnum.EMAIL:
@@ -64,6 +67,7 @@ export const useAuthenticationStore = defineStore("authentication", () => {
           Errors.login.text = t("errors.wrongPasswordAndEmail");
           break;
       }
+      general.statusLoader = false;
       setTimeout(() => {
         Errors.login.status = false;
       }, 3000);
@@ -73,7 +77,7 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     try {
       await signOut(auth)
       state.statusLogin = false;
-      state.isLoading = false;
+      general.statusLoader = false;
     } catch (e) {
       console.error(e)
     }
@@ -82,28 +86,106 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     await onAuthStateChanged(auth, (user) => {
       if (user) {
         state.statusLogin = true;
-        state.isLoading = false;
+        general.statusLoader = false;
         state.email = user.email;
         state.name = user.displayName;
         state.uid = user.uid;
         state.userInfo = user;
+        state.photoProfile = user.photoURL;
         setItem("uid", state.uid);
         // downloadUrlPhoto(state.uid);
       } else  {
         state.statusLogin = false;
         setTimeout(() => {
-          state.isLoading = false;
+          general.statusLoader = false;
         }, 1000);
         logOut();
       }
     })
   }
+  const signInWithGoogle = async () => {
+    general.statusLoader = true;
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(getAuth(), provider)
+      checkOpenModal();
+      await sendEmailVerification(auth.currentUser)
+        .then(() => {
+          // Email verification sent!
+          console.log('awdawd')
+          // ...
+        });
+    } catch (e) {
+      generateErrors("register",t("errors.serverError"));
+      generateErrors("login", t("errors.serverError"));
+      general.openRegistrationModal = true;
+      general.openLoginModal = true;
+    }
+  }
+  const signInWithFacebook = async () => {
+    general.statusLoader = true;
+    const provider = new FacebookAuthProvider();
+    try {
+      await signInWithPopup(getAuth(), provider);
+      checkOpenModal();
+      general.statusLoader = false;
+    } catch (e) {
+      generateErrors("register",t("errors.serverError"));
+      generateErrors("login", t("errors.serverError"));
+      general.openRegistrationModal = true;
+      general.openLoginModal = true;
+    }
+  }
+  const register = async (data)=> {
+    general.statusLoader = true;
+    try {
+      await createUserWithEmailAndPassword(getAuth(), data.email, data.password)
+      general.statusLoader = false;
+      Errors.register.status = false;
+      checkOpenModal();
+    } catch (e:any) {
+      general.openRegistrationModal = true;
+      Errors.register.status = true;
+      general.statusLoader = false;
+      console.log(e)
+      switch (e.code) {
+        case "auth/email-already-in-use":
+          Errors.register.text = t("errors.emailAlready");
+          break;
+        case "auth/weak-password":
+          Errors.register.text = t("errors.weakPassword");
+          break;
+        default:
+          Errors.register.text = t("errors.serverError");
+          break;
+      }
+      setTimeout(() => {
+        Errors.register.status = false;
+      }, 3000);
+    }
+  }
+  const generateErrors = (type:string, text:string) => {
+    Errors[`${type}`].status = true;
+    Errors[`${type}`].text = text;
+    setTimeout(() => {
+      Errors[`${type}`].status = false;
+      Errors[`${type}`].text = "";
+    }, 3000);
+  }
+  const checkOpenModal = ()=> {
+    general.openRegistrationModal = general.openRegistrationModal ? false : general.openRegistrationModal;
+    general.openLoginModal = general.openLoginModal ? false : general.openLoginModal;
+  }
   return {
     state,
     Errors,
-    login,
+    loginUser,
     logOut,
-    checkAuthSession
+    checkAuthSession,
+    signInWithGoogle,
+    signInWithFacebook,
+    register,
+    generateErrors
   }
 
 })

@@ -2,6 +2,13 @@ export interface Login {
   email: string,
   password: string
 }
+export interface Register {
+  email: string,
+  password: string,
+  confirmPassword: string,
+  name: string,
+  surname: string
+}
 export interface authStore {
   uid:string,
   statusLogin:boolean,
