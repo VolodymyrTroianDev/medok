@@ -13,7 +13,7 @@
         src="../../assets/images/svg/basket/basket-close-btn.svg" alt=""
         class="w-4 h-4 cursor-pointer 500px:hidden"
       >
-      <div class="bg-white border rounded w-full max-h-[126px] h-full">
+      <div class="bg-white border rounded w-full max-h-[135px] h-full">
         <div class="py-4 mx-5 text-center text-[14px] font-semibold border-b">{{ $t("products.filterTitle") }}</div>
         <FilterRangeButton />
       </div>
