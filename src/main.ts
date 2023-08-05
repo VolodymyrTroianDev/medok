@@ -3,7 +3,6 @@ import { createPinia } from "pinia";
 import App from './App.vue'
 import router from "./router/index";
 import i18n from "@/localization/i18n";
-import VueClickAway from "vue3-click-away";
 import "@fontsource/marck-script";
 import AOS from "aos";
 import configureAOS from "../aoc.configure";
@@ -23,12 +22,11 @@ const firebase = initializeApp(firebaseConfig);
 const db = getFirestore(firebase);
 export { db };
 const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, () => {
   if (!app) {
     app = createApp(App)
     app
       .use(i18n)
-      .use(VueClickAway)
       .use(router)
       .use(pinia)
       .mount("#app");
