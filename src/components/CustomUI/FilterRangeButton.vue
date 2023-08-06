@@ -23,9 +23,8 @@ import {useRoute, useRouter} from "vue-router";
 const productsStore = useProductsStore()
 const router = useRouter();
 const route = useRoute();
-console.log(route.query)
 
-productsStore.priceLimit = [Number(route.query.minPrice),Number(route.query.maxPrice)];
+if (Object.keys(route.query).length > 0) productsStore.priceLimit = [Number(route.query.minPrice),Number(route.query.maxPrice)];
 
 const updatePrice = (value) => {
   router.push({
