@@ -39,7 +39,8 @@
       500px:-translate-x-0
       500px:static
       500px:bg-transparent
-      500px:z-0"
+      500px:z-10
+      w-full"
       :class="{'active': general.openMobileHeader } "
     >
       <img
@@ -51,6 +52,7 @@
       <div
         class="
           flex items-center
+          w-full
           flex-wrap mb-10
           mx-auto justify-center
           gap-4 md:mb-0 md:gap-0

@@ -1,33 +1,32 @@
 <template>
-  <div class="relative"
-       :class="{'blur-sm': store.statusLoader ||
-        store.openLoginModal ||
-        store.openRegistrationModal ||
-        store.openBasketModal
+  <div class="">
+    <div
+      class="relative"
+      :class="{
+    'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal,
   }">
-    <router-view name="Header"/>
-    <router-view name="default"/>
-    <router-view name="Footer"/>
+      <router-view name="Header"/>
+      <router-view name="default"/>
+      <router-view name="Footer"/>
+    </div>
+    <div
+      class="bg-modal"
+      v-if="store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal"
+    ></div>
+    <Transition>
+      <LoginModal v-if="store.openLoginModal"/>
+    </Transition>
+    <Transition>
+      <RegistrationModal v-if="store.openRegistrationModal"/>
+    </Transition>
+    <Basket />
+    <Loader v-if="store.statusLoader"/>
   </div>
-  <div class="bg-modal"
-       v-if="store.statusLoader ||
-        store.openLoginModal ||
-        store.openRegistrationModal ||
-        store.openBasketModal"
-  ></div>
-  <Transition>
-    <LoginModal v-if="store.openLoginModal"/>
-  </Transition>
-  <Transition>
-    <RegistrationModal v-if="store.openRegistrationModal"/>
-  </Transition>
-  <Basket />
-  <Loader v-if="store.statusLoader"/>
 </template>
 
 <script setup lang="ts">
 import { useGeneralStore } from "@/store/generalStore";
-import { defineAsyncComponent, onMounted } from "vue";
+import {computed, defineAsyncComponent, onMounted, ref, watch} from "vue";
 import { useAuthenticationStore } from "@/store/authStore";
 const store = useGeneralStore();
 const auth = useAuthenticationStore();
@@ -47,6 +46,17 @@ const LoginModal = defineAsyncComponent(
 const RegistrationModal = defineAsyncComponent(
   () => import("@/components/Modals/Registration.vue")
 );
+const bodyOverflow = ref('');
+
+const watchMobileHeader = computed(() => {
+  return store.openMobileHeader;
+});
+
+watch(watchMobileHeader,(value)=>{
+  bodyOverflow.value = watchMobileHeader.value ? 'hidden' : '';
+  document.body.style.overflow = bodyOverflow.value;
+})
+
 </script>
 <style lang="scss">
 .modal {

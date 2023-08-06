@@ -37,27 +37,6 @@ const updatePrice = (value) => {
   });
 }
 </script>
-<!--<script>
-
-export default {
-  components: { Slider },
-  data() {
-    return {
-      initialPrice: [0, 3000],
-    };
-  },
-  props: ["price", "modelValue"],
-  mounted() {
-    this.initialPrice = this.price || this.modelValue;
-  },
-  methods: {
-    updatePrice() {
-      this.$emit("change", this.initialPrice);
-      this.$emit("update:modelValue", this.initialPrice);
-    },
-  },
-};
-</script>-->
 
 <style lang="scss">
 @import "@vueform/slider/themes/default.css";

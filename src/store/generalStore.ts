@@ -22,7 +22,7 @@ export const useGeneralStore = defineStore({
     openForgotPasswordModalStep1: false,
     openForgotPasswordModalStep2: false,
     openMobileFilterPanel: false,
-    openMobileHeader: true,
+    openMobileHeader: false,
     widthScreen: "",
     dataLogin: {email: "", password: ""},
     screenWidth: null,
