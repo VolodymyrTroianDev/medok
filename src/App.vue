@@ -48,15 +48,22 @@ const RegistrationModal = defineAsyncComponent(
 );
 const bodyOverflow = ref('');
 
+
 const watchMobileHeader = computed(() => {
   return store.openMobileHeader;
+});
+const watchBasketModal = computed(() => {
+  return store.openBasketModal;
 });
 
 watch(watchMobileHeader,(value)=>{
   bodyOverflow.value = watchMobileHeader.value ? 'hidden' : '';
   document.body.style.overflow = bodyOverflow.value;
 })
-
+watch(watchBasketModal,(value)=>{
+  bodyOverflow.value = watchBasketModal.value ? 'hidden' : '';
+  document.body.style.overflow = bodyOverflow.value;
+})
 </script>
 <style lang="scss">
 .modal {
