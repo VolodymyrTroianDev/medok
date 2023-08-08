@@ -18,12 +18,15 @@ const InputSearch = defineAsyncComponent(
 const ModalContainer = defineAsyncComponent(
   () => import("@/components/CustomUI/ModalContainer.vue")
 );
-
+const MyModal = defineAsyncComponent(
+  () => import("@/components/CustomUI/MyModal.vue")
+);
 export default {
   OAuth,
   Loader,
   InputText,
   InputPassword,
   InputSearch,
-  ModalContainer
+  ModalContainer,
+  MyModal
 };

@@ -13,12 +13,8 @@
       class="bg-modal"
       v-if="store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal"
     ></div>
-    <Transition>
-      <LoginModal v-if="store.openLoginModal"/>
-    </Transition>
-    <Transition>
-      <RegistrationModal v-if="store.openRegistrationModal"/>
-    </Transition>
+    <LoginModal/>
+    <RegistrationModal/>
     <Basket />
     <Loader v-if="store.statusLoader"/>
   </div>
@@ -26,7 +22,7 @@
 
 <script setup lang="ts">
 import { useGeneralStore } from "@/store/generalStore";
-import {computed, defineAsyncComponent, onMounted, ref, watch} from "vue";
+import { computed, defineAsyncComponent, onMounted, ref, watch } from "vue";
 import { useAuthenticationStore } from "@/store/authStore";
 const store = useGeneralStore();
 const auth = useAuthenticationStore();
@@ -79,14 +75,5 @@ watch(watchBasketModal,(value)=>{
 }
 .bg-modal {
   @apply fixed w-screen h-screen top-0 left-0 z-50
-}
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 150ms ease-in-out;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
 }
 </style>

@@ -32,10 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import FilterRange from "@/components/CustomUI/FilterRange.vue";
 import { ref } from "vue";
-import {useGeneralStore} from "@/store/generalStore";
-import {useProductsStore} from "@/store/productsStore";
+import { useGeneralStore } from "@/store/generalStore";
+import { useProductsStore } from "@/store/productsStore";
 import ProductsCategory from "@/views/Products/ProductsCategory.vue";
 import FilterRangeButton from "@/components/CustomUI/FilterRangeButton.vue";
 const general = useGeneralStore();

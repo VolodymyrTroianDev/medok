@@ -1,10 +1,14 @@
 <template>
-  <div class="modal h-[520px] md:h-[494px]" v-on-click-outside="closeModalLogin">
+  <MyModal :show="store.openLoginModal" :styles="'h-[520px] md:h-[494px]'" @close-modal="closeModalLogin">
     <ModalContainer> {{ $t("modals.auth") }}</ModalContainer>
     <div class="mt-[30px]">
       <div class="flex flex-col gap-[22px]">
-        <input-text  :value="dataLogin.email" v-model="dataLogin.email" class="focus:ring-0 focus:ring-offset-0">{{ $t("modals.email") }}</input-text>
-        <input-password :value="dataLogin.password" v-model="dataLogin.password" class="focus:ring-0 focus:ring-offset-0">{{ $t("modals.password") }}</input-password>
+        <input-text :value="dataLogin.email" v-model="dataLogin.email" class="focus:ring-0 focus:ring-offset-0">
+          {{ $t("modals.email") }}
+        </input-text>
+        <input-password :value="dataLogin.password" v-model="dataLogin.password"
+                        class="focus:ring-0 focus:ring-offset-0">{{ $t("modals.password") }}
+        </input-password>
       </div>
       <div class="flex justify-between mt-5">
         <div class="flex items-center gap-2">
@@ -16,7 +20,9 @@
             rounded focus:ring-0 focus:ring-offset-0">
           {{ $t("modals.remember") }}
         </div>
-        <span class="text-custom-blue cursor-pointer hover:opacity-[0.7] transition-opacity">{{ $t("modals.forgotPassword") }}</span>
+        <span class="text-custom-blue cursor-pointer hover:opacity-[0.7] transition-opacity">{{
+            $t("modals.forgotPassword")
+          }}</span>
       </div>
       <div class="" v-show="auth.Errors.login.status">{{ auth.Errors.login.text }}</div>
       <button class="red-btn" @click="login">{{ $t("modals.login") }}</button>
@@ -34,32 +40,31 @@
         {{ $t("modals.now") }}
       </div>
     </div>
-  </div>
+  </MyModal>
 </template>
 
 <script lang="ts" setup>
-import { useGeneralStore } from "@/store/generalStore";
-import { ref } from "vue";
+import {useGeneralStore} from "@/store/generalStore";
+import {ref} from "vue";
 import OAuth from "@/components/CustomUI/OAuth.vue";
-import { useAuthenticationStore } from "@/store/authStore";
-import { useI18n } from "vue-i18n";
-import { Login } from "@/types/auth-types";
-import { vOnClickOutside } from '@vueuse/components'
+import {useAuthenticationStore} from "@/store/authStore";
+import {useI18n} from "vue-i18n";
+import {Login} from "@/types/auth-types";
 
 const store = useGeneralStore();
 const auth = useAuthenticationStore();
-const { t } = useI18n()
+const {t} = useI18n()
 const dataLogin = ref<Login>({
   email: "",
   password: ""
 })
 
 const login = async () => {
- try {
-   await auth.loginUser(dataLogin.value)
- } catch (e) {
-   console.error(e)
- }
+  try {
+    await auth.loginUser(dataLogin.value)
+  } catch (e) {
+    console.error(e)
+  }
 }
 const closeModalLogin = () => {
   store.openLoginModal = false;

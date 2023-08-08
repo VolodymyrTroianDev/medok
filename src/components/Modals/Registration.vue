@@ -1,33 +1,33 @@
 <template>
-  <div class="modal h-[661px]" v-on-click-outside="closeModal">
-    <modal-container> {{ $t("modals.registration") }} </modal-container>
-    <div class="mt-[30px]">
-      <div class="flex flex-col gap-5">
-        <input-text v-model="dataRegister.name" :value="dataRegister.name">{{ $t("modals.name") }}</input-text>
-        <input-text v-model="dataRegister.surname" :value="dataRegister.surname">{{ $t("modals.surname") }}</input-text>
-        <input-text v-model="dataRegister.email" :value="dataRegister.email">{{ $t("modals.email") }}</input-text>
-        <input-password v-model="dataRegister.password" :value="dataRegister.password">{{ $t("modals.password") }}</input-password>
-        <input-password v-model="dataRegister.confirmPassword" :value="dataRegister.confirmPassword">{{ $t("modals.confirmPassword") }}</input-password>
-      </div>
-      <div class="" v-show="auth.Errors.register.status">{{ auth.Errors.register.text }}</div>
-      <button class="red-btn" @click="signIn">
-        {{ $t("modals.registration") }}
-      </button>
-      <OAuth />
-      <div class="text-center">
-        {{ $t("modals.account") }}
-        <button
-          class="text-custom-blue cursor-pointer hover:opacity-[0.7] transition-opacity"
-          @click="
-          (store.openLoginModal = true), (store.openRegistrationModal = false)
-        "
-        >
-          {{ $t("modals.authorization") }}
+    <MyModal :show="store.openRegistrationModal" :styles="'h-[661px]'" @close-modal="closeModal">
+      <modal-container> {{ $t("modals.registration") }} </modal-container>
+      <div class="mt-[30px]">
+        <div class="flex flex-col gap-5">
+          <input-text v-model="dataRegister.name" :value="dataRegister.name">{{ $t("modals.name") }}</input-text>
+          <input-text v-model="dataRegister.surname" :value="dataRegister.surname">{{ $t("modals.surname") }}</input-text>
+          <input-text v-model="dataRegister.email" :value="dataRegister.email">{{ $t("modals.email") }}</input-text>
+          <input-password v-model="dataRegister.password" :value="dataRegister.password">{{ $t("modals.password") }}</input-password>
+          <input-password v-model="dataRegister.confirmPassword" :value="dataRegister.confirmPassword">{{ $t("modals.confirmPassword") }}</input-password>
+        </div>
+        <div class="" v-show="auth.Errors.register.status">{{ auth.Errors.register.text }}</div>
+        <button class="red-btn" @click="signIn">
+          {{ $t("modals.registration") }}
         </button>
-        !
+        <OAuth />
+        <div class="text-center">
+          {{ $t("modals.account") }}
+          <button
+            class="text-custom-blue cursor-pointer hover:opacity-[0.7] transition-opacity"
+            @click="
+            (store.openLoginModal = true), (store.openRegistrationModal = false)
+          "
+          >
+            {{ $t("modals.authorization") }}
+          </button>
+          !
+        </div>
       </div>
-    </div>
-  </div>
+    </MyModal>
 </template>
 
 <script lang="ts" setup>
@@ -37,7 +37,6 @@ import {useAuthenticationStore} from "../../store/authStore";
 import {ref} from "vue";
 import { Register } from "../../types/auth-types";
 import {useI18n} from "vue-i18n";
-import { vOnClickOutside } from '@vueuse/components'
 
 const store = useGeneralStore();
 const auth = useAuthenticationStore();
