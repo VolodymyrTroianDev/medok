@@ -3,7 +3,7 @@
     <div
       class="relative"
       :class="{
-    'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal,
+    'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription,
   }">
       <router-view name="Header"/>
       <router-view name="default"/>
@@ -11,18 +11,19 @@
     </div>
     <div
       class="bg-modal"
-      v-if="store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal"
+      v-if="store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription"
     ></div>
     <LoginModal/>
     <RegistrationModal/>
     <Basket />
     <Loader v-if="store.statusLoader"/>
+
   </div>
 </template>
 
 <script setup lang="ts">
 import { useGeneralStore } from "@/store/generalStore";
-import { computed, defineAsyncComponent, onMounted, ref, watch } from "vue";
+import {computed, defineAsyncComponent, onMounted, ref, watch, watchEffect} from "vue";
 import { useAuthenticationStore } from "@/store/authStore";
 const store = useGeneralStore();
 const auth = useAuthenticationStore();
@@ -42,24 +43,14 @@ const LoginModal = defineAsyncComponent(
 const RegistrationModal = defineAsyncComponent(
   () => import("@/components/Modals/Registration.vue")
 );
+
 const bodyOverflow = ref('');
 
-
-const watchMobileHeader = computed(() => {
-  return store.openMobileHeader;
-});
-const watchBasketModal = computed(() => {
-  return store.openBasketModal;
+watchEffect(() => {
+  bodyOverflow.value = store.openMobileHeader || store.openBasketModal || store.openRegistrationModal || store.openProductDescription  ? 'hidden' : '';
+  document.body.style.overflow = bodyOverflow.value;
 });
 
-watch(watchMobileHeader,(value)=>{
-  bodyOverflow.value = watchMobileHeader.value ? 'hidden' : '';
-  document.body.style.overflow = bodyOverflow.value;
-})
-watch(watchBasketModal,(value)=>{
-  bodyOverflow.value = watchBasketModal.value ? 'hidden' : '';
-  document.body.style.overflow = bodyOverflow.value;
-})
 </script>
 <style lang="scss">
 .modal {

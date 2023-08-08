@@ -17,6 +17,7 @@ export const useGeneralStore = defineStore({
     userInfo: null,
     openBasketModal: false,
     openLoginModal: false,
+    openProductDescription: false,
     openRegistrationModal: false,
     openForgotPasswordModal: false,
     openForgotPasswordModalStep1: false,

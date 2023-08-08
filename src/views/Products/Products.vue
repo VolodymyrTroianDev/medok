@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import {defineAsyncComponent, ref} from "vue";
 import { useGeneralStore } from "@/store/generalStore";
 import { useProductsStore } from "@/store/productsStore";
 import ProductsCategory from "@/views/Products/ProductsCategory.vue";
