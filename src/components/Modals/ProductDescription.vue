@@ -7,7 +7,7 @@
     >
     <Carousel :wrap-around="true" :autoplay="5000" :items-to-show="1">
       <Slide v-for="slide in product.carousel" :key="slide">
-        <img :src="slide" width="500" height="500" class="max-w-[500px] max-h-[450px] bg-no-repeat bg-center bg-cover"/>
+        <img :src="slide" class="h-[300px] bg-no-repeat bg-center bg-cover"/>
       </Slide>
 
       <template #addons>
