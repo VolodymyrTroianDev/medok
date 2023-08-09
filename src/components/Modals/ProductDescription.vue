@@ -36,6 +36,7 @@
         <CustomCounterBtn
           :product="product"
           @updateQuantity="onUpdateQuantity"
+          v-if="!checkInBasket(product.uid)"
         />
       </div>
       <div class="flex gap-2 w-full justify-evenly">
@@ -49,8 +50,8 @@
           class="red-btn max-w-[300px] text-xs sm:text-lg"
           @click="pushToBasket(product.uid)"
         >
-          <div class="" v-if="checkInBasket(product.uid)">{{ $t("basket.productAdded") }}</div>
-          <div class="" v-else>{{ $t("products.addedToCart") }}</div>
+          <span class="" v-if="checkInBasket(product.uid)">{{ $t("basket.productAdded") }}</span>
+          <span class="" v-else>{{ $t("products.addedToCart") }}</span>
         </button>
 
       </div>
