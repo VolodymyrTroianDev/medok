@@ -21,6 +21,9 @@ const ModalContainer = defineAsyncComponent(
 const MyModal = defineAsyncComponent(
   () => import("@/components/CustomUI/MyModal.vue")
 );
+const CustomCounterBtn = defineAsyncComponent(
+  () => import("@/components/CustomUI/CustomCounterBtn.vue")
+);
 export default {
   OAuth,
   Loader,
@@ -28,5 +31,6 @@ export default {
   InputPassword,
   InputSearch,
   ModalContainer,
-  MyModal
+  MyModal,
+  CustomCounterBtn
 };

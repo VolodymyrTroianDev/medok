@@ -1,5 +1,5 @@
 <template>
-  <MyModal :styles="'max-h-[900px] p-5 max-w-[884px] w-full h-full min-h-[420px]'" :show="openProductDescription" @close-modal="openProductDescription = false">
+  <MyModal :styles="'flex flex-col h-full justify-between max-h-[900px] max-w-[884px] min-h-[420px] modal p-5 w-full items-center'" :show="openProductDescription" @close-modal="openProductDescription = false">
     <div class="description-title">{{ product.name }}</div>
     <img
       src="../../assets/images/svg/basket/basket-close-btn.svg" alt="" class="cursor-pointer active:scale-75 transition-transform duration-150 ease-in-out absolute top-5 right-5 bg-no-repeat bg-center bg-cover"
@@ -18,7 +18,7 @@
       <div class="w-full overflow-y-auto max-h-[300px]">
         <div class="flex flex-col p-3">
             <div class="description-title">{{ $t("products.description") }}</div>
-            <div class="description-text">{{ product.description }}</div>
+            <div class="description-text text-justify">{{ product.description }}</div>
         </div>
         <div class="flex flex-col p-3">
           <div class="description-title">{{ $t("products.compound") }}</div>
@@ -32,15 +32,18 @@
           <div class="description-text">{{ product.completeSet }}</div>
         </div>
       </div>
-      <div class="flex">
+      <div class="flex justify-end w-full pe-3">
+        <CustomCounterBtn :price="product.price"/>
+      </div>
+      <div class="flex gap-2 w-full justify-evenly">
         <button
-          class="red-btn max-w-[200px]"
+          class="red-btn max-w-[300px] text-xs sm:text-lg"
           @click="openProductDescription = false"
         >
           {{ $t("products.backToProducts") }}
         </button>
         <button
-          class="red-btn"
+          class="red-btn max-w-[300px] text-xs sm:text-lg"
         >
           {{ $t("products.addedToCart") }}
         </button>
