@@ -112,7 +112,8 @@
       "sum": "Sum",
       "numberProduct": "number of products",
       "shippingCost": "Shipping cost",
-      "pay": "Pay"
+      "pay": "Pay",
+      "productAdded": "The product has already been added"
   },
   "forgotPassword": {
     "title":"Forgot your password?",

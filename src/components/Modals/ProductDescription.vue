@@ -49,7 +49,7 @@
           class="red-btn max-w-[300px] text-xs sm:text-lg"
           @click="pushToBasket(product.uid)"
         >
-          <div class="" v-if="checkInBasket(product.uid)">Продукт вже додано</div>
+          <div class="" v-if="checkInBasket(product.uid)">{{ $t("basket.productAdded") }}</div>
           <div class="" v-else>{{ $t("products.addedToCart") }}</div>
         </button>
 
