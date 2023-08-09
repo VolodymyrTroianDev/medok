@@ -33,7 +33,10 @@
         </div>
       </div>
       <div class="flex justify-end w-full pe-3">
-        <CustomCounterBtn :price="product.price"/>
+        <CustomCounterBtn
+          :product="product"
+          @updateQuantity="onUpdateQuantity"
+        />
       </div>
       <div class="flex gap-2 w-full justify-evenly">
         <button
@@ -44,24 +47,66 @@
         </button>
         <button
           class="red-btn max-w-[300px] text-xs sm:text-lg"
+          @click="pushToBasket(product.uid)"
         >
-          {{ $t("products.addedToCart") }}
+          <div class="" v-if="checkInBasket(product.uid)">Продукт вже додано</div>
+          <div class="" v-else>{{ $t("products.addedToCart") }}</div>
         </button>
+
       </div>
   </MyModal>
 </template>
 
 <script setup lang="ts">
 import { useGeneralStore } from "@/store/generalStore";
-import {storeToRefs} from "pinia";
+import { storeToRefs } from "pinia";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import { reactive } from "vue";
+import { Quantity } from "@/types/products-types";
+import { useBasketStore} from "@/store/basketStore";
+import { setItem } from "@/services/LocalStorage";
 const general = useGeneralStore()
 const { openProductDescription } = storeToRefs(general);
-
 const props = defineProps<{
   product: {}
 }>()
 
+const quantity = reactive<Quantity>({
+  product: 1,
+  price: props.product.price || 0
+})
+const basket = useBasketStore();
+
+const onUpdateQuantity = (data:Quantity) => {
+  quantity.price = data.price;
+  quantity.product = data.product;
+  props.product.quantity = quantity
+}
+const pushToBasket = (uid) => {
+
+  if (checkInBasket(uid)) {
+    general.openProductDescription = false;
+    general.openBasketModal = true;
+  }
+
+  const existingProductIndex = basket.state.selectedProducts.findIndex(product => product.uid === uid);
+  const inBasket = basket.state.inBasket.findIndex(product => product === uid);
+  if (existingProductIndex !== -1) {
+    basket.state.selectedProducts[existingProductIndex] = props.product;
+  } else {
+    basket.state.selectedProducts.push(props.product);
+  }
+  if (inBasket === -1) {
+    basket.state.inBasket.push(uid)
+  }
+
+  setItem("basket",basket.state.selectedProducts)
+  general.openProductDescription = false;
+}
+const checkInBasket = (uid:string) => {
+  const index = basket.state.inBasket.findIndex(product => product === uid);
+  return index !== -1 ? true : false;
+}
 </script>
 
 <style lang="scss">

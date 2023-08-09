@@ -58,6 +58,7 @@ const openProduct = (product) => {
   general.openProductDescription = true
   openDetailsById.value = product.uid
 }
+
 const ProductDescription = defineAsyncComponent(
   () => import("@/components/Modals/ProductDescription.vue")
 );
