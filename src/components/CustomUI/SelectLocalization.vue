@@ -17,24 +17,31 @@ import UkImg from "@/assets/images/svg/uk-img.vue";
 import { useGeneralStore } from "@/store/generalStore";
 import { setItem } from "@/services/LocalStorage";
 import { onMounted, reactive } from "vue";
-import { useRouter } from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import { useI18n } from "vue-i18n";
 import { vOnClickOutside } from '@vueuse/components'
+import {useProductsStore} from "@/store/productsStore";
 
 const { locale } = useI18n();
 const router = useRouter();
 const GeneralStore = useGeneralStore();
-
+const productsStore = useProductsStore();
+const route = useRoute();
 const store = reactive({
   activeDropdown: false,
 });
-const selectLanguage = (locales: string) => {
+const selectLanguage = async (locales: string) => {
   setItem("language", locales);
+  console.log()
+
   if (locale.value !== locales) {
     locale.value = locales;
     GeneralStore.useLanguage = locales;
     const to = router.resolve({params: {locale: locales}});
-    router.push(to);
+    await router.push(to);
+    if (route.name==='ProductsItems') {
+      await productsStore.fetchProducts(locale.value);
+    }
   }
 };
 

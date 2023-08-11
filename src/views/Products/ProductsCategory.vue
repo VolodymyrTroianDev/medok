@@ -21,14 +21,10 @@
 
 <script setup lang="ts">
 import { useProductsStore } from "@/store/productsStore";
-import { useGeneralStore } from "@/store/generalStore";
 import { useRoute, useRouter } from "vue-router";
-
 const productsStore = useProductsStore();
-const general = useGeneralStore();
 const router = useRouter();
 const route = useRoute();
-productsStore.fetchProducts();
 
 const openCategories = (product) => {
   return router.push({

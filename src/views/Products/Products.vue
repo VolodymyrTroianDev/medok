@@ -32,15 +32,15 @@
 </template>
 
 <script setup lang="ts">
-import {defineAsyncComponent, ref} from "vue";
 import { useGeneralStore } from "@/store/generalStore";
 import { useProductsStore } from "@/store/productsStore";
 import ProductsCategory from "@/views/Products/ProductsCategory.vue";
 import FilterRangeButton from "@/components/CustomUI/FilterRangeButton.vue";
+import { useI18n } from "vue-i18n";
 const general = useGeneralStore();
-const openModal = ref<boolean>(true);
 const productsStore = useProductsStore();
-productsStore.fetchProducts();
+const { locale } = useI18n();
+productsStore.fetchProducts(locale.value);
 </script>
 
 <style scoped>

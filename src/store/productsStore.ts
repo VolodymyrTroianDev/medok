@@ -1,20 +1,20 @@
 import {defineStore} from "pinia";
 import {reactive, ref} from "vue";
-import { getDoc, doc } from "firebase/firestore";
-import { db } from "../main";
+import {getDoc, doc} from "firebase/firestore";
+import {db} from "../main";
 import {getItem} from "@/services/LocalStorage";
 import {useGeneralStore} from "@/store/generalStore";
 
 export const useProductsStore = defineStore("products", () => {
   const state = reactive({
-    products:{},
+    products: {},
     locale: getItem("language") || "ua"
   })
-const general = useGeneralStore();
+  const general = useGeneralStore();
   const priceLimit = ref<number[]>([0, 3000]);
-  const fetchProducts = async () =>{
+  const fetchProducts = async (locale) => {
     general.statusLoader = true;
-    const docRef = doc(db, "products", state.locale);
+    const docRef = doc(db, "products", locale);
     const querySnapshot = await getDoc(docRef);
     state.products = querySnapshot.data();
     general.statusLoader = false;
@@ -37,7 +37,7 @@ const general = useGeneralStore();
   }
   const filterProducts = () => {
     const arr = Object.values(state.products);
-    const products: Record<string, any> = { ...state.products };
+    const products: Record<string, any> = {...state.products};
 
     arr.forEach((element: any) => {
       let data = element.items;
