@@ -36,7 +36,6 @@ export const useGeneralStore = defineStore({
     },
     openFilterSideBar: false,
     openLeftSideBar: true,
-    emptyBasket: true,
   }),
   getters: {},
   actions: {},

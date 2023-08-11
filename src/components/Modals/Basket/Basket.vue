@@ -4,9 +4,8 @@
     <div class="font-marck-script text-center text-[48px] mt-[30px]">
       {{ $t("basket.basket") }}
     </div>
-    <div class="">
-      <img v-show="store.emptyBasket" src="../../../assets/images/svg/basket/empty-icon.svg" alt="" class="w-full h-full">
-    </div>
+    <img v-show="basket.state.inBasket.length === 0" src="../../../assets/images/svg/basket/empty-icon.svg" alt="" class="w-full h-full">
+    <BasketItem v-show="basket.state.inBasket.length > 0"/>
     <div class="basket-footer">
       <div class="text-white text-center text-[17px] p-3">{{ $t("basket.total") }}</div>
       <div class="flex justify-around flex-wrap md:flex-nowrap gap-4">
@@ -18,8 +17,14 @@
 </template>
 
 <script setup lang="ts">
-import { useGeneralStore } from "../../../store/generalStore";
+import { useGeneralStore } from "@/store/generalStore";
 import { vOnClickOutside } from '@vueuse/components'
+import { defineAsyncComponent } from "vue";
+import {useBasketStore} from "@/store/basketStore";
+const basket = useBasketStore();
+const BasketItem = defineAsyncComponent(
+  () => import("@/components/Modals/Basket/BasketItem.vue")
+);
 const closeBasket = () => {
   store.openBasketModal = false
 }
