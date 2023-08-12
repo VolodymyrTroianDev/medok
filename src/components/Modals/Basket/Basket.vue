@@ -11,9 +11,9 @@
         <div class="text-white text-center text-[17px] p-3">{{ $t("basket.total") }}:</div>
         <div class="text-white ">{{ total }} ₴</div>
       </div>
-      <div class="text-white text-center text-[17px] p-3">{{ $t("basket.empty") }}</div>
-      <div class="flex justify-around flex-wrap md:flex-nowrap gap-4">
-        <button v-show="basket.state.inBasket.length > 0" class="basket-btn" @click="clearBasket">{{ $t("basket.clearBasket") }}</button>
+      <div v-show="basket.state.inBasket.length === 0" class="text-white text-center text-[17px] p-3">{{ $t("basket.empty") }}</div>
+      <div v-show="basket.state.inBasket.length > 0" class="flex justify-around flex-wrap md:flex-nowrap gap-4">
+        <button class="basket-btn" @click="clearBasket">{{ $t("basket.clearBasket") }}</button>
         <button class="basket-btn">{{ $t("basket.goToOrder") }}</button>
       </div>
     </div>
