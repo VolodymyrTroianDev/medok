@@ -7,7 +7,10 @@
     <img v-show="basket.state.inBasket.length === 0" src="../../../assets/images/svg/basket/empty-icon.svg" alt="" class="w-full h-full">
     <BasketItem v-show="basket.state.inBasket.length > 0"/>
     <div class="basket-footer">
-      <div class="text-white text-center text-[17px] p-3">{{ $t("basket.total") }}</div>
+      <div class="flex items-center justify-center">
+        <div class="text-white text-center text-[17px] p-3">{{ $t("basket.total") }}:</div>
+        <div class="text-white ">{{ total }} ₴</div>
+      </div>
       <div class="flex justify-around flex-wrap md:flex-nowrap gap-4">
         <button class="basket-btn">{{ $t("basket.clearBasket") }}</button>
         <button class="basket-btn">{{ $t("basket.goToOrder") }}</button>
@@ -19,16 +22,25 @@
 <script setup lang="ts">
 import { useGeneralStore } from "@/store/generalStore";
 import { vOnClickOutside } from '@vueuse/components'
-import { defineAsyncComponent } from "vue";
+import {computed, defineAsyncComponent} from "vue";
 import {useBasketStore} from "@/store/basketStore";
+const store = useGeneralStore();
+
 const basket = useBasketStore();
-const BasketItem = defineAsyncComponent(
-  () => import("@/components/Modals/Basket/BasketItem.vue")
-);
 const closeBasket = () => {
   store.openBasketModal = false
 }
-const store = useGeneralStore();
+const total = computed(() => {
+  let total = 0
+  basket.state.selectedProducts.forEach((product) => {
+    total += product.quantity.price;
+  })
+  return total
+})
+
+const BasketItem = defineAsyncComponent(
+  () => import("@/components/Modals/Basket/BasketItem.vue")
+);
 </script>
 
 <style scoped lang="scss">

@@ -32,16 +32,17 @@ const props = defineProps<{
     price: number
   },
 }>()
+
 const quantity = reactive<Quantity>({
-  product: 1,
-  price: props.product?.price || 0
+  product: props.product?.quantity?.product || 1,
+  price: props.product?.quantity?.price || props.product?.price || 0
 })
-const emit = defineEmits(["updateQuantity"])
+const emit = defineEmits(["update:quantity"])
 const increment = () => {
   if (quantity.product > 1) {
     --quantity.product;
     quantity.price = Math.max(quantity.price - props.product.price, 0);
-    emit("updateQuantity", quantity)
+    emit("update:quantity", quantity)
   }
 }
 
@@ -49,7 +50,7 @@ const decrement = () => {
   if (quantity.product > 0) {
     ++quantity.product;
     quantity.price = Math.max(quantity.price + props.product.price, 0);
-    emit("updateQuantity", quantity)
+    emit("update:quantity", quantity)
   }
 }
 </script>

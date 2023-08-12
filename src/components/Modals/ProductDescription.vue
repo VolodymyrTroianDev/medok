@@ -35,7 +35,7 @@
       <div class="flex justify-end w-full pe-3">
         <CustomCounterBtn
           :product="product"
-          @updateQuantity="onUpdateQuantity"
+          @update:quantity="onUpdateQuantity"
           v-if="!checkInBasket(product.uid)"
         />
       </div>
