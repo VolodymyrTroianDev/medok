@@ -14,14 +14,14 @@
           </router-link>
         </div>
         <div class="mb-5 lg:mb-0 lg:border-l lg:border-r lg:border-footer-border w-[380px] px-2 lg:px-20">
-          <div class="uppercase font-semibold text-[15px] md:text-[20px]">{{ $t("footer.quickUrl")}}</div>
+          <div class="uppercase font-semibold text-[15px] md:text-[18px]">{{ $t("footer.quickUrl")}}</div>
           <nav class="mt-[10px] lg:mt-[25px]">
             <ul class="flex flex-col gap-[10px] md:flex-nowrap">
               <router-link
                 active-class="text-main-color duration-300"
                 tag="li"
                 :to="{ name: 'Main' }"
-                class="text-[15px] md:text-[20px] hover:text-main-color duration-300 "
+                class="text-[15px] md:text-[17px] hover:text-main-color duration-300 "
               >
                 {{ $t("header.main") }}
               </router-link>
@@ -29,7 +29,7 @@
                 active-class="text-main-color duration-300"
                 tag="li"
                 :to="{ name: 'Products' }"
-                class="text-[15px] md:text-[20px] hover:text-main-color duration-300 "
+                class="text-[15px] md:text-[17px] hover:text-main-color duration-300 "
               >
                 {{ $t("header.product") }}
               </router-link>
@@ -37,7 +37,7 @@
                 active-class="text-main-color duration-300"
                 tag="li"
                 :to="{ name: 'Blog'}"
-                class="text-[15px] md:text-[20px] hover:text-main-color duration-300 "
+                class="text-[15px] md:text-[17px] hover:text-main-color duration-300 "
               >
                 {{ $t("header.blog") }}
               </router-link>
@@ -45,7 +45,7 @@
                 active-class="text-main-color duration-300"
                 tag="li"
                 :to="{ name: 'ContactUs'}"
-                class="text-[15px] md:text-[20px] hover:text-main-color duration-300 "
+                class="text-[15px] md:text-[17px] hover:text-main-color duration-300 "
               >
                 {{ $t("header.contacts") }}
               </router-link>
@@ -53,14 +53,14 @@
           </nav>
         </div>
         <div class="lg:ps-20">
-          <div class="uppercase font-semibold text-[15px] md:text-[20px]">{{ $t("header.contacts") }}</div>
+          <div class="uppercase font-semibold text-[15px] md:text-[17px]">{{ $t("header.contacts") }}</div>
           <div class="flex flex-col gap-[10px] mt-[10px] lg:mt-[25px] max-w-[325px]">
-              <div class="text-[15px] md:text-lg font-normal	">{{ $t("footer.city") }}</div>
+              <div class="text-[15px] md:text-[17px] font-normal	">{{ $t("footer.city") }}</div>
               <address class="flex flex-col gap-[10px]">
-                <a class="hover:text-main-color duration-500 text-[15px] md:text-lg" href="tel:(096) 10 26 541">
+                <a class="hover:text-main-color duration-500 text-[15px] md:text-[17px]" href="tel:(096) 10 26 541">
                   +380(096) 10 26 541
                 </a>
-                <a class="hover:text-main-color duration-500 text-[15px] md:text-lg" href="tel:(068) 64 77 316">
+                <a class="hover:text-main-color duration-500 text-[15px] md:text-[17px]" href="tel:(068) 64 77 316">
                   +380(068) 64 77 316
                 </a>
               </address>
