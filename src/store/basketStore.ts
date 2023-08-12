@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 import {reactive} from "vue";
-import {getItem} from "@/services/LocalStorage";
+import {getItem, setItem} from "@/services/LocalStorage";
 
 export const useBasketStore = defineStore("basket", () => {
   const state = reactive({
@@ -12,5 +12,13 @@ export const useBasketStore = defineStore("basket", () => {
       state.inBasket.push(product.uid)
     })
   }
-  return { state }
+  const updateBasketStore = (updateData) => {
+    state.selectedProducts = updateData;
+    setItem("basket",updateData);
+    state.inBasket = [];
+    state.selectedProducts.forEach(product => {
+      state.inBasket.push(product.uid)
+    })
+  }
+  return { state,updateBasketStore }
 });
