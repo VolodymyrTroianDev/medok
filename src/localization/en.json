@@ -95,7 +95,7 @@
   },
   "basket": {
       "basket": "Shopping cart",
-      "empty": "The shopping cart is empty",
+      "empty": "Your basket is empty",
       "goToOrder": "Go to order",
       "total": "Total",
       "clearBasket": "Clear basket",
