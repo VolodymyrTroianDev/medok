@@ -26,6 +26,7 @@
     "pinia": "^2.0.17",
     "uuid": "^8.3.2",
     "vue": "^3.2.47",
+    "vue-advanced-cropper": "^2.8.8",
     "vue-axios": "^3.4.1",
     "vue-i18n": "^9.2.2",
     "vue-next-select": "^2.10.4",

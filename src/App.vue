@@ -56,7 +56,7 @@ watchEffect(() => {
 .modal {
   box-shadow: 0 0 26px rgba(0, 0, 0, 0.247);
   @apply fixed  inset-1/2 transform -translate-x-1/2 -translate-y-1/2
-  bg-white max-w-[480px] w-full px-3
+  bg-white max-w-[480px] w-full px-3 h-fit
   sm:px-10 pt-0  rounded-[20px] pb-[25px] z-[51]
 
 }

@@ -1,5 +1,7 @@
 import {defineStore} from "pinia";
 import {getItem} from "../services/LocalStorage";
+import {uploadBytesResumable} from "firebase/storage";
+import {ref} from "vue";
 
 export const useGeneralStore = defineStore({
   id: "GeneralStore",
@@ -27,6 +29,7 @@ export const useGeneralStore = defineStore({
     widthScreen: "",
     dataLogin: {email: "", password: ""},
     screenWidth: null,
+    openCropperModal:false,
     dataRegister: {
       name: "",
       surname: "",
@@ -38,5 +41,8 @@ export const useGeneralStore = defineStore({
     openLeftSideBar: true,
   }),
   getters: {},
-  actions: {},
+  actions: {
+
+    }
+  },
 });

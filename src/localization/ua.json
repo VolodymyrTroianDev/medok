@@ -148,7 +148,8 @@
     "newPassword": "Новий Пароль",
     "confirmPassword": "Підтвердити Пароль",
     "name": "Ім'я та Прізвище",
-    "email": "Введіть ваш Email"
+    "email": "Введіть ваш Email",
+    "uploadAvatar": "Завантажити Аватар"
   },
   "selectCity": {
     "title":"Виберіть своє місто",
