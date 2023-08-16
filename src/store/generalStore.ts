@@ -41,8 +41,5 @@ export const useGeneralStore = defineStore({
     openLeftSideBar: true,
   }),
   getters: {},
-  actions: {
-
-    }
-  },
+  actions: {}
 });
