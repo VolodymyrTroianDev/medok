@@ -9,6 +9,7 @@ import Products from "@/views/Products/Products.vue";
 import i18n from "@/localization/i18n";
 import ProductItems from "@/views/Products/ProductItems.vue";
 import Profile from "@/views/Profile/Profile.vue";
+import EditProfile from "@/views/Profile/EditProfile.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -64,6 +65,14 @@ const routes: Array<RouteRecordRaw> = [
     name: "Profile",
     components: {
       default: Profile,
+      Header,
+    },
+  },
+  {
+    path: "/:locale/profile/edit",
+    name: "EditProfile",
+    components: {
+      default: EditProfile,
       Header,
     },
   },
