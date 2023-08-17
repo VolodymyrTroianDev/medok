@@ -14,7 +14,7 @@ import {
   getStorage,
   ref,
   getDownloadURL,
-  uploadBytesResumable,
+  uploadString
 } from "firebase/storage";
 import { reactive} from "vue";
 import {getItem, setItem} from "@/services/LocalStorage";
@@ -85,15 +85,16 @@ export const useAuthenticationStore = defineStore("authentication", () => {
   const checkAuthSession = async () =>{
     await onAuthStateChanged(auth, (user) => {
       if (user) {
+        general.statusLoader = true;
+        downloadUrlPhoto(user.uid);
         state.statusLogin = true;
         general.statusLoader = false;
         state.email = user.email;
         state.name = user.displayName;
         state.uid = user.uid;
         state.userInfo = user;
-        state.photoProfile = user.photoURL;
         setItem("uid", state.uid);
-        // downloadUrlPhoto(state.uid);
+        general.statusLoader = false;
       } else  {
         state.statusLogin = false;
         setTimeout(() => {
@@ -111,9 +112,7 @@ export const useAuthenticationStore = defineStore("authentication", () => {
       checkOpenModal();
       await sendEmailVerification(auth.currentUser)
         .then(() => {
-          // Email verification sent!
           console.log('awdawd')
-          // ...
         });
     } catch (e) {
       generateErrors("register",t("errors.serverError"));
@@ -176,6 +175,27 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     general.openRegistrationModal = general.openRegistrationModal ? false : general.openRegistrationModal;
     general.openLoginModal = general.openLoginModal ? false : general.openLoginModal;
   }
+  const updatePhotoProfile = async (file) => {
+    const storage = getStorage();
+    const mountainImagesRef = ref(storage,`gs://medok-karpatskyj.appspot.com/images/${state.uid}.jpg`);
+    try {
+      await uploadString(mountainImagesRef, file, 'data_url');
+      general.openCropperModal = false;
+      await downloadUrlPhoto(state.uid);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const downloadUrlPhoto = async (uid) => {
+    const storage = getStorage();
+    try {
+      state.photoProfile  = await getDownloadURL(
+        ref(storage, `gs://medok-karpatskyj.appspot.com/images/${uid}.jpg`)
+      )
+    } catch (e) {
+      state.photoProfile = state.userInfo?.photoURL;
+    }
+  }
   return {
     state,
     Errors,
@@ -185,7 +205,8 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     signInWithGoogle,
     signInWithFacebook,
     register,
-    generateErrors
+    generateErrors,
+    updatePhotoProfile
   }
 
 })

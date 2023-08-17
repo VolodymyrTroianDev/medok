@@ -19,7 +19,6 @@
 	    	aspectRatio: 10/10,
 	    	height: 500,
 	    }"
-      @change="change"
     />
     <button class="red-btn" @click="cropImage">{{ $t("profile.uploadAvatar") }}</button>
   </MyModal>
@@ -31,26 +30,24 @@ import 'vue-advanced-cropper/dist/style.css';
 import MyModal from "@/components/CustomUI/MyModal.vue";
 import {useGeneralStore} from "@/store/generalStore";
 import {ref} from "vue";
+import {useAuthenticationStore} from "@/store/authStore";
 
 const general = useGeneralStore();
+const auth = useAuthenticationStore();
 const height = ref("50%")
 const emit = defineEmits(["removeImg"]);
 const props = defineProps<{
   cropperInfo: any
 }>()
 const cropperRef = ref();
-const change = (e) => {
-  console.log(e)
-}
 const closeModal = () => {
   emit("removeImg");
   general.openCropperModal = false;
 }
 const cropImage = () => {
   const result = cropperRef.value.getResult();
-  console.log(result.canvas.toDataURL(
-    props.cropperInfo?.type
-  ))
+
+  auth.updatePhotoProfile(result.canvas.toDataURL(props.cropperInfo?.type))
 }
 </script>
 
