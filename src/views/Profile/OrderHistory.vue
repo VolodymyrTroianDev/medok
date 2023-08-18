@@ -1,6 +1,6 @@
 <template>
   <div class="">{{ $t("profile.myOrders") }} </div>
-  <div class="my-[26px] w-full max-w-[500px] bg-fafafa shadow-md rounded-[17px]">
+  <div class="my-[26px] w-full max-w-[500px] custom-shadow rounded-[17px]">
     <OrderItem />
   </div>
   <div class="flex gap-2">

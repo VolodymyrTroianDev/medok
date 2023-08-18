@@ -2,7 +2,7 @@
   <div class="mt-41 ml-200 font-marck-script font-serif text-[50px] text-black mb-30 md:mt-41 md:ml-75 text-center">
     {{ $t("profile.title") }}
   </div>
-  <div class="flex ml-200 md:ml-75 flex-wrap lg:flex-no-wrap justify-center md:justify-start sm:ml-0 sm:px-20 gap-20">
+  <div class="flex ml-200 md:ml-75 flex-wrap lg:flex-no-wrap justify-center md:justify-start sm:ml-0 px-5 lg:px-20 gap-20">
     <UpdatePhoto />
     <div class="flex flex-col">
       <div class="flex flex-col ">
