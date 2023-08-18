@@ -3,7 +3,7 @@
   <div class="my-[26px] w-full max-w-[500px] custom-shadow rounded-[17px]">
     <OrderItem />
   </div>
-  <div class="flex gap-2">
+  <div class="flex gap-2 mb-3">
     <div class="font-normal text-xs leading-4 first:ml-0">{{ $t("profile.status") }}</div>
     <div class="flex gap-2">
       <img src="../../assets/images/svg/profile/confirmed.svg" alt="">
