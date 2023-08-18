@@ -2,10 +2,17 @@
   <div class="">
     <div class="relative flex justify-center">
       <img
-        class="object-cover rounded-full"
+        class="object-cover rounded-full cursor-pointer"
         :src="authStore.state.photoProfile"
+        alt=""
         width="300"
         height="300"
+        @click="toggle = !toggle"
+      />
+      <FsLightbox
+        :toggler="toggle"
+        type="image"
+        :sources='[`${authStore.state.photoProfile}`]'
       />
       <label for="file-upload"
              class="photo-add absolute bottom-4 right-12 w-[59px] h-[70px] cursor-pointer bg-no-repeat bg-cover">
@@ -41,12 +48,13 @@ import { useAuthenticationStore } from "@/store/authStore";
 import {ref} from "vue";
 import Cropper from "@/components/Modals/Cropper.vue";
 import {CropperInfo} from "@/types/profile-types";
-
+import FsLightbox from "fslightbox-vue/v3";
 const general = useGeneralStore();
 const authStore = useAuthenticationStore();
 const cropperInfo = ref<CropperInfo>({
   selectedImage:''
 })
+const toggle = ref<boolean>(false)
 const handleUpload = (e) => {
   const file = e.target.files[0];
 

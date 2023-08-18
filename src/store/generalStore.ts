@@ -1,7 +1,6 @@
 import {defineStore} from "pinia";
 import {getItem} from "../services/LocalStorage";
-import {uploadBytesResumable} from "firebase/storage";
-import {ref} from "vue";
+
 
 export const useGeneralStore = defineStore({
   id: "GeneralStore",
