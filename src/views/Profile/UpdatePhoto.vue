@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="mx-auto lg:mx-0">
     <div class="relative flex justify-center">
       <img
         class="object-cover rounded-full cursor-pointer"

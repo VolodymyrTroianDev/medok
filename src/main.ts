@@ -9,6 +9,7 @@ import configureAOS from "../aoc.configure";
 import CustomComponets from "./components/CustomUI/import"
 import './assets/style.scss'
 import "aos/dist/aos.css";
+import { getDatabase } from "firebase/database";
 const pinia = createPinia();
 let app;
 /*Directives */
@@ -20,7 +21,8 @@ import { getFirestore } from "firebase/firestore";
 
 const firebase = initializeApp(firebaseConfig);
 const db = getFirestore(firebase);
-export { db };
+const database = getDatabase(firebase);
+export { db, database };
 const auth = getAuth();
 onAuthStateChanged(auth, () => {
   if (!app) {

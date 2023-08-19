@@ -1,5 +1,5 @@
-import {defineStore} from "pinia";
-import {getItem} from "../services/LocalStorage";
+import { defineStore } from "pinia";
+import { getItem } from "../services/LocalStorage";
 
 
 export const useGeneralStore = defineStore({

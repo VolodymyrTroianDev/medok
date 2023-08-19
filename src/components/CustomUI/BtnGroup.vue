@@ -19,7 +19,7 @@
         height="45"
         class="rounded-full bg-white"
       />
-      <div class="text-white text-base font-semibold" v-show="auth.state.email || auth.state.name">{{ auth.state.email || auth.state.name }}</div>
+      <div class="text-white text-base font-semibold" v-show="auth.state.name || auth.state.email">{{ auth.state.name || auth.state.email }}</div>
     </div>
     <button
       v-if="!auth.state.statusLogin"
@@ -56,6 +56,7 @@ import {useBasketStore} from "@/store/basketStore";
 
 const store = useGeneralStore();
 const auth = useAuthenticationStore();
+
 const route = useRoute();
 const basket = useBasketStore();
 const openFilterMenu = () => {
@@ -63,7 +64,6 @@ const openFilterMenu = () => {
   if (store.openMobileHeader) store.openMobileHeader = false;
 }
 const signOut = async ()=>{
-  console.log('awdawd')
   await auth.logOut();
 }
 </script>
