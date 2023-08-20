@@ -4,10 +4,10 @@
     <UpdatePhoto/>
     <div class="w-full lg:w-1/2 flex flex-col gap-5 items-center lg:items-start">
       <div class="flex justify-between lg:justify-center gap-8 lg:w-full flex-wrap lg:flex-nowrap ">
-        <input-text v-model="data.name" :value="data.name" class="focus:ring-0 focus:ring-offset-0 w-full">
+        <input-text v-model="data.name" :value="database.state.data?.reloadUserInfo?.displayName" class="focus:ring-0 focus:ring-offset-0 w-full">
           {{ $t("profile.name") }}
         </input-text>
-        <input-text v-model="data.email" :value="data.email" class="focus:ring-0 focus:ring-offset-0 w-full">
+        <input-text v-model="data.email" :value="database.state.data?.reloadUserInfo?.email" class="focus:ring-0 focus:ring-offset-0 w-full">
           {{ $t("profile.email") }}
         </input-text>
       </div>
@@ -27,20 +27,21 @@
 
 <script setup lang="ts">
 import UpdatePhoto from "@/views/Profile/UpdatePhoto.vue";
-import { reactive } from "vue";
-import { useAuthenticationStore } from "@/store/authStore";
-import {useDatabaseStore} from "@/store/databaseStore";
-const auth = useAuthenticationStore();
+import { useDatabaseStore } from "@/store/databaseStore";
+import {reactive, watch} from "vue";
 const database = useDatabaseStore();
 
 const data = reactive({
-  name: auth.state.name || "",
-  email: auth.state.email || "",
-  password:"",
-  newPassword:""
+  name: database.state.data?.reloadUserInfo?.displayName || "",
+  email: database.state.data?.reloadUserInfo?.email || "",
+  password: "",
+  newPassword: ""
+})
+watch(data,(value)=>{
+  console.log(value)
 })
 const onSubmit = async () => {
-  await database.updateProfile(data)
+  await database.updateProfile(data);
 }
 </script>
 

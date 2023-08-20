@@ -22,6 +22,7 @@ import {useI18n} from "vue-i18n";
 import {authStore, Errors, Login} from "@/types/auth-types";
 import LoginEnum from "@/enums/LoginEnum";
 import {useGeneralStore} from "@/store/generalStore";
+import {useDatabaseStore} from "@/store/databaseStore";
 
 export const useAuthenticationStore = defineStore("authentication", () => {
   const state = reactive<authStore>({
@@ -33,7 +34,8 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     photoProfile: null,
     userInfo: null,
   });
-  const { t } = useI18n()
+  const { t } = useI18n();
+  const database = useDatabaseStore();
   const Errors = reactive<Errors>(
     {
       login: {status: false, text: ""},
@@ -108,12 +110,9 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     general.statusLoader = true;
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(getAuth(), provider)
+      const req = await signInWithPopup(getAuth(), provider)
+      if (!database.state.data?.auth) await database.createUserInfo(req.user)
       checkOpenModal();
-      await sendEmailVerification(auth.currentUser)
-        .then(() => {
-          console.log('awdawd')
-        });
     } catch (e) {
       generateErrors("register",t("errors.serverError"));
       generateErrors("login", t("errors.serverError"));
@@ -138,7 +137,8 @@ export const useAuthenticationStore = defineStore("authentication", () => {
   const register = async (data)=> {
     general.statusLoader = true;
     try {
-      await createUserWithEmailAndPassword(getAuth(), data.email, data.password)
+      const res = await createUserWithEmailAndPassword(getAuth(), data.email, data.password);
+      await database.createUserInfo(res.user);
       general.statusLoader = false;
       Errors.register.status = false;
       checkOpenModal();
@@ -189,11 +189,12 @@ export const useAuthenticationStore = defineStore("authentication", () => {
   const downloadUrlPhoto = async (uid) => {
     const storage = getStorage();
     try {
-      state.photoProfile  = await getDownloadURL(
+      const photo = await getDownloadURL(
         ref(storage, `gs://medok-karpatskyj.appspot.com/images/${uid}.jpg`)
-      )
+      );
+      await database.updateReloadUserInfo(uid, photo);
     } catch (e) {
-      state.photoProfile = state.userInfo?.photoURL;
+      console.log(e);
     }
   }
   return {

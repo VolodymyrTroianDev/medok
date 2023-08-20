@@ -13,13 +13,13 @@
     >
     <div class="flex gap-4 items-center cursor-pointer hover:scale-105 transition ease-in-out delay-150" @click="$router.push({ name: 'Profile' })" v-show="auth.state.statusLogin">
       <img
-        :src="auth.state.photoProfile"
+        :src="database.state.data.reloadUserInfo?.photoUrl"
         alt=""
         width="45"
         height="45"
         class="rounded-full bg-white"
       />
-      <div class="text-white text-base font-semibold" v-show="auth.state.name || auth.state.email">{{ auth.state.name || auth.state.email }}</div>
+      <div class="text-white text-base font-semibold" v-show="database.state.data?.reloadUserInfo?.displayName || database.state.data?.reloadUserInfo?.email">{{ database.state.data?.reloadUserInfo?.displayName || database.state.data?.reloadUserInfo?.email }}</div>
     </div>
     <button
       v-if="!auth.state.statusLogin"
@@ -52,11 +52,12 @@ import {useGeneralStore} from "@/store/generalStore";
 import {useRoute} from "vue-router";
 import {useAuthenticationStore} from "@/store/authStore";
 import {useBasketStore} from "@/store/basketStore";
+import {useDatabaseStore} from "@/store/databaseStore";
 
 
 const store = useGeneralStore();
 const auth = useAuthenticationStore();
-
+const database = useDatabaseStore();
 const route = useRoute();
 const basket = useBasketStore();
 const openFilterMenu = () => {

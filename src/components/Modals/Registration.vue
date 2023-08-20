@@ -57,7 +57,12 @@ const signIn = async () => {
     auth.generateErrors("register", t("modals.enterPassword"));
   }
   else {
-    await auth.register(dataRegister.value);
+    await auth.register({
+      email: dataRegister.value.email,
+      password: dataRegister.value.password,
+      name: dataRegister.value.name,
+      surname: dataRegister.value.surname,
+    });
   }
 }
 function isValidEmail(email) {

@@ -3,7 +3,7 @@
     <div class="relative flex justify-center">
       <img
         class="object-cover rounded-full cursor-pointer"
-        :src="authStore.state.photoProfile"
+        :src="database.state.data.reloadUserInfo?.photoUrl"
         alt=""
         width="300"
         height="300"
@@ -12,7 +12,7 @@
       <FsLightbox
         :toggler="toggle"
         type="image"
-        :sources='[`${authStore.state.photoProfile}`]'
+        :sources='[`${database.state.data.reloadUserInfo?.photoUrl}`]'
       />
       <label for="file-upload"
              class="photo-add absolute bottom-4 right-12 w-[59px] h-[70px] cursor-pointer bg-no-repeat bg-cover">
@@ -49,8 +49,10 @@ import {ref} from "vue";
 import Cropper from "@/components/Modals/Cropper.vue";
 import {CropperInfo} from "@/types/profile-types";
 import FsLightbox from "fslightbox-vue/v3";
+import {useDatabaseStore} from "@/store/databaseStore";
 const general = useGeneralStore();
 const authStore = useAuthenticationStore();
+const database = useDatabaseStore();
 const cropperInfo = ref<CropperInfo>({
   selectedImage:''
 })

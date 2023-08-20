@@ -2,7 +2,7 @@
   <div class="input-text active:border-main-color text-[14px] md:text-[1em]">
     <input
       :type="props.type"
-      :value="props.value"
+      :value="modelValue || value"
       :disabled="props.disabled"
       required
       @input="$emit('update:modelValue', $event.target.value)"
@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import {watch} from "vue";
 
 const props = defineProps({
   disabled: {
@@ -26,16 +26,17 @@ const props = defineProps({
     required: false,
     default: "text"
   },
+  modelValue: {
+    type: String,
+    default: ''
+  },
   value: {
     type: String,
     default: ''
   }
 });
-const store = reactive({
-  valueInput: "",
-});
 
-const emits = defineEmits(['update:modelValue'])
+defineEmits(['update:modelValue'])
 </script>
 <style lang="scss" scoped>
 </style>

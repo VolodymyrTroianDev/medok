@@ -6,7 +6,7 @@
       ref="passwordInput"
       required
       title="введіть пароль"
-      :value="props.value"
+      :value="modelValue || value"
       @input="$emit('update:modelValue', $event.target.value)"
     />
     <img
@@ -37,11 +37,16 @@ const props = defineProps({
     type: Boolean,
     required: false
   },
+  modelValue: {
+    type: String,
+    default: ''
+  },
   value: {
     type: String,
     default: ''
   }
 });
+defineEmits(['update:modelValue'])
 const togglePassword = () => {
   store.passwordShow = !store.passwordShow;
   changeInput(passwordInput);
