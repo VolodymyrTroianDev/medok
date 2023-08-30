@@ -19,8 +19,8 @@
     </div>
 
     <Transition>
-      <div class="max-w-[826px] w-full" v-if="toggleSelector">
-        <div class="tooltip w-full">
+      <div class="max-w-[826px] w-full mt-5 mb-5" v-if="toggleSelector">
+        <div class="tooltip w-full h-[300px]">
           <div class="tooltiptext max-w-[826px] w-full text-black p-2">
             <input v-model="city" @input="searchCity" class="w-full border-b p-2" :placeholder="$t('selectCity.title')">
             <div class="relative" v-if="runLoading">

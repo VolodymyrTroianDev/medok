@@ -33,7 +33,7 @@
       </div>
       <div class="text-[18px] font-semibold">{{ $t("basket.delivery") }}</div>
     </div>
-    <LocationSelect class="mt-0 xl:mt-6"/>
+    <LocationSelect class="mt-0 xl:mt-6 mb-6 xl:0"/>
   </div>
 </template>
 
