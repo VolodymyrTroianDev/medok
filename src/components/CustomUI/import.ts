@@ -24,6 +24,10 @@ const MyModal = defineAsyncComponent(
 const CustomCounterBtn = defineAsyncComponent(
   () => import("@/components/CustomUI/CustomCounterBtn.vue")
 );
+const LocationSelect = defineAsyncComponent(
+  () => import("@/components/CustomUI/LocationSelect.vue")
+);
+
 export default {
   OAuth,
   Loader,
@@ -32,5 +36,6 @@ export default {
   InputSearch,
   ModalContainer,
   MyModal,
-  CustomCounterBtn
+  CustomCounterBtn,
+  LocationSelect
 };

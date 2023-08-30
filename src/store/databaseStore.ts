@@ -11,7 +11,6 @@ export const useDatabaseStore = defineStore("databaseStore", () => {
   const db = getDatabase();
   const starCountRef = ref(db, `users`);
   onValue(starCountRef, (snapshot) => {
-    console.log(snapshot.val()[auth.state.uid])
     general.statusLoader = true;
     if (auth.state.uid) state.data = snapshot.val()[auth.state.uid];
     general.statusLoader = false;
@@ -20,7 +19,6 @@ export const useDatabaseStore = defineStore("databaseStore", () => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, `users/${auth.state.uid}`)).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
       } else {
         console.log("No data available");
       }

@@ -10,6 +10,7 @@ import i18n from "@/localization/i18n";
 import ProductItems from "@/views/Products/ProductItems.vue";
 import Profile from "@/views/Profile/Profile.vue";
 import EditProfile from "@/views/Profile/EditProfile.vue";
+import OrderingOrder from "@/views/Orders/OrderingOrder.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -73,6 +74,14 @@ const routes: Array<RouteRecordRaw> = [
     name: "EditProfile",
     components: {
       default: EditProfile,
+      Header,
+    },
+  },
+  {
+    path: "/:locale/order/process-creating",
+    name: "OrderingOrder",
+    components: {
+      default: OrderingOrder,
       Header,
     },
   },

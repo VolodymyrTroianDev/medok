@@ -1,6 +1,6 @@
 <template>
   <MyModal :styles="'flex flex-col h-full justify-between max-h-[900px] max-w-[884px] min-h-[420px] modal p-5 w-full items-center'" :show="openProductDescription" @close-modal="openProductDescription = false">
-    <div class="description-title">{{ product.name }}</div>
+    <div class="description-title">{{ product?.name }}</div>
     <img
       src="../../assets/images/svg/basket/basket-close-btn.svg" alt="" class="cursor-pointer active:scale-75 transition-transform duration-150 ease-in-out absolute top-5 right-5 bg-no-repeat bg-center bg-cover"
       @click="openProductDescription = false"
@@ -62,7 +62,7 @@
 import { useGeneralStore } from "@/store/generalStore";
 import { storeToRefs } from "pinia";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
-import { reactive } from "vue";
+import {reactive, ref} from "vue";
 import { Quantity } from "@/types/products-types";
 import { useBasketStore} from "@/store/basketStore";
 import { setItem } from "@/services/LocalStorage";
@@ -81,7 +81,6 @@ const basket = useBasketStore();
 const onUpdateQuantity = (data:Quantity) => {
   quantity.price = data.price;
   quantity.product = data.product;
-  props.product.quantity = quantity
 }
 const pushToBasket = (uid) => {
 
@@ -93,10 +92,12 @@ const pushToBasket = (uid) => {
   const existingProductIndex = basket.state.selectedProducts.findIndex(product => product.uid === uid);
   const inBasket = basket.state.inBasket.findIndex(product => product === uid);
   if (existingProductIndex !== -1) {
-    basket.state.selectedProducts[existingProductIndex] = props.product;
+    basket.state.selectedProducts[existingProductIndex] = { ...props.product, quantity };
   } else {
-    basket.state.selectedProducts.push(props.product);
+    basket.state.selectedProducts.push({ ...props.product, quantity });
+    console.log(props.product)
   }
+
   if (inBasket === -1) {
     basket.state.inBasket.push(uid)
   }

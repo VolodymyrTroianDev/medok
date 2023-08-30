@@ -4,10 +4,11 @@ import {getDoc, doc} from "firebase/firestore";
 import {db} from "../main";
 import {getItem} from "@/services/LocalStorage";
 import {useGeneralStore} from "@/store/generalStore";
+import {ProductEntity} from "@/types/products-types";
 
 export const useProductsStore = defineStore("products", () => {
   const state = reactive({
-    products: {},
+    products: {} as ProductEntity,
     locale: getItem("language") || "ua"
   })
   const general = useGeneralStore();
@@ -51,7 +52,6 @@ export const useProductsStore = defineStore("products", () => {
         slag: element.slag,
       };
     });
-
     return products;
   }
   return {

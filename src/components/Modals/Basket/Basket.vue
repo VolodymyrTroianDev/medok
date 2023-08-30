@@ -14,7 +14,7 @@
       <div v-show="basket.state.inBasket.length === 0" class="text-white text-center text-[17px] p-3">{{ $t("basket.empty") }}</div>
       <div v-show="basket.state.inBasket.length > 0" class="flex justify-around flex-wrap md:flex-nowrap gap-4">
         <button class="basket-btn" @click="clearBasket">{{ $t("basket.clearBasket") }}</button>
-        <button class="basket-btn">{{ $t("basket.goToOrder") }}</button>
+        <button class="basket-btn" @click="createOrder">{{ $t("basket.goToOrder") }}</button>
       </div>
     </div>
   </div>
@@ -25,19 +25,24 @@ import { useGeneralStore } from "@/store/generalStore";
 import { vOnClickOutside } from '@vueuse/components'
 import {computed, defineAsyncComponent} from "vue";
 import {useBasketStore} from "@/store/basketStore";
+import {useRouter} from "vue-router";
 const store = useGeneralStore();
-
+const router = useRouter();
 const basket = useBasketStore();
 const closeBasket = () => {
   store.openBasketModal = false
 }
 const total = computed(() => {
   let total = 0
-  basket.state.selectedProducts.forEach((product) => {
-    total += product.quantity.price;
+  basket.state?.selectedProducts.forEach((product) => {
+    total += Number(product?.quantity?.price);
   })
-  return total
+  return total || 0
 })
+const createOrder = () => {
+  store.openBasketModal = false;
+  router.push({ name: "OrderingOrder" })
+}
 const clearBasket = () => {
   basket.updateBasketStore([]);
 }

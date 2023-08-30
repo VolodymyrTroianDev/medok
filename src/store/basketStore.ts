@@ -7,11 +7,7 @@ export const useBasketStore = defineStore("basket", () => {
     selectedProducts: getItem("basket") || [],
     inBasket:[],
   });
-  if (state.selectedProducts.length > 0){
-    state.selectedProducts.forEach(product => {
-      state.inBasket.push(product.uid)
-    })
-  }
+
   const updateBasketStore = (updateData) => {
     state.selectedProducts = updateData;
     setItem("basket",updateData);
@@ -20,5 +16,10 @@ export const useBasketStore = defineStore("basket", () => {
       state.inBasket.push(product.uid)
     })
   }
+
+  if (state.selectedProducts.length > 0) {
+    updateBasketStore(state.selectedProducts);
+  }
+
   return { state,updateBasketStore }
 });

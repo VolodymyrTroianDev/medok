@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mt-2 gap-1 flex justify-between items-center"
+    class="mt-2 gap-3 flex justify-between items-center"
   >
     <div class="custom-shadow flex justify-between items-center w-[62px] h-5 bg-white shadow-sm rounded-lg">
       <div class="custom-shadow relative cursor-pointer w-5 h-5 bg-white shadow-sm rounded-full">
