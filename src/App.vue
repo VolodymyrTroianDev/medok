@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="relative"
+      class="h-100 overflow-y-auto relative"
       :class="{
     'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription,
   }">

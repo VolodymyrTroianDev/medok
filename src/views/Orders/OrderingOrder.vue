@@ -1,5 +1,5 @@
 <template>
-  <div class="font-marck-script text-[54px] text-center h-screen">{{ $t("basket.checkout") }}</div>
+  <div class="font-marck-script text-[54px] text-center">{{ $t("basket.checkout") }}</div>
   <div class="flex  flex-col xl:w-1/2 xl:ms-14 xl:mr-14 mx-6 gap-4 xl:gap-0">
     <div class="flex flex-col gap-4 xl:gap-0">
       <div class="flex gap-4">
