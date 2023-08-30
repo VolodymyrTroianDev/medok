@@ -69,6 +69,7 @@ const selectAddress = (data) => {
   selectDelivery.value = data;
   city.value = "";
   searchCity();
+  closeSelector();
 }
 </script>
 
