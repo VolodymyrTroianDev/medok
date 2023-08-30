@@ -1,7 +1,7 @@
 <template>
-  <div class="">
+  <div>
     <div
-      class="relative h-screen"
+      class="relative"
       :class="{
     'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription,
   }">
