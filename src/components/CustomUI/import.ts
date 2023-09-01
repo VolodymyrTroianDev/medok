@@ -27,6 +27,9 @@ const CustomCounterBtn = defineAsyncComponent(
 const LocationSelect = defineAsyncComponent(
   () => import("@/components/CustomUI/LocationSelect.vue")
 );
+const RadioBtn = defineAsyncComponent(
+  () => import("@/components/CustomUI/RadioBtn.vue")
+);
 
 export default {
   OAuth,
@@ -37,5 +40,6 @@ export default {
   ModalContainer,
   MyModal,
   CustomCounterBtn,
-  LocationSelect
+  LocationSelect,
+  RadioBtn
 };

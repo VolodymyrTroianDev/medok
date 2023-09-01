@@ -4,30 +4,46 @@
       class="relative flex items-center h-fit max-w-[826px] w-full border rounded-md p-4 gap-10 cursor-pointer color-green hover:border-orange-700"
       @click="toggleSelector=!toggleSelector"
       :class="{
-      'border-orange-700':toggleSelector
+      'border-orange-700':toggleSelector || Object.keys(selectDelivery).length > 0
     }"
     >
       <img src="../../assets/images/svg/basket/point-map.svg" alt="point map">
       <div class="flex flex-col">
-        <div class="text-color-green">{{ selectDelivery?.CityDescription }}</div>
-        <div class="">{{ selectDelivery?.Description }}</div>
-        <div class="text-color-green ">{{ selectDelivery?.SettlementAreaDescription }}, {{ selectDelivery?.SettlementRegionsDescription }}</div>
+        <div class="text-color-green">{{ selectDelivery?.CityDescription || $t("selectCity.title") }}</div>
+        <div class="">{{ selectDelivery?.Description || $t("selectCity.example")}}</div>
+        <div class="text-color-green ">{{ selectDelivery?.SettlementAreaDescription || $t("selectCity.Lviv")}}, {{ selectDelivery?.SettlementRegionsDescription || $t("selectCity.area")}}</div>
       </div>
-      <img src="../../assets/images/svg/basket/chevron-right.svg" class="absolute right-5 ease-in-out duration-300" :class="{
-      'rotate-90' : toggleSelector
-    }">
+      <img
+        v-if="!Object.keys(selectDelivery).length > 0"
+        src="../../assets/images/svg/basket/chevron-right.svg" class="absolute right-5 ease-in-out duration-300 z-10"
+        :class="{
+          'rotate-90' : toggleSelector,
+        }"
+      >
+      <img
+        v-else
+        @click="selectDelivery = {}"
+        src="../../assets/images/svg/basket/basket-close-btn.svg" class="absolute right-5 ease-in-out duration-300 z-10 w-4 h-4 hover:rotate-90"
+      >
     </div>
 
     <Transition>
       <div class="max-w-[826px] w-full mt-5 mb-5" v-if="toggleSelector">
         <div class="tooltip w-full h-[300px]">
-          <div class="tooltiptext max-w-[826px] w-full text-black p-2">
-            <input v-model="city" @input="searchCity" class="w-full border-b p-2" :placeholder="$t('selectCity.title')">
+          <div class="tooltiptext max-w-[826px] w-full text-black">
+            <div class="p-4">
+              <input v-model="city" @input="searchCity" class="w-full border-b" :placeholder="$t('selectCity.title')">
+            </div>
             <div class="relative" v-if="runLoading">
               <span class="load"></span>
             </div>
-            <ul  class="p-2 h-64 overflow-y-auto">
-              <li class="hover:bg-gray-50 hover:border hover:rounded transition duration-300 cursor-pointer" @click="selectAddress(data)" v-for="data in res" :key="data">{{ data.CityDescription}} , {{ data.Description }} </li>
+            <ul  class="p-0 h-[85%] overflow-y-auto">
+              <li
+                class="hover:bg-gray-50 hover:transition duration-300 cursor-pointer text-start py-1 w-full ps-4"
+                @click="selectAddress(data)" v-for="data in res" :key="data"
+              >
+                {{ data.CityDescription}} , {{ data.Description }}
+              </li>
             </ul>
           </div>
         </div>
@@ -39,16 +55,15 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {vOnClickOutside} from '@vueuse/components'
-import {useDeliveryStore} from "@/store/deliveryStore";
+import { useDeliveryStore } from "@/store/deliveryStore";
 import debounce from 'lodash.debounce'
-import Loader from "@/components/CustomUI/Loader.vue";
 
-const delivery = useDeliveryStore();
-const toggleSelector = ref<boolean>(false)
-const city = ref<string>("")
-const res = ref<string>("")
-const runLoading = ref<boolean>(false);
-const selectDelivery = ref<boolean>(false);
+const delivery = useDeliveryStore(),
+  toggleSelector = ref<boolean>(false),
+  city = ref<string>(""),
+  res = ref<string>(""),
+  runLoading = ref<boolean>(false),
+  selectDelivery = ref({});
 
 const searchCity = debounce( async () => {
   runLoading.value = true;
@@ -71,6 +86,7 @@ const selectAddress = (data) => {
   searchCity();
   closeSelector();
 }
+
 </script>
 
 <style scoped>
@@ -107,9 +123,10 @@ input:focus-visible {
   outline: none;
 }
 .load {
+  position: absolute;
   margin-top: 90px;
-  width: 48px;
-  height: 48px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: inline-block;
   border-top: 4px solid #ffba0a;
@@ -123,8 +140,8 @@ input:focus-visible {
   position: absolute;
   left: 0;
   top: 0;
-  width: 48px;
-  height: 48px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border-bottom: 4px solid #FF3D00;
   border-left: 4px solid transparent;

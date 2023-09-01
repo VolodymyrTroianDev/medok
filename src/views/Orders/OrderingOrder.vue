@@ -1,6 +1,6 @@
 <template>
   <div class="font-marck-script text-[54px] text-center">{{ $t("basket.checkout") }}</div>
-  <div class="flex  flex-col xl:w-1/2 xl:ms-14 xl:mr-14 mx-6 gap-4 xl:gap-0">
+  <div class="flex  flex-col xl:w-1/2 xl:ms-14 xl:mr-14 mx-6 gap-4 xl:gap-0 mb-5">
     <div class="flex flex-col gap-4 xl:gap-0">
       <div class="flex gap-4">
         <div class="bg-main-color rounded-full w-[24px] h-[24px]">
@@ -34,10 +34,28 @@
       <div class="text-[18px] font-semibold">{{ $t("basket.delivery") }}</div>
     </div>
     <LocationSelect class="mt-0 xl:mt-6 mb-6 xl:0"/>
+
+    <div class="flex gap-4">
+      <div class="bg-main-color rounded-full w-[24px] h-[24px]">
+        <div class="text-white text-center">3</div>
+      </div>
+      <div class="text-[18px] font-semibold">{{ $t("basket.payment") }}</div>
+    </div>
+    <RadioBtn
+      @update:model-value="onUpdateRadioBtn"
+    >
+      {{ $t("basket.paymanentText") }}
+    </RadioBtn>
   </div>
 </template>
 
 <script setup lang="ts">
+import {ref} from "vue";
+
+const check = ref(false)
+const onUpdateRadioBtn = (flag) => {
+  check.value = flag
+}
 </script>
 
 <style scoped>
