@@ -1,10 +1,10 @@
 <template>
   <div>
     <div
-      class="h-100 overflow-y-auto relative"
+      class="h-screen overflow-y-auto relative"
       :class="{
-    'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription,
-  }">
+        'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription,
+      }">
       <router-view name="Header"/>
       <router-view name="default"/>
       <router-view name="Footer"/>

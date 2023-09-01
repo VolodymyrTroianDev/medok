@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full" v-on-click-outside="closeSelector">
+  <div class="max-w-[826px] w-full relative" v-on-click-outside="closeSelector">
     <div
-      class="relative flex items-center h-fit max-w-[826px] w-full border rounded-md p-4 gap-10 cursor-pointer color-green hover:border-orange-700"
-      @click="toggleSelector=!toggleSelector"
+      class="relative flex items-center h-fit  border rounded-md p-4 gap-10 cursor-pointer color-green hover:border-orange-700"
+      @click.prevent="toggleSelector=!toggleSelector"
       :class="{
       'border-orange-700':toggleSelector || Object.keys(selectDelivery).length > 0
     }"
@@ -26,18 +26,22 @@
         src="../../assets/images/svg/basket/basket-close-btn.svg" class="absolute right-5 ease-in-out duration-300 z-10 w-4 h-4 hover:rotate-90"
       >
     </div>
-
     <Transition>
-      <div class="max-w-[826px] w-full mt-5 mb-5" v-if="toggleSelector">
-        <div class="tooltip w-full h-[300px]">
+      <div class="w-full absolute top-36 lg:top-32 left-0" v-if="toggleSelector">
+        <div class="tooltip w-full h-[300px] ">
           <div class="tooltiptext max-w-[826px] w-full text-black">
             <div class="p-4">
-              <input v-model="city" @input="searchCity" class="w-full border-b" :placeholder="$t('selectCity.title')">
+              <input
+                v-model="city"
+                @input="searchCity"
+                class="w-full border-b outline-0"
+                :placeholder="$t('selectCity.title')"
+              >
             </div>
             <div class="relative" v-if="runLoading">
               <span class="load"></span>
             </div>
-            <ul  class="p-0 h-[85%] overflow-y-auto">
+            <ul  class="p-0 h-[80%] overflow-y-auto">
               <li
                 class="hover:bg-gray-50 hover:transition duration-300 cursor-pointer text-start py-1 w-full ps-4"
                 @click="selectAddress(data)" v-for="data in res" :key="data"
@@ -96,6 +100,7 @@ const selectAddress = (data) => {
 }
 
 .tooltip .tooltiptext {
+  background: white;
   border: 1px solid #d46110;
   text-align: center;
   border-radius: 6px;
