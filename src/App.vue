@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div
       class="h-screen overflow-y-auto relative"
       :class="{
@@ -17,8 +16,6 @@
     <RegistrationModal/>
     <Basket />
     <Loader v-if="store.statusLoader"/>
-
-  </div>
 </template>
 
 <script setup lang="ts">

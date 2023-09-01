@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-footer w-screen lg:max-h-[351px] h-full py-[35px]">
+  <footer class="bg-footer lg:max-h-[351px] h-full py-[35px]">
     <div class="flex">
       <img src="../../assets/images/png/footer/footer.png" alt="" class="hidden lg:block">
       <div class="flex flex-wrap mx-auto max-w-[500px] text-center lg:text-start lg:max-w-[1145px] w-full justify-center lg:justify-between lg:flex-nowrap">
