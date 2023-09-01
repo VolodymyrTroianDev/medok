@@ -6,7 +6,7 @@
       @click="openProductDescription = false"
     >
     <Carousel :wrap-around="true" :autoplay="5000" :items-to-show="1">
-      <Slide v-for="slide in product.carousel" :key="slide">
+      <Slide v-for="slide in product?.carousel" :key="slide">
         <img :src="slide" class="h-[300px] bg-no-repeat bg-center bg-cover"/>
       </Slide>
 
@@ -18,18 +18,18 @@
       <div class="w-full overflow-y-auto max-h-[300px]">
         <div class="flex flex-col p-3">
             <div class="description-title">{{ $t("products.description") }}</div>
-            <div class="description-text text-justify">{{ product.description }}</div>
+            <div class="description-text text-justify">{{ product?.description }}</div>
         </div>
         <div class="flex flex-col p-3">
           <div class="description-title">{{ $t("products.compound") }}</div>
-          <div class="description-text">{{ product.compound }}</div>
+          <div class="description-text">{{ product?.compound }}</div>
         </div>
         <div class="flex flex-col p-3">
           <div class="description-title">{{ $t("products.capacity") }}</div>
-          <div class="description-text">{{ product.capacity }}</div>
+          <div class="description-text">{{ product?.capacity }}</div>
         </div>
         <div class="flex flex-col p-3">
-          <div class="description-text">{{ product.completeSet }}</div>
+          <div class="description-text">{{ product?.completeSet }}</div>
         </div>
       </div>
       <div class="flex justify-end w-full pe-3">
