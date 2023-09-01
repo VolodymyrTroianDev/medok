@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-header-main bg-bottom bg-cover bg-no-repeat bg-transparent"
+    class="bg-header-main bg-bottom bg-cover bg-no-repeat bg-transparent w-100"
   >
     <Header :hiddenBackground="false"/>
     <div class="header-component">

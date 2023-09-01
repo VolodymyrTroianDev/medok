@@ -1,6 +1,6 @@
 <template>
     <div
-      class="h-screen overflow-y-auto relative"
+      class="h-full w-full relative"
       :class="{
         'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription,
       }">
