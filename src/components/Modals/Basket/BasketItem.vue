@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x-hidden pt-10 px-5 h-full">
+  <div class="overflow-x-hidden">
     <TransitionGroup name="list" tag="ul">
       <li
         class="h-fit min-h-[200px] mix-blend-normal rounded-xl md:ml-0 md:min-h-44 w-full flex items-center shadow-custom mb-3"

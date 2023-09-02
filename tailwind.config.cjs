@@ -28,7 +28,7 @@ module.exports = {
         'b-products':'#d46110',
         'bg-products':'rgba(237, 145, 80, 0.06)',
         'bg-mobile-filter':'#f5e6db',
-        'bg-fafafa':'#fafafa',
+        'fafafa':'#fafafa',
         'color-green':'#c8c8c8',
       },
     },

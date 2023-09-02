@@ -5,7 +5,7 @@
       {{ $t("basket.basket") }}
     </div>
     <img v-show="basket.state.inBasket.length === 0" src="../../../assets/images/svg/basket/empty-icon.svg" alt="" class="w-full h-full">
-    <BasketItem v-show="basket.state.inBasket.length > 0"/>
+    <BasketItem v-show="basket.state.inBasket.length > 0" class="h-full pt-10 px-5"/>
     <div class="basket-footer">
       <div class="flex items-center justify-center" v-show="basket.state.inBasket.length > 0">
         <div class="text-white text-center text-[17px] p-3">{{ $t("basket.total") }}:</div>

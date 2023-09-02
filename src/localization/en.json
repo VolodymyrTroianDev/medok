@@ -113,7 +113,8 @@
       "numberProduct": "number of products",
       "shippingCost": "Shipping cost",
       "pay": "Pay",
-      "productAdded": "The product has already been added"
+      "productAdded": "The product has already been added",
+      "deliveryText": "Delivery cost depends on the company that provides delivery services"
   },
   "forgotPassword": {
     "title":"Forgot your password?",
