@@ -2,7 +2,7 @@
   <div class="overflow-x-hidden pt-10 px-5 h-full">
     <TransitionGroup name="list" tag="ul">
       <li
-        class="h-[200px] mix-blend-normal rounded-xl md:ml-0 md:min-h-44 w-full flex items-center shadow-custom mb-3"
+        class="h-fit mix-blend-normal rounded-xl md:ml-0 md:min-h-44 w-full flex items-center shadow-custom mb-3"
         v-for="(item,index) in basket.state.selectedProducts"
         :key="item.uid"
       >
