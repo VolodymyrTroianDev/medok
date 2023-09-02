@@ -27,25 +27,28 @@
         </div>
       </div>
     </div>
-    <div class="flex gap-4">
-      <div class="bg-main-color rounded-full w-[24px] h-[24px]">
-        <div class="text-white text-center">2</div>
+    <div class="flex flex-col gap-4">
+      <div class="flex gap-4">
+        <div class="bg-main-color rounded-full w-[24px] h-[24px]">
+          <div class="text-white text-center">2</div>
+        </div>
+        <div class="text-[18px] font-semibold">{{ $t("basket.delivery") }}</div>
       </div>
-      <div class="text-[18px] font-semibold">{{ $t("basket.delivery") }}</div>
+      <LocationSelect class="mt-0 xl:mt-6 mb-6 xl:0"/>
     </div>
-    <LocationSelect class="mt-0 xl:mt-6 mb-6 xl:0"/>
-
-    <div class="flex gap-4">
-      <div class="bg-main-color rounded-full w-[24px] h-[24px]">
-        <div class="text-white text-center">3</div>
+    <div class="flex flex-col gap-4">
+      <div class="flex gap-4">
+        <div class="bg-main-color rounded-full w-[24px] h-[24px]">
+          <div class="text-white text-center">3</div>
+        </div>
+        <div class="text-[18px] font-semibold">{{ $t("basket.payment") }}</div>
       </div>
-      <div class="text-[18px] font-semibold">{{ $t("basket.payment") }}</div>
+      <RadioBtn
+        @update:model-value="onUpdateRadioBtn"
+      >
+        {{ $t("basket.paymanentText") }}
+      </RadioBtn>
     </div>
-    <RadioBtn
-      @update:model-value="onUpdateRadioBtn"
-    >
-      {{ $t("basket.paymanentText") }}
-    </RadioBtn>
   </div>
 </template>
 

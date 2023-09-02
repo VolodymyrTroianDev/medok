@@ -32,9 +32,10 @@
           <div class="tooltiptext max-w-[826px] w-full text-black">
             <div class="p-4">
               <input
+                type="text"
                 v-model="city"
                 @input="searchCity"
-                class="w-full border-b outline-0"
+                class="search-city"
                 :placeholder="$t('selectCity.title')"
               >
             </div>
@@ -94,6 +95,7 @@ const selectAddress = (data) => {
 </script>
 
 <style scoped>
+
 .tooltip {
   position: relative;
   display: inline-block;
@@ -124,8 +126,11 @@ const selectAddress = (data) => {
   border-right-color: transparent;
   transform: rotate(45deg);
 }
-input:focus-visible {
-  outline: none;
+.search-city {
+  all: unset;
+  width: 100%;
+  text-align: start;
+  border-bottom: 1px solid #c8c8c8;
 }
 .load {
   position: absolute;
