@@ -5,6 +5,7 @@
     @submit="onSubmit"
     v-slot:default="{ values }"
     :validation-schema="validationScheme"
+    @invalid-submit="onInvalidSubmit"
   >
     <div class="flex flex-col xl:ms-14 xl:mr-14 mx-6 gap-7 xl:gap-0 mb-5 w-full lg:w-2/5">
       <div class="flex flex-col gap-4 xl:gap-0">
@@ -14,7 +15,7 @@
           </div>
           <div class="text-[18px] font-semibold">{{ $t("basket.contactDetails") }}</div>
         </div>
-        <div class="flex flex-col gap-8 p-0 sm:p-6 ">
+        <div class="flex flex-col gap-8 p-0 lg:p-6 ">
           <div class="flex justify-between lg:justify-center gap-5 lg:w-full flex-wrap lg:flex-nowrap ">
             <div class="relative w-full">
               <Field
@@ -184,6 +185,7 @@ import {ErrorMessage, Field, Form as VForm} from "vee-validate";
 import {object, string, boolean} from 'yup';
 import {useI18n} from "vue-i18n";
 import InputPhone from "@/components/CustomUI/InputPhone.vue";
+import {onInvalidSubmit} from "@/services/sroll";
 
 const basket = useBasketStore();
 const paymentType = ref(false)
