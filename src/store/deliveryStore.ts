@@ -8,11 +8,13 @@ export const useDeliveryStore = defineStore("delivery", () => {
   const state = reactive({
     "apiKey": "f3f692069fd6a18b05c4aae6eee41a41",
     "modelName": "Address",
-    "calledMethod": "getWarehouses",
+    "calledMethod": "searchSettlements",
     "methodProperties": {
-      "CityName": ""
-    }
+      "CityName": "",
+    },
+    deliveryCurrency: 56
   })
+
   const NOVA_POSHTA_URL = "https://api.novaposhta.ua/v2.0/json/";
   const UKR_POSHTA_URL = "https://api.novaposhta.ua/v2.0/json/";
 const searchDeliveryNovaPoshta = async (cityName:string) => {
@@ -20,6 +22,7 @@ const searchDeliveryNovaPoshta = async (cityName:string) => {
   return await axios.post(NOVA_POSHTA_URL,state);
 }
   return {
+    state,
     searchDeliveryNovaPoshta
   }
 })

@@ -156,5 +156,8 @@
   "footer": {
     "quickUrl": "Quick links",
     "city": "Ternavka village, Stryi district, Lviv region"
+  },
+  "error": {
+    "required": "This field is required"
   }
 }

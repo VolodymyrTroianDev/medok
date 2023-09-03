@@ -9,9 +9,10 @@
     >
       <img src="../../assets/images/svg/basket/point-map.svg" alt="point map">
       <div class="flex flex-col">
-        <div class="text-color-green">{{ selectDelivery?.CityDescription || $t("selectCity.title") }}</div>
-        <div class="">{{ selectDelivery?.Description || $t("selectCity.example")}}</div>
-        <div class="text-color-green ">{{ selectDelivery?.SettlementAreaDescription || $t("selectCity.Lviv")}}, {{ selectDelivery?.SettlementRegionsDescription || $t("selectCity.area")}}</div>
+        <div class="text-color-green">{{ selectDelivery?.SettlementTypeCode }} {{ selectDelivery?.MainDescription || $t("selectCity.title") }}</div>
+        <div class="">{{ selectDelivery?.Present || $t("selectCity.example")}}</div>
+        <div class="text-color-green ">{{ selectDelivery?.Area || $t("selectCity.area")}}
+          {{ selectDelivery?.ParentRegionTypes }}</div>
       </div>
       <img
         v-if="!Object.keys(selectDelivery).length > 0"
@@ -22,7 +23,7 @@
       >
       <img
         v-else
-        @click="selectDelivery = {}"
+        @click="clearSelect"
         src="../../assets/images/svg/basket/basket-close-btn.svg" class="absolute right-5 ease-in-out duration-300 z-10 w-4 h-4 hover:rotate-90"
       >
     </div>
@@ -47,7 +48,7 @@
                 class="hover:bg-gray-50 hover:transition duration-300 cursor-pointer text-start py-1 w-full ps-4"
                 @click="selectAddress(data)" v-for="data in res" :key="data"
               >
-                {{ data.CityDescription}} , {{ data.Description }}
+                {{ data.Present }}
               </li>
             </ul>
           </div>
@@ -68,7 +69,8 @@ const delivery = useDeliveryStore(),
   city = ref<string>(""),
   res = ref<string>(""),
   runLoading = ref<boolean>(false),
-  selectDelivery = ref({});
+  selectDelivery = ref({}),
+  emit = defineEmits(["updateCity"]);
 
 const searchCity = debounce( async () => {
   runLoading.value = true;
@@ -76,22 +78,29 @@ const searchCity = debounce( async () => {
   if (city.value.length >0) {
     const { data } = await delivery.searchDeliveryNovaPoshta(city.value);
     runLoading.value = false;
-    res.value = data.data
+    res.value = data.data[0].Addresses
   } else {
     res.value = [];
     runLoading.value = false;
   }
 }, 500)
+
 const closeSelector = () => {
   toggleSelector.value = false
 }
+
 const selectAddress = (data) => {
   selectDelivery.value = data;
   city.value = "";
+  emit("updateCity", data?.Present);
   searchCity();
   closeSelector();
 }
 
+const clearSelect = () => {
+  selectDelivery.value = {};
+  emit("updateCity", "");
+}
 </script>
 
 <style scoped>

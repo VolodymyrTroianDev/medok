@@ -9,7 +9,7 @@
     <div class="basket-footer">
       <div class="flex items-center justify-center" v-show="basket.state.inBasket.length > 0">
         <div class="text-white text-center text-[17px] p-3">{{ $t("basket.total") }}:</div>
-        <div class="text-white ">{{ total }} ₴</div>
+        <div class="text-white ">{{ basket.total.totalPrice }} ₴</div>
       </div>
       <div v-show="basket.state.inBasket.length === 0" class="text-white text-center text-[17px] p-3">{{ $t("basket.empty") }}</div>
       <div v-show="basket.state.inBasket.length > 0" class="flex justify-around flex-wrap md:flex-nowrap gap-4 mb-3">
@@ -32,13 +32,6 @@ const basket = useBasketStore();
 const closeBasket = () => {
   store.openBasketModal = false
 }
-const total = computed(() => {
-  let total = 0
-  basket.state?.selectedProducts.forEach((product) => {
-    total += Number(product?.quantity?.price);
-  })
-  return total || 0
-})
 const createOrder = () => {
   store.openBasketModal = false;
   router.push({ name: "OrderingOrder" })

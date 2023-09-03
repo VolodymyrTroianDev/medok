@@ -2,11 +2,10 @@
   <div class="flex items-center">
     <input
       type="checkbox"
+      name="paymentType"
       v-model="statusRadio"
-      checked
       @change="$emit('update:modelValue', statusRadio)"
       id="paymentAfterDelivery"
-      name="paymentAfterDelivery"
       class="hidden opacity-0 z-[-1] w-[35px]"
     />
     <label

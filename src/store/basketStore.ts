@@ -1,11 +1,11 @@
 import {defineStore} from "pinia";
-import {reactive} from "vue";
+import {computed, reactive} from "vue";
 import {getItem, setItem} from "@/services/LocalStorage";
 
 export const useBasketStore = defineStore("basket", () => {
   const state = reactive({
     selectedProducts: getItem("basket") || [],
-    inBasket:[],
+    inBasket:[] as string[],
   });
 
   const updateBasketStore = (updateData) => {
@@ -20,6 +20,18 @@ export const useBasketStore = defineStore("basket", () => {
   if (state.selectedProducts.length > 0) {
     updateBasketStore(state.selectedProducts);
   }
-
-  return { state,updateBasketStore }
+  const total = computed(() => {
+    let totalPrice = 0,
+      totalProduct = 0;
+    state?.selectedProducts.forEach((product) => {
+      totalPrice += Number(product?.quantity?.price);
+      totalProduct += Number(product?.quantity?.product)
+    })
+    return { totalPrice, totalProduct }
+  })
+  return {
+    state,
+    updateBasketStore,
+    total
+  }
 });
