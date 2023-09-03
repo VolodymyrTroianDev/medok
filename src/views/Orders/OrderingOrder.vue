@@ -16,8 +16,8 @@
           <div class="text-[18px] font-semibold">{{ $t("basket.contactDetails") }}</div>
         </div>
         <div class="flex flex-col gap-8 p-0 lg:p-6 ">
-          <div class="flex justify-between lg:justify-center gap-5 lg:w-full flex-wrap lg:flex-nowrap ">
-            <div class="relative w-full">
+          <div class="flex justify-between lg:justify-center gap-8 lg:w-full flex-wrap xl:flex-nowrap ">
+            <div class="relative w-full min-w-[250px]">
               <Field
                 v-slot="{ field }"
                 name="surname"
@@ -35,7 +35,7 @@
                 class="invalid-tooltip absolute text-red-600 inline-block text-xs leading-4 mt-[5px]"
               />
             </div>
-            <div class="relative w-full">
+            <div class="relative w-full min-w-[250px]">
               <Field
                 v-slot="{ field }"
                 name="name"
@@ -55,8 +55,8 @@
               />
             </div>
           </div>
-          <div class="flex justify-between lg:justify-center gap-5 lg:w-full flex-wrap lg:flex-nowrap ">
-            <div class="relative w-full">
+          <div class="flex justify-between lg:justify-center gap-8 lg:w-full flex-wrap xl:flex-nowrap ">
+            <div class="relative w-full min-w-[250px]">
               <Field
                 v-slot="{ field }"
                 name="phoneNumber"
@@ -74,7 +74,7 @@
                 class="invalid-tooltip absolute text-red-600 inline-block text-xs leading-4 mt-[5px]"
               />
             </div>
-            <div class="relative w-full">
+            <div class="relative w-full min-w-[250px]">
               <Field
                 v-slot="{ field }"
                 name="email"
