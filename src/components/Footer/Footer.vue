@@ -2,12 +2,12 @@
   <footer class="bg-footer lg:max-h-[351px] h-full py-[35px]">
     <div class="flex">
       <img src="../../assets/images/png/footer/footer.png" alt="" class="hidden lg:block">
-      <div class="flex flex-wrap mx-auto max-w-[500px] text-center lg:text-start lg:max-w-[1145px] w-full justify-center lg:justify-between lg:flex-nowrap">
+      <div class="flex flex-wrap mx-auto max-w-[500px] text-center lg:text-start lg:max-w-[1145px] w-full justify-center lg:justify-between lg:flex-nowrap px-1 lg:px-0">
         <div class="pr-5 lg:pr-10 hidden lg:block">
           <router-link
             tag="button"
             :to="{ name: 'Main'}"
-            class="flex items-center gap-3 font-marck-script text-[23px] lg:text-[30px] ">
+            class="flex items-center gap-3 font-marck-script text-[20px] lg:text-[30px]">
             <img src="./../../assets/images/svg/logo.svg" class="w-9 h-9 hover:scale-110 transition-all duration-350"
                  alt="">
             {{ $t("header.title") }}

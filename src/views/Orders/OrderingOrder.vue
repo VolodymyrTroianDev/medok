@@ -1,7 +1,7 @@
 <template>
   <div class="font-marck-script text-[54px] text-center">{{ $t("basket.checkout") }}</div>
   <VForm
-    class="flex justify-between flex-wrap lg:flex-nowrap"
+    class="flex justify-center 2xl:justify-between flex-wrap 2xl:flex-nowrap"
     @submit="onSubmit"
     v-slot:default="{ values }"
     :validation-schema="validationScheme"
