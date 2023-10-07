@@ -158,6 +158,11 @@
           name="date"
           :value="new Date()"
         />
+        <Field
+          type="hidden"
+          name="total"
+          :value="basket.total"
+        />
       </div>
     </div>
     <div class="flex flex-wrap flex-col-reverse xl:flex-row xl:flex-nowrap lg:w-3/5 mx-4 lg:mx-0 gap-4 xl:pt-10">
@@ -186,8 +191,10 @@ import {object, string, boolean} from 'yup';
 import {useI18n} from "vue-i18n";
 import InputPhone from "@/components/CustomUI/InputPhone.vue";
 import {onInvalidSubmit} from "@/services/sroll";
-
+import {useOrderStore} from "@/store/OrderStore";
+import {useAuthenticationStore} from "@/store/authStore";
 const basket = useBasketStore();
+const order = useOrderStore();
 const paymentType = ref(false)
 const selectCity = ref("")
 
@@ -198,8 +205,9 @@ const onUpdateRadioBtn = (flag) => {
 const onUpdateCity = (city) => {
   selectCity.value = city
 }
-const onSubmit = (val) => {
-  console.log(val)
+const onSubmit = async (val) => {
+
+  await order.sendEmail(val);
 }
 const validationScheme = object().shape({
   surname: string().nullable().required(t("error.required") + " *"),

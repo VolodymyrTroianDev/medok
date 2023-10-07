@@ -78,7 +78,7 @@ const searchCity = debounce( async () => {
   if (city.value.length >0) {
     const { data } = await delivery.searchDeliveryNovaPoshta(city.value);
     runLoading.value = false;
-    res.value = data.data[0].Addresses
+    res.value = data.data[0]?.Addresses
   } else {
     res.value = [];
     runLoading.value = false;

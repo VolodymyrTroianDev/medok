@@ -159,5 +159,8 @@
   },
   "error": {
     "required": "This field is required"
+  },
+  "message": {
+    "hello": "Hello"
   }
 }
