@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-5 bg-white bg-bg-mobile-filter 500px:bg-bg-products min-h-[710px] border-t-2 border-t-b-products p-5" >
+  <div class="flex flex-col gap-5 bg-bg-mobile-filter 500px:bg-bg-products min-h-[710px] border-t-2 border-t-b-products p-5" >
     <template v-for="(item,index) in blogStore.state.data" :key="item">
         <div class="flex items-center gap-5">
             <img :src="item.imgUrl" alt="" width="200">
