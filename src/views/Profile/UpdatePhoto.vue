@@ -39,7 +39,7 @@
     />
     <div class="w-[200px] h-[41px] my-4 mx-auto text-center font-normal text-[14px] text-gray-600">{{ $t("profile.recommend") }}</div>
   </div>
-  <Cropper :cropperInfo="cropperInfo" @remove-img="cropperInfo.selectedImage = ''"/>
+  <Cropper :cropperInfo="cropperInfo" @remove-img="cropperInfo.selectedImage = ''" @update-cropper="updatePhoto"/>
 </template>
 
 <script setup lang="ts">
@@ -71,14 +71,8 @@ const handleUpload = (e) => {
     general.openCropperModal = true;
   }
 }
+const updatePhoto = async (data) => {
+  await authStore.updatePhotoProfile(data)
+}
 </script>
 
-<style scoped>
-.photo-add {
-  background-image: url("../../assets/images/svg/change-avatar.svg");
-}
-
-input[type="file"] {
-  display: none;
-}
-</style>

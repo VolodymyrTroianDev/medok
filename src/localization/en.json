@@ -55,7 +55,12 @@
       "honeySweets" : "Honey & Sweets",
       "honeyComb": "Honeycomb",
       "naturalHoney": "Natural honey",
-      "latestNews": "Latest news"
+      "latestNews": "Latest news",
+      "addArticle": "Add a news item",
+      "addTitle": "Add a title",
+      "titleArticle": "Title",
+      "addImg": "Add a image",
+      "addDescription": "Add a description"
   },
   "products": {
       "subTitleDashboard": "Our product",

@@ -30,6 +30,7 @@ module.exports = {
         'bg-mobile-filter':'#f5e6db',
         'fafafa':'#fafafa',
         'color-green':'#c8c8c8',
+        'custom-gray':'#656565'
       },
     },
     screens: {

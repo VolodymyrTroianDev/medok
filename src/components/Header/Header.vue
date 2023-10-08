@@ -25,7 +25,9 @@
         <button class="relative w-[30px]" @click="general.openBasketModal = !general.openBasketModal" @click.stop>
           <basket-img/>
           <span
-            class="w-[17px] h-[17px] absolute right-0 bg-counter text-white rounded-full bottom-[-5px] text-[12px]">{{ basket.state.selectedProducts.length }}</span>
+            class="w-[17px] h-[17px] absolute right-0 bg-counter text-white rounded-full bottom-[-5px] text-[12px]">
+            {{ basket.state.selectedProducts.length }}
+          </span>
         </button>
       </div>
     </div>

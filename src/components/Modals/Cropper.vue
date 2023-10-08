@@ -1,5 +1,5 @@
 <template>
-  <MyModal :show="general.openCropperModal" styles="h-fit" @close-modal="closeModal">
+  <MyModal :show="general.openCropperModal" styles="h-fit" @close-modal.self="closeModal">
     <img src="../../assets/images/svg/basket/basket-close-btn.svg" alt="close"
          class="absolute top-4 right-4 h-5 w-5 cursor-pointer" @click="closeModal">
     <cropper
@@ -35,7 +35,7 @@ import {useAuthenticationStore} from "@/store/authStore";
 const general = useGeneralStore();
 const auth = useAuthenticationStore();
 const height = ref("50%")
-const emit = defineEmits(["removeImg"]);
+const emit = defineEmits(["removeImg", "updateCropper"]);
 const props = defineProps<{
   cropperInfo: any
 }>()
@@ -46,8 +46,8 @@ const closeModal = () => {
 }
 const cropImage = () => {
   const result = cropperRef.value.getResult();
+  emit("updateCropper",result.canvas.toDataURL(props.cropperInfo?.type))
 
-  auth.updatePhotoProfile(result.canvas.toDataURL(props.cropperInfo?.type))
 }
 </script>
 

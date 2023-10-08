@@ -65,24 +65,27 @@ const routes: Array<RouteRecordRaw> = [
     path: "/:locale/profile",
     name: "Profile",
     components: {
-      default: Profile,
       Header,
+      default: Profile,
+      Footer
     },
   },
   {
     path: "/:locale/profile/edit",
     name: "EditProfile",
     components: {
-      default: EditProfile,
       Header,
+      default: EditProfile,
+      Footer
     },
   },
   {
     path: "/:locale/order/process-creating",
     name: "OrderingOrder",
     components: {
-      default: OrderingOrder,
       Header,
+      default: OrderingOrder,
+      Footer
     },
   },
 ];

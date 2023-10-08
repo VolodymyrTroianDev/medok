@@ -2,7 +2,7 @@
     <div
       class="h-full w-full relative"
       :class="{
-        'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription,
+        'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription || store.openAddArticlePanel,
       }">
       <router-view name="Header"/>
       <router-view name="default"/>
@@ -28,8 +28,15 @@ const auth = useAuthenticationStore();
 store.statusLoader = true;
 
 onMounted(async () => {
-  await auth.checkAuthSession();
-  store.statusLoader = false;
+  try {
+    await auth.checkAuthSession();
+    setTimeout(()=> {
+      store.statusLoader = false;
+    },4000)
+  } catch (e) {
+
+  }
+
 })
 const Basket = defineAsyncComponent(
   () => import("@/components/Modals/Basket/Basket.vue")

@@ -3,6 +3,7 @@ import { reactive } from "vue";
 import { getDatabase, ref, set, onValue, push, update,child,get  } from "firebase/database";
 import { useAuthenticationStore } from "@/store/authStore";
 import { useGeneralStore } from "@/store/generalStore";
+import { v4 as uuidv4 } from 'uuid';
 
 export const useDatabaseStore = defineStore("databaseStore", () => {
   const auth = useAuthenticationStore();
@@ -36,7 +37,8 @@ export const useDatabaseStore = defineStore("databaseStore", () => {
       } else await set(ref(db, `users/${auth.state.uid}`),  {
         metadata: {},
         providerData: {},
-        reloadUserInfo: {}
+        reloadUserInfo: {},
+        userStatus: 2
       } );
     } catch (e) {
       console.error(e);
@@ -51,15 +53,25 @@ export const useDatabaseStore = defineStore("databaseStore", () => {
         metadata: data.metadata,
         providerData: data.providerData,
         reloadUserInfo: data.reloadUserInfo,
-        auth: true
+        auth: true,
+        userStatus: 2
       });
   }
-
+ const createBlogArticle = async (data) => {
+   const uid = uuidv4();
+   await set(ref(db, `blogs/${uid}`),
+     {
+       ...data,
+       timeCreate: Date.now(),
+       timeEdit: ""
+     });
+ }
   return {
     state,
     updateProfile,
     createUserInfo,
     updateReloadUserInfo,
-    updateDatabase
+    updateDatabase,
+    createBlogArticle
   }
 })

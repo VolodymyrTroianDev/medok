@@ -9,6 +9,9 @@ const Loader = defineAsyncComponent(
 const InputText = defineAsyncComponent(
   () => import("@/components/CustomUI/InputText.vue")
 );
+const TextArea = defineAsyncComponent(
+  () => import("@/components/CustomUI/TextArea.vue")
+);
 const InputPassword = defineAsyncComponent(
   () => import("@/components/CustomUI/InputPassword.vue")
 );
@@ -41,5 +44,6 @@ export default {
   MyModal,
   CustomCounterBtn,
   LocationSelect,
-  RadioBtn
+  RadioBtn,
+  TextArea
 };

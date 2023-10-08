@@ -38,6 +38,7 @@ export const useGeneralStore = defineStore({
     },
     openFilterSideBar: false,
     openLeftSideBar: true,
+    openAddArticlePanel: false,
   }),
   getters: {},
   actions: {}

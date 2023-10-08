@@ -55,7 +55,12 @@
       "honeySweets" : "Мед & Солодощі",
       "honeyComb": "Стільниковий",
       "naturalHoney": "Натуральний мед",
-      "latestNews": "Останні новини"
+      "latestNews": "Останні новини",
+      "addArticle": "Додати новину",
+      "addTitle": "Додати заголовок",
+      "titleArticle": "Заголовок",
+      "addImg": "Додати зображення",
+      "addDescription": "Додати опис"
   },
   "why": {
       "subTitle": "Чому ми",
