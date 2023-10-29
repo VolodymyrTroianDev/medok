@@ -2,7 +2,7 @@
     <div
       class="h-full w-full relative"
       :class="{
-        'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription || store.openAddArticlePanel,
+        'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription || store.openAddArticlePanel || store.openBlogDescription,
       }">
       <router-view name="Header"/>
       <router-view name="default"/>
@@ -10,7 +10,7 @@
     </div>
     <div
       class="bg-modal"
-      v-if="store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription"
+      v-if="store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription || store.openBlogDescription"
     ></div>
     <LoginModal/>
     <RegistrationModal/>

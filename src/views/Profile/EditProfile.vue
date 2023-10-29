@@ -1,6 +1,6 @@
 <template>
   <div class="mt-41 ml-200 font-marck-script font-serif text-[50px] text-black mb-30 md:mt-41 md:ml-75 text-center">{{ $t("profile.title") }}</div>
-  <div class="flex items-center ml-200 md:ml-75 flex-wrap lg:flex-no-wrap justify-center md:justify-start sm:ml-0 px-5 lg:px-20 gap-20">
+  <div class="min-h-[710px] flex items-center ml-200 md:ml-75 flex-wrap lg:flex-no-wrap justify-center md:justify-start sm:ml-0 px-5 lg:px-20 gap-20">
     <UpdatePhoto/>
     <div class="w-full lg:w-1/2 flex flex-col gap-5 items-center lg:items-start">
       <div class="flex justify-between lg:justify-center gap-8 lg:w-full flex-wrap lg:flex-nowrap ">

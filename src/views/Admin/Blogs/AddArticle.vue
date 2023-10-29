@@ -39,8 +39,7 @@
       <label class="text-custom-gray">
         {{ $t("blog.addDescription" )}}
       </label>
-      <TextArea v-model="dataArticle.description">
-    </TextArea>
+      <TextArea v-model="dataArticle.description"/>
       <button class="red-btn" @click="saveArticle()">{{$t("blog.addArticle")}}</button>
     </div>
   </MyModal>
@@ -50,7 +49,9 @@ import { useGeneralStore } from "../../../store/generalStore";
 import {useDatabaseStore} from "@/store/databaseStore";
 import {reactive, ref} from "vue";
 import {CropperInfo} from "@/types/profile-types";
+import {useBlogStore} from "@/store/blogStore";
 const database = useDatabaseStore();
+const blogsDataBase = useBlogStore();
 const general = useGeneralStore();
 const dataArticle = reactive({
   title:"",
@@ -63,7 +64,7 @@ const cropperInfo = ref<CropperInfo>({
 const saveArticle = async () => {
   general.statusLoader = true;
  try {
-  await database.createBlogArticle(dataArticle);
+  await blogsDataBase.createBlogArticle(dataArticle);
   general.openAddArticlePanel = false;
   general.statusLoader = false;
  } catch (e) {

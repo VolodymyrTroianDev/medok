@@ -26,6 +26,7 @@ module.exports = {
         'footer':'#FFF4ED',
         'footer-border':'#A79E99',
         'b-products':'#d46110',
+        'color-a':'#aaa',
         'bg-products':'rgba(237, 145, 80, 0.06)',
         'bg-mobile-filter':'#f5e6db',
         'fafafa':'#fafafa',

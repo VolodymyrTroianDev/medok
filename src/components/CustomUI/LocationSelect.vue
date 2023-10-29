@@ -63,6 +63,7 @@ import {ref} from "vue";
 import {vOnClickOutside} from '@vueuse/components'
 import { useDeliveryStore } from "@/store/deliveryStore";
 import debounce from 'lodash.debounce'
+import InputText from "@/components/CustomUI/InputText.vue";
 
 const delivery = useDeliveryStore(),
   toggleSelector = ref<boolean>(false),

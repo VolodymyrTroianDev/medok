@@ -18,7 +18,16 @@ import {firebaseConfig} from "@/libs/firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/uk';
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
+dayjs.extend(relativeTime);
+dayjs.locale('uk');
 const firebase = initializeApp(firebaseConfig);
 const db = getFirestore(firebase);
 const database = getDatabase(firebase);

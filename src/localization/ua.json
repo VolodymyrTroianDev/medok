@@ -60,7 +60,14 @@
       "addTitle": "Додати заголовок",
       "titleArticle": "Заголовок",
       "addImg": "Додати зображення",
-      "addDescription": "Додати опис"
+      "addDescription": "Додати опис",
+      "addComment": "Додайте коментар...",
+      "saveComment": "Коментувати",
+      "comments": "Коментарі",
+      "reply": "Відповісти",
+      "editComment": "Редагувати коментар",
+      "deleteComment": "Видалити коментар",
+      "edited": "Відредаговано"
   },
   "why": {
       "subTitle": "Чому ми",
@@ -175,5 +182,9 @@
   },
   "message": {
     "hello": "Вітаємо"
+  },
+  "reused": {
+    "cancel": "Скасувати",
+    "save": "Зберегти"
   }
 }

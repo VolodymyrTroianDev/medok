@@ -16,6 +16,7 @@ export interface authStore {
   email:string | null,
   name:string | null,
   photoProfile?: string | null,
+  displayName: string,
   userInfo?: object | null,
 }
 export interface Errors {
