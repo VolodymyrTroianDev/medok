@@ -1,14 +1,14 @@
 <template>
-  <MyModal :show="openBlogDescription" styles="pt-[20px] px-5 md:min-w-[710px]" @close-modal="closeModal">
+  <MyModal :show="openBlogDescription" styles="pt-[20px] px-5 md:min-w-[710px] h-fit" @close-modal="closeModal">
     <div class="description-title text-center font-bold text-[19px]">{{ props.data.title }}</div>
     <img
       src="../../assets/images/svg/basket/basket-close-btn.svg" alt=""
       class="cursor-pointer active:scale-75 transition-transform duration-150 ease-in-out absolute top-5 right-5 bg-no-repeat bg-center bg-cover"
       @click="closeModal"
     >
-    <img :src="props.data.imgUrl" class="w-full object-cover mx-auto" alt="">
+    <img :src="props.data.imgUrl" class="object-cover mx-auto w-[300px]" alt="">
     <div class="flex flex-col w-full h-full gap-2">
-      <div class="py-3 flex flex-col gap-6 text-custom-gray text-sm pe-3">
+      <div class="py-3 flex flex-col gap-6 text-custom-gray text-sm">
         <div class="flex gap-2">
           <img src="../../assets/images/svg/calendar.svg" alt="">
           <span>{{ moment(props.data.timeCreate).format('LLLL') }}</span>
@@ -25,24 +25,26 @@
           </button>
           <div class="text-a">{{ $t('blog.comments') }}</div>
         </div>
-        <div class="flex justify-between gap-3">
-          <img
-            :src="database.state.data.reloadUserInfo?.photoUrl"
-            alt=""
-            width="45"
-            height="45"
-            class="rounded-full bg-white h-[45px]"
-          />
-          <CommentBtnGroup
-            @save-comment="(textComment)=>{ onSaveComment(textComment, props.data?.id) }"
-            @cancel-action="onCancelAction"
-            :placeholder="$t('blog.addComment')"
-          >
-            <template v-slot:cancel-btn>{{ $t('reused.cancel') }}</template>
-            <template v-slot:save-btn>{{ $t('blog.reply') }}</template>
-          </CommentBtnGroup>
+        <div class="max-h-[300px] overflow-y-auto mini-scrollbar">
+          <div class="flex justify-between gap-3 pe-3">
+            <img
+              :src="database.state.data.reloadUserInfo?.photoUrl"
+              alt=""
+              width="45"
+              height="45"
+              class="rounded-full bg-white h-[45px]"
+            />
+            <CommentBtnGroup
+              @save-comment="(textComment)=>{ onSaveComment(textComment, props.data?.id) }"
+              @cancel-action="onCancelAction"
+              :placeholder="$t('blog.addComment')"
+            >
+              <template v-slot:cancel-btn>{{ $t('reused.cancel') }}</template>
+              <template v-slot:save-btn>{{ $t('blog.reply') }}</template>
+            </CommentBtnGroup>
+          </div>
+          <CommentItem :comments="props.data.comment" :comment-id="props.data.id"/>
         </div>
-        <CommentItem :comments="props.data.comment" :comment-id="props.data.id"/>
       </div>
     </div>
   </MyModal>

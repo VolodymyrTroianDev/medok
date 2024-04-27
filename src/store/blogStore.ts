@@ -33,6 +33,7 @@ export const useBlogStore = defineStore("blogStore", () => {
           id: uid,
           timeCreated: Date.now(),
           timeEdit: "",
+          likes: [],
           comment: {}
         });
     } catch (e) {
@@ -50,11 +51,13 @@ export const useBlogStore = defineStore("blogStore", () => {
       updates[`blogs/${idx}/comment/${newPostKey}`] = {
         id: auth.state.uid,
         author: dataBase.state.data.reloadUserInfo,
+        edited: false,
         text,
+        likes: [],
         timeCreated: Date.now(),
       };
 
-     await update(ref(db), updates);
+      await update(ref(db), updates);
     } catch (e) {
       console.error(e);
     } finally {
@@ -64,24 +67,52 @@ export const useBlogStore = defineStore("blogStore", () => {
   }
   const editComment = async (text, idx, id) => {
     const updates = {};
-    updates[`blogs/${id}/comment/${idx}`] = {
-      id: auth.state.uid,
-      author: dataBase.state.data.reloadUserInfo,
-      edited: true,
-      text,
-      timeCreated: Date.now(),
-    };
+    updates[`blogs/${id}/comment/${idx}/text`] = text;
+    updates[`blogs/${id}/comment/${idx}/edited`] = true;
 
     await update(ref(db), updates);
   }
+  const replayComment = async (text, idx, id, displayName) => {
+    const uid = uuidv4();
+    const updates = {};
+    updates[`blogs/${id}/comment/${idx}/replay/${uid}`] = {
+      id: auth.state.uid,
+      author: dataBase.state.data.reloadUserInfo,
+      edited: false,
+      comment: {
+        displayName,
+        text
+      },
+      timeCreated: Date.now(),
+    };
+    await update(ref(db), updates);
+  }
+  const likeUpdate = async (id: string, idx: string, authorId: string) => {
+    const updates = {};
+    /*updates[`blogs/${id}/comment/${idx}/likes`].push(authorId)*/
+    console.log((ref(db), `blogs/${id}/comment/${idx}/likes`))
+    await update(ref(db), updates);
+  }
+  const editReplayComment = async (text, blogsId, commentId, replayId, displayName) => {
+    const updates = {};
+    updates[`blogs/${blogsId}/comment/${commentId}/replay/${replayId}/comment`] = {
+      displayName,
+      text
+    };
+    updates[`blogs/${blogsId}/comment/${commentId}/replay/${replayId}/edited`] = true;
+    await update(ref(db), updates);
+  }
   const deleteComment = async (idx, id) => {
-    await remove(ref(db,`blogs/${id}/comment/${idx}`));
+    await remove(ref(db, `blogs/${id}/comment/${idx}`));
   }
   return {
     state,
     createBlogArticle,
     addedComment,
     editComment,
-    deleteComment
+    deleteComment,
+    replayComment,
+    editReplayComment,
+    likeUpdate
   }
 })
