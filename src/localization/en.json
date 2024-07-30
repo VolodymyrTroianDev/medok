@@ -107,7 +107,7 @@
       "checkout": "Placing an order",
       "contactDetails": "Your contact details",
       "delivery": "Delivery",
-      "payment": "Оплата",
+      "payment": "Payment",
       "surname":"Surname",
       "name": "Name",
       "phoneNumber": "Cellphone",
@@ -149,7 +149,8 @@
     "confirmPassword": "Confirm Password",
     "name":"Name and surname",
     "email": "Enter your Email",
-    "uploadAvatar": "Upload avatar"
+    "uploadAvatar": "Upload avatar",
+    "edit": "Edit profile"
   },
   "selectCity": {
     "title":"Choose your city",
