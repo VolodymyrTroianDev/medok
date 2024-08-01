@@ -26,17 +26,21 @@ import { useSeoMeta } from "@unhead/vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useTitle } from "@vueuse/core";
+
 const store = useGeneralStore(),
+  bodyOverflow = ref(''),
   auth = useAuthenticationStore(),
   { t } = useI18n(),
   title = useTitle(),
   router = useRouter();
 
-store.statusLoader = true;
-router.beforeEach((to)=>{
-  title.value = `${t(to.meta.title)} | ${t("header.title")}`;
+
+router.beforeEach((to) => {
+  title.value = `${ t(to.meta.title) } | ${ t("header.title") }`;
 })
+
 onMounted(async () => {
+  store.statusLoader = true;
   try {
     await auth.checkAuthSession();
     setTimeout(() => {
@@ -54,7 +58,7 @@ useSeoMeta({
   ogDescription: t("article.title"),
   ogTitle: t("article.title"),
   ogImage: 'https://medok-karpatskyj.web.app/assets/blog-1-img-d7e73eb7.jpg',
-  twitterCard: 'summary_large_image',
+  twitterCard: 'summary_large_image'
 })
 
 const Basket = defineAsyncComponent(
@@ -66,8 +70,6 @@ const LoginModal = defineAsyncComponent(
 const RegistrationModal = defineAsyncComponent(
   () => import("@/components/Modals/Registration.vue")
 );
-
-const bodyOverflow = ref('');
 
 watchEffect(() => {
   bodyOverflow.value = store.openMobileHeader || store.openBasketModal || store.openRegistrationModal || store.openProductDescription ? 'hidden' : '';
