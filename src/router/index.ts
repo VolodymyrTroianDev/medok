@@ -11,9 +11,7 @@ import ProductItems from "@/views/Products/ProductItems.vue";
 import Profile from "@/views/Profile/Profile.vue";
 import EditProfile from "@/views/Profile/EditProfile.vue";
 import OrderingOrder from "@/views/Orders/OrderingOrder.vue";
-import { useTitle } from '@vueuse/core'
 
-const title = useTitle()
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/:locale",
