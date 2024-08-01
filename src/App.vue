@@ -42,24 +42,6 @@
   <RegistrationModal/>
   <Basket/>
   <Loader v-if="store.statusLoader"/>
-
-  <div
-    class="h-full w-full relative"
-    :class="{
-        'blur-sm': store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription || store.openAddArticlePanel || store.openBlogDescription,
-      }">
-    <router-view name="Header"/>
-    <router-view name="default"/>
-    <router-view name="Footer"/>
-  </div>
-  <div
-    class="bg-modal"
-    v-if="store.statusLoader || store.openLoginModal || store.openRegistrationModal || store.openBasketModal || store.openProductDescription || store.openBlogDescription"
-  ></div>
-  <LoginModal/>
-  <RegistrationModal/>
-  <Basket/>
-  <Loader v-if="store.statusLoader"/>
 </template>
 
 <script setup lang="ts">
