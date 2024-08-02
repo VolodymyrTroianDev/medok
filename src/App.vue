@@ -64,21 +64,6 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-const bodyOverflow = ref("");
-
-watchEffect(() => {
-  bodyOverflow.value =
-    store.openMobileHeader ||
-    store.openBasketModal ||
-    store.openRegistrationModal ||
-    store.openProductDescription
-      ? "hidden"
-      : "";
-  document.body.style.overflow = bodyOverflow.value;
-  bodyOverflow.value = store.openMobileHeader || store.openBasketModal || store.openRegistrationModal || store.openProductDescription ? 'hidden' : '';
-  document.body.style.overflow = bodyOverflow.value;
-});
-
 const scrollOnTop = () => {
   window.scrollTo({
     top: 0,

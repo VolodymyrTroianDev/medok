@@ -5,7 +5,7 @@
       class="relative"
       @click="() => {
         store.blur = true;
-        openBasketModal = !openBasketModal;
+        emit('openBasketModal', true)
       }"
       @click.stop
     >
@@ -75,9 +75,10 @@
     @close-register-modal="openRegisterModal = false"
     @open-login-modal="openLoginModal = true"
   />
+
   <Basket
-    :openModal="openBasketModal"
-    @close-basket-modal="openBasketModal = false"
+    :openModal="props.statusBasket"
+    @close-basket-modal="emit('openBasketModal', false)"
   />
 </template>
 
@@ -89,17 +90,22 @@ import { useRoute } from "vue-router";
 import { useAuthenticationStore } from "@/store/authStore";
 import { useBasketStore } from "@/store/basketStore";
 import { useDatabaseStore } from "@/store/databaseStore";
-import { defineAsyncComponent, ref } from "vue";
+import { defineAsyncComponent, ref, watch, watchEffect } from "vue";
 
 const store = useGeneralStore(),
   auth = useAuthenticationStore(),
   database = useDatabaseStore(),
   route = useRoute(),
   basket = useBasketStore(),
-  openBasketModal = ref<boolean>(false),
+  bodyOverflow = ref(""),
   openRegisterModal = ref<boolean>(false),
   openLoginModal = ref<boolean>(false);
 
+const props = defineProps<{
+  statusBasket: boolean;
+}>();
+
+const emit = defineEmits(["openBasketModal"]);
 const openFilterMenu = (): void => {
   store.openMobileFilterPanel = !store.openMobileFilterPanel
   if (store.openMobileHeader) store.openMobileHeader = false;
@@ -109,6 +115,18 @@ const signOut = async () => {
   await auth.logOut();
 }
 
+watchEffect(() => {
+  bodyOverflow.value =
+    store.openMobileHeader ||
+    props.statusBasket ||
+    openRegisterModal.value ||
+    openLoginModal.value ||
+    store.openProductDescription
+      ? "hidden"
+      : "";
+
+  document.body.style.overflow = bodyOverflow.value;
+});
 const Basket = defineAsyncComponent(
   () => import("@/components/Modals/Basket/Basket.vue")
 );

@@ -22,7 +22,7 @@
           @click="general.openMobileHeader = !general.openMobileHeader"
           alt=""
         >
-        <button class="relative w-[30px]" @click="general.openBasketModal = !general.openBasketModal" @click.stop>
+        <button class="relative w-[30px]" @click="openBasketModal = true">
           <basket-img/>
           <span
             class="w-[17px] h-[17px] absolute right-0 bg-counter text-white rounded-full bottom-[-5px] text-[12px]">
@@ -73,7 +73,7 @@
           {{ $t("header.title") }}
         </router-link>
         <NavComponents/>
-        <BtnGroup/>
+        <BtnGroup :statusBasket="openBasketModal" @open-basket-modal="onVisibleBasketModal"/>
       </div>
     </div>
   </header>
@@ -86,16 +86,22 @@ import {useRoute} from "vue-router";
 import {useGeneralStore} from "@/store/generalStore";
 import BasketImg from "@/assets/images/svg/basket-img.vue";
 import {useBasketStore} from "@/store/basketStore";
+import { ref } from "vue";
 
-const route = useRoute();
-const general = useGeneralStore();
+const route = useRoute(),
+  general = useGeneralStore(),
+  basket = useBasketStore(),
+  openBasketModal = ref<boolean>(false);
+
 const props = defineProps({
   hiddenBackground: {
     type: Boolean,
     default: true
   }
 })
-const basket = useBasketStore();
+const onVisibleBasketModal = (status: boolean) => {
+  openBasketModal.value = status;
+}
 </script>
 
 <style scoped>
