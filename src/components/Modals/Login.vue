@@ -1,13 +1,21 @@
 <template>
-  <MyModal :show="store.openLoginModal" :styles="'h-[520px] md:h-[494px]'" @close-modal="closeModalLogin">
+  <MyModal :show="props.openModal" :styles="'h-[520px] md:h-[494px]'" @close-modal="closeLoginModal">
     <ModalContainer> {{ $t("modals.auth") }}</ModalContainer>
     <div class="mt-[30px]">
       <div class="flex flex-col gap-[22px]">
-        <input-text :value="dataLogin.email" v-model="dataLogin.email" class="focus:ring-0 focus:ring-offset-0">
+        <input-text
+          :value="dataLogin.email"
+          v-model="dataLogin.email"
+          class="focus:ring-0 focus:ring-offset-0"
+        >
           {{ $t("modals.email") }}
         </input-text>
-        <input-password :value="dataLogin.password" v-model="dataLogin.password"
-                        class="focus:ring-0 focus:ring-offset-0">{{ $t("modals.password") }}
+        <input-password
+          :value="dataLogin.password"
+          v-model="dataLogin.password"
+          class="focus:ring-0 focus:ring-offset-0"
+        >
+          {{ $t("modals.password") }}
         </input-password>
       </div>
       <div class="flex justify-between mt-5">
@@ -20,20 +28,20 @@
             rounded focus:ring-0 focus:ring-offset-0">
           {{ $t("modals.remember") }}
         </div>
-        <span class="text-custom-blue cursor-pointer hover:opacity-[0.7] transition-opacity">{{
+        <span class="text-custom-blue cursor-pointer hover:opacity-[0.7] transition-opacity">
+          {{
             $t("modals.forgotPassword")
-          }}</span>
+          }}
+        </span>
       </div>
-      <div class="" v-show="auth.Errors.login.status">{{ auth.Errors.login.text }}</div>
+      <div v-show="auth.Errors.login.status">{{ auth.Errors.login.text }}</div>
       <button class="red-btn" @click="login">{{ $t("modals.login") }}</button>
       <OAuth/>
       <div class="text-center sm:text-start">
         {{ $t("modals.account") }}
         <button
           class="text-custom-blue cursor-pointer hover:opacity-[0.7] transition-opacity"
-          @click="
-          (store.openLoginModal = false),
-          (store.openRegistrationModal = true)"
+          @click="openRegisterModal"
         >
           {{ $t("modals.register") }}
         </button>
@@ -44,21 +52,26 @@
 </template>
 
 <script lang="ts" setup>
-import {useGeneralStore} from "@/store/generalStore";
-import {ref} from "vue";
+import { useGeneralStore } from "@/store/generalStore";
+import { ref } from "vue";
 import OAuth from "@/components/CustomUI/OAuth.vue";
-import {useAuthenticationStore} from "@/store/authStore";
-import {useI18n} from "vue-i18n";
-import {Login} from "@/types/auth-types";
+import { useAuthenticationStore } from "@/store/authStore";
+import { useI18n } from "vue-i18n";
+import { Login } from "@/types/auth-types";
 
-const store = useGeneralStore();
-const auth = useAuthenticationStore();
-const {t} = useI18n()
-const dataLogin = ref<Login>({
-  email: "",
-  password: ""
-})
+const store = useGeneralStore(),
+  auth = useAuthenticationStore(),
+  { t } = useI18n(),
+  dataLogin = ref<Login>({
+    email: "",
+    password: ""
+  });
 
+const props = defineProps<{
+  openModal: boolean;
+}>();
+
+const emit = defineEmits(["closeLoginModal", "openRegisterModal"]);
 const login = async () => {
   try {
     await auth.loginUser(dataLogin.value)
@@ -66,7 +79,13 @@ const login = async () => {
     console.error(e)
   }
 }
-const closeModalLogin = () => {
-  store.openLoginModal = false;
+const openRegisterModal = () => {
+  store.blur = true;
+  emit("closeLoginModal");
+  emit("openRegisterModal");
 };
+const closeLoginModal = () => {
+  store.blur = false;
+  emit("closeLoginModal");
+}
 </script>

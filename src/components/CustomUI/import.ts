@@ -33,7 +33,12 @@ const LocationSelect = defineAsyncComponent(
 const RadioBtn = defineAsyncComponent(
   () => import("@/components/CustomUI/RadioBtn.vue")
 );
-
+const LoginModal = defineAsyncComponent(
+  () => import("@/components/Modals/Login.vue")
+);
+const RegistrationModal = defineAsyncComponent(
+  () => import("@/components/Modals/Registration.vue")
+);
 export default {
   OAuth,
   Loader,
@@ -45,5 +50,7 @@ export default {
   CustomCounterBtn,
   LocationSelect,
   RadioBtn,
-  TextArea
+  TextArea,
+  LoginModal,
+  RegistrationModal
 };

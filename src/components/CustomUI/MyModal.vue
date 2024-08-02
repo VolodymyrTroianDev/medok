@@ -1,5 +1,6 @@
 <template>
   <Teleport to="body">
+    <div class="bg-modal" v-if="props.show"></div>
     <Transition>
       <div class="modal" :class="props.styles" v-show="props.show" v-on-click-outside="closeModal">
         <slot></slot>
@@ -9,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import {vOnClickOutside} from '@vueuse/components'
+import { vOnClickOutside } from '@vueuse/components'
 
 const props = defineProps<{
   show: boolean;
@@ -34,5 +35,9 @@ const closeModal = () => {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+.bg-modal {
+  @apply fixed w-screen h-screen top-0 left-0 z-50;
 }
 </style>

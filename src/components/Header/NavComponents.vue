@@ -27,7 +27,6 @@
       </router-link>
     </ul>
   </nav>
-
 </template>
 
 <script setup lang="ts">

@@ -14,6 +14,7 @@ export const useGeneralStore = defineStore({
       login: {status: false, text: ""},
       register: {status: false, text: ""},
     },
+    blur: false,
     photoProfile: null,
     userInfo: null,
     openBasketModal: false,

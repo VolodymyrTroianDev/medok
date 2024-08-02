@@ -1,17 +1,10 @@
 <template>
   <div
     class="relative h-full w-full"
-    id="top"
     :class="{
-            'blur-sm':
-                store.statusLoader ||
-                store.openLoginModal ||
-                store.openRegistrationModal ||
-                store.openBasketModal ||
-                store.openProductDescription ||
-                store.openAddArticlePanel ||
-                store.openBlogDescription,
-        }"
+      'blur-sm': store.blur
+    }"
+    id="top"
   >
     <router-view name="Header"/>
     <router-view name="default"/>
@@ -27,20 +20,7 @@
       >
     </div>
   </div>
-  <div
-    class="bg-modal"
-    v-if="
-            store.statusLoader ||
-            store.openLoginModal ||
-            store.openRegistrationModal ||
-            store.openBasketModal ||
-            store.openProductDescription ||
-            store.openBlogDescription
-        "
-  ></div>
-  <LoginModal/>
-  <RegistrationModal/>
-  <Basket/>
+
   <Loader v-if="store.statusLoader"/>
 </template>
 
@@ -84,16 +64,6 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-const Basket = defineAsyncComponent(
-  () => import("@/components/Modals/Basket/Basket.vue")
-);
-const LoginModal = defineAsyncComponent(
-  () => import("@/components/Modals/Login.vue")
-);
-const RegistrationModal = defineAsyncComponent(
-  () => import("@/components/Modals/Registration.vue")
-);
-
 const bodyOverflow = ref("");
 
 watchEffect(() => {
@@ -130,9 +100,5 @@ const scrollOnTop = () => {
 
 .red-btn {
   @apply bg-custom-red rounded-[30px] h-[35px] mt-6 text-white w-full hover:opacity-[0.8] focus:opacity-[0.8];
-}
-
-.bg-modal {
-  @apply fixed w-screen h-screen top-0 left-0 z-50;
 }
 </style>
