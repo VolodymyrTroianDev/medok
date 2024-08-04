@@ -183,7 +183,9 @@
 </template>
 
 <script setup lang="ts">
+import { ErrorMessage, Field, Form as VForm } from "vee-validate";
 import { object, string, boolean } from "yup";
+
 
 const basket = useBasketStore();
 const order = useOrderStore();
