@@ -16,16 +16,9 @@ import {
   getDownloadURL,
   uploadString
 } from "firebase/storage";
-import { reactive} from "vue";
-import {getItem, setItem} from "@/services/LocalStorage";
-import {useI18n} from "vue-i18n";
-import {authStore, Errors, Login} from "@/types/auth-types";
-import LoginEnum from "@/enums/LoginEnum";
-import {useGeneralStore} from "@/store/generalStore";
-import {useDatabaseStore} from "@/store/databaseStore";
 
 export const useAuthenticationStore = defineStore("authentication", () => {
-  const state = reactive<authStore>({
+  const state = reactive<AuthStore>({
     uid: getItem("uid") || "",
     statusLogin: false,
     isLoading: false,
@@ -143,7 +136,6 @@ export const useAuthenticationStore = defineStore("authentication", () => {
       Errors.register.status = false;
       checkOpenModal();
     } catch (e:any) {
-      general.openRegistrationModal = true;
       Errors.register.status = true;
       general.statusLoader = false;
       console.log(e)

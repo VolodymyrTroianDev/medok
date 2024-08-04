@@ -32,11 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { useGeneralStore } from "@/store/generalStore";
 import { vOnClickOutside } from '@vueuse/components'
-import { defineAsyncComponent } from "vue";
-import { useBasketStore } from "@/store/basketStore";
-import { useRouter } from "vue-router";
 
 const store = useGeneralStore(),
   router = useRouter(),

@@ -80,14 +80,6 @@
 </template>
 
 <script setup lang="ts">
-import NavComponents from "@/components/Header/NavComponents.vue";
-import BtnGroup from "@/components/CustomUI/BtnGroup.vue";
-import {useRoute} from "vue-router";
-import {useGeneralStore} from "@/store/generalStore";
-import BasketImg from "@/assets/images/svg/basket-img.vue";
-import {useBasketStore} from "@/store/basketStore";
-import { ref } from "vue";
-
 const route = useRoute(),
   general = useGeneralStore(),
   basket = useBasketStore(),

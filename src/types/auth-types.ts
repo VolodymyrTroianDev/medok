@@ -9,7 +9,7 @@ export interface Register {
   name: string,
   surname: string
 }
-export interface authStore {
+export interface AuthStore {
   uid:string,
   statusLogin:boolean,
   isLoading:boolean,

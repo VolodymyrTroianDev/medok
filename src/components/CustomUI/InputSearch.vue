@@ -6,8 +6,6 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
-
 const props = defineProps(["disabled", "placeholder"]);
 const store = reactive({
   valueInput: "",

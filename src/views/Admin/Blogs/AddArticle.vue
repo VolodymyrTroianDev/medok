@@ -54,11 +54,6 @@
     </MyModal>
 </template>
 <script setup lang="ts">
-import { useGeneralStore } from "../../../store/generalStore";
-import { useDatabaseStore } from "@/store/databaseStore";
-import { reactive, ref } from "vue";
-import { CropperInfo } from "@/types/profile-types";
-import { useBlogStore } from "@/store/blogStore";
 const database = useDatabaseStore();
 const blogsDataBase = useBlogStore();
 const general = useGeneralStore();

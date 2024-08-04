@@ -12,15 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import UaImg from "@/assets/images/svg/ua-img.vue";
-import UkImg from "@/assets/images/svg/uk-img.vue";
-import { useGeneralStore } from "@/store/generalStore";
-import { setItem } from "@/services/LocalStorage";
-import { onMounted, reactive } from "vue";
-import {useRoute, useRouter} from "vue-router";
-import { useI18n } from "vue-i18n";
 import { vOnClickOutside } from '@vueuse/components'
-import {useProductsStore} from "@/store/productsStore";
 
 const { locale } = useI18n();
 const router = useRouter();

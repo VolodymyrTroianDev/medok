@@ -1,10 +1,10 @@
-import {defineStore} from "pinia";
-import {reactive, ref} from "vue";
-import {getDoc, doc} from "firebase/firestore";
-import {db} from "../main";
-import {getItem} from "@/services/LocalStorage";
-import {useGeneralStore} from "@/store/generalStore";
-import {ProductEntity} from "@/types/products-types";
+import { defineStore } from "pinia";
+import { reactive, ref } from "vue";
+import { getDoc, doc } from "firebase/firestore";
+import { db } from "../main";
+import { getItem } from "@/services/LocalStorage";
+import { useGeneralStore } from "@/store/generalStore";
+import { ProductEntity } from "@/types/products-types";
 
 export const useProductsStore = defineStore("products", () => {
   const state = reactive({
@@ -38,7 +38,7 @@ export const useProductsStore = defineStore("products", () => {
   }
   const filterProducts = () => {
     const arr = Object.values(state.products);
-    const products: Record<string, any> = {...state.products};
+    const products: Record<string, any> = { ...state.products };
 
     arr.forEach((element: any) => {
       let data = element.items;

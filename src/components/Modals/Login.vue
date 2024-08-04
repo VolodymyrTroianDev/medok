@@ -36,7 +36,7 @@
       </div>
       <div v-show="auth.Errors.login.status">{{ auth.Errors.login.text }}</div>
       <button class="red-btn" @click="login">{{ $t("modals.login") }}</button>
-      <OAuth/>
+      <OAuth @close-modal="emit('closeLoginModal', false)"/>
       <div class="text-center sm:text-start">
         {{ $t("modals.account") }}
         <button
@@ -52,13 +52,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useGeneralStore } from "@/store/generalStore";
-import { ref } from "vue";
-import OAuth from "@/components/CustomUI/OAuth.vue";
-import { useAuthenticationStore } from "@/store/authStore";
-import { useI18n } from "vue-i18n";
-import { Login } from "@/types/auth-types";
-
 const store = useGeneralStore(),
   auth = useAuthenticationStore(),
   { t } = useI18n(),

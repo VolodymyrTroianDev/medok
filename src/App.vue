@@ -10,13 +10,13 @@
     <router-view name="default"/>
     <router-view name="Footer"/>
     <div
-      class="fixed bottom-5 right-5 w-[40px] h-[40px] rounded-[50%] opacity-30 bg-slate-500 p-[10px]  hover:cursor-pointer hover:opacity-100 transition duration-500"
+      class="fixed bottom-5 right-5 w-[40px] h-[40px] rounded-[50%] opacity-30 p-[10px]  hover:cursor-pointer hover:opacity-100 transition duration-500 bg-custom-red flex justify-center items-center"
       @click="scrollOnTop()"
     >
       <img
         src="./assets/images/svg/arrov-top.svg"
         alt="arrov-top"
-        class=""
+        class="h-[20px]"
       >
     </div>
   </div>

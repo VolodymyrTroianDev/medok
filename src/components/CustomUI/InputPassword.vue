@@ -26,8 +26,6 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
-import { changeInput } from "@/services/ChangeTypeInputPassword";
 const passwordInput = ref();
 const store = reactive({
   passwordShow: false,

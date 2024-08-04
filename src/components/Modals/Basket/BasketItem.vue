@@ -36,10 +36,6 @@
 </template>
 
 <script setup lang="ts">
-import CustomCounterBtn from "../../CustomUI/CustomCounterBtn.vue";
-import {useBasketStore} from "../../../store/basketStore";
-import {Quantity} from "../../../types/products-types";
-
 const basket = useBasketStore();
 const removeProduct = (product) => {
   const updateBasket = basket.state.selectedProducts.filter(item => item.uid !== product.uid);

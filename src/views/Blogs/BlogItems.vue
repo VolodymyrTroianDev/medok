@@ -51,11 +51,8 @@
     </div>
 </template>
 <script setup lang="ts">
-import { useBlogStore } from "@/store/blogStore";
 import moment from "moment";
 import "moment/locale/uk";
-import { defineAsyncComponent, ref, toRefs } from "vue";
-import { useGeneralStore } from "@/store/generalStore";
 
 const { openBlogDescription } = toRefs(useGeneralStore());
 const descriptionModalIdx = ref<string>("");

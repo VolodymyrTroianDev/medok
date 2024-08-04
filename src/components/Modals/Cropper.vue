@@ -27,10 +27,6 @@
 <script setup lang="ts">
 import {Cropper, CircleStencil} from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css';
-import MyModal from "@/components/CustomUI/MyModal.vue";
-import {useGeneralStore} from "@/store/generalStore";
-import {ref} from "vue";
-import {useAuthenticationStore} from "@/store/authStore";
 
 const general = useGeneralStore();
 const auth = useAuthenticationStore();

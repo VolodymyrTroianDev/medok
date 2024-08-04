@@ -24,9 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import {reactive} from "vue";
-import {Quantity} from "@/types/products-types";
-
 const props = defineProps<{
   product: {
     price: number

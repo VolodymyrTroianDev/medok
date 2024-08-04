@@ -29,7 +29,6 @@
 </template>
 
 <script setup lang="ts">
-import OrderItem from "@/views/Orders/OrderItem.vue";
 </script>
 
 <style scoped></style>

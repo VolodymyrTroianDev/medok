@@ -6,14 +6,23 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthenticationStore } from "@/store/authStore";
-
 const auth = useAuthenticationStore();
+const emit = defineEmits(['closeModal'])
  const googleSignIn = async () => {
-    await auth.signInWithGoogle();
+    try {
+      await auth.signInWithGoogle();
+      emit('closeModal');
+    } catch (e) {
+      console.error(e)
+    }
  }
  const facebookSignIn = async () => {
-   await auth.signInWithFacebook();
+   try {
+     await auth.signInWithFacebook();
+     emit('closeModal');
+   } catch (e) {
+     console.error(e)
+   }
  }
 </script>
 

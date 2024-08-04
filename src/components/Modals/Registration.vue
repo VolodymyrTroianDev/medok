@@ -32,13 +32,6 @@
 </template>
 
 <script lang="ts" setup>
-
-import { useGeneralStore } from "@/store/generalStore";
-import { useAuthenticationStore } from "../../store/authStore";
-import { ref } from "vue";
-import { Register } from "../../types/auth-types";
-import { useI18n } from "vue-i18n";
-
 const store = useGeneralStore(),
   auth = useAuthenticationStore(),
   { t } = useI18n(),
@@ -64,12 +57,17 @@ const signIn = async (): Promise<void> => {
   } else if (dataRegister.value.password < 1) {
     auth.generateErrors("register", t("modals.enterPassword"));
   } else {
-    await auth.register({
-      email: dataRegister.value.email,
-      password: dataRegister.value.password,
-      name: dataRegister.value.name,
-      surname: dataRegister.value.surname,
-    });
+    try {
+      await auth.register({
+        email: dataRegister.value.email,
+        password: dataRegister.value.password,
+        name: dataRegister.value.name,
+        surname: dataRegister.value.surname,
+      });
+      emit("closeRegisterModal", false);
+    } catch (e) {
+      console.error(e)
+    }
   }
 }
 

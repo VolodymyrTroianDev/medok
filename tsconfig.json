@@ -31,9 +31,18 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    },
+    }
 
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "tests/**/*.tsx", "vite.config.*"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "vite.config.*",
+    "components.d.ts",
+    "auto-imports.d.ts",
+    "node_modules/unplugin-auto-import/auto-imports.d.ts",
+  ],
   "exclude": ["node_modules", "dist"]
 }

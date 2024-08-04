@@ -83,15 +83,6 @@
 </template>
 
 <script setup lang="ts">
-import BasketImg from "@/assets/images/svg/basket-img.vue";
-import SelectLocalization from "@/components/CustomUI/SelectLocalization.vue";
-import { useGeneralStore } from "@/store/generalStore";
-import { useRoute } from "vue-router";
-import { useAuthenticationStore } from "@/store/authStore";
-import { useBasketStore } from "@/store/basketStore";
-import { useDatabaseStore } from "@/store/databaseStore";
-import { defineAsyncComponent, ref, watch, watchEffect } from "vue";
-
 const store = useGeneralStore(),
   auth = useAuthenticationStore(),
   database = useDatabaseStore(),

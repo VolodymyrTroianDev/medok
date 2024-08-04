@@ -59,13 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { useGeneralStore } from "@/store/generalStore";
-import { storeToRefs } from "pinia";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
-import {reactive, ref} from "vue";
-import { Quantity } from "@/types/products-types";
-import { useBasketStore} from "@/store/basketStore";
-import { setItem } from "@/services/LocalStorage";
 const general = useGeneralStore()
 const { openProductDescription } = storeToRefs(general);
 const props = defineProps<{

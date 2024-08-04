@@ -79,13 +79,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useGeneralStore } from "../../store/generalStore";
 import moment from "moment/moment";
-import { ref, toRefs } from "vue";
-import { useDatabaseStore } from "../../store/databaseStore";
-import CommentItem from "./CommentItem.vue";
-import { useBlogStore } from "../../store/blogStore";
-import CommentBtnGroup from "../../components/CustomUI/CommentBtnGroup.vue";
 
 const general = useGeneralStore(),
     database = useDatabaseStore(),
