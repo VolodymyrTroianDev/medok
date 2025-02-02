@@ -23,9 +23,7 @@
                             src="../../assets/images/svg/calendar.svg"
                             alt=""
                         />
-                        <span>{{
-                            moment(item.timeCreate).format("LLLL")
-                        }}</span>
+                        <span> {{ moment(item.timeCreated).format("LLLL") }}</span>
                     </div>
                     <span> {{ item.description }} </span>
                     <div class="relative">

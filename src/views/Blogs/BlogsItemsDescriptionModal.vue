@@ -23,7 +23,7 @@
                 <div class="flex gap-2">
                     <img src="../../assets/images/svg/calendar.svg" alt="" />
                     <span>{{
-                        moment(props.data.timeCreate).format("LLLL")
+                        moment(props.data.timeCreated).format("LLLL")
                     }}</span>
                 </div>
                 <span class="font-bold"> {{ props.data.description }} </span>
