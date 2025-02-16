@@ -26,8 +26,8 @@
 
 <script setup lang="ts">
 import { useGeneralStore } from "@/store/generalStore";
-import { defineAsyncComponent, onMounted, ref, watchEffect } from "vue";
 import { useAuthenticationStore } from "@/store/authStore";
+import { onMounted } from "vue";
 import { useSeoMeta } from "@unhead/vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";

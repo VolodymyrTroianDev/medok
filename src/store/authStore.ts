@@ -7,8 +7,7 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
-  FacebookAuthProvider,
-  sendEmailVerification
+  FacebookAuthProvider
 } from "firebase/auth";
 import {
   getStorage,
@@ -16,6 +15,7 @@ import {
   getDownloadURL,
   uploadString
 } from "firebase/storage";
+
 
 export const useAuthenticationStore = defineStore("authentication", () => {
   const state = reactive<AuthStore>({
@@ -78,7 +78,7 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     }
   }
   const checkAuthSession = async () =>{
-    await onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
         general.statusLoader = true;
         downloadUrlPhoto(user.uid);

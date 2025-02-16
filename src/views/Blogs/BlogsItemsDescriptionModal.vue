@@ -22,9 +22,7 @@
             <div class="py-3 flex flex-col gap-6 text-custom-gray text-sm">
                 <div class="flex gap-2">
                     <img src="../../assets/images/svg/calendar.svg" alt="" />
-                    <span>{{
-                        moment(props.data.timeCreated).format("LLLL")
-                    }}</span>
+                    <span>{{ formatTime(props.data.timeCreated) }}</span>
                 </div>
                 <span class="font-bold"> {{ props.data.description }} </span>
                 <div class="flex gap-2">
@@ -80,6 +78,7 @@
 
 <script lang="ts" setup>
 import moment from "moment/moment";
+import { formatTime } from "@/services/TimeFormat";
 
 const general = useGeneralStore(),
     database = useDatabaseStore(),
@@ -87,7 +86,8 @@ const general = useGeneralStore(),
     emit = defineEmits(["closeModal"]),
     { openBlogDescription } = toRefs(useGeneralStore()),
     text = ref<string>("");
-
+moment.locale("uk");
+console.log(moment.locale())
 const props = defineProps<{
     data: {};
     openModal: boolean;
@@ -98,6 +98,7 @@ const onSaveComment = async (textComment, idx) => {
         await blog.addedComment(idx, textComment);
     } catch (e) {}
 };
+
 const onCancelAction = () => {};
 const closeModal = () => {
     emit("closeModal");

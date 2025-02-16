@@ -23,7 +23,7 @@
                             src="../../assets/images/svg/calendar.svg"
                             alt=""
                         />
-                        <span> {{ moment(item.timeCreated).format("LLLL") }}</span>
+                        <span> {{ formatTime(item.timeCreated) }}</span>
                     </div>
                     <span> {{ item.description }} </span>
                     <div class="relative">
@@ -51,13 +51,14 @@
 <script setup lang="ts">
 import moment from "moment";
 import "moment/locale/uk";
+import { formatTime } from "@/services/TimeFormat";
 
 const { openBlogDescription } = toRefs(useGeneralStore());
 const descriptionModalIdx = ref<string>("");
 
 moment.locale("uk");
 const blogStore = useBlogStore();
-const openModal = (idx) => {
+const openModal = (idx: string) => {
     openBlogDescription.value = !openBlogDescription.value;
     descriptionModalIdx.value = idx;
 };

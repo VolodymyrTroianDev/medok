@@ -30,7 +30,9 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "custom/*": ["src/components/CustomUI/*"],
+      "modals/": ["src/components/Modals/*"]
     }
 
   },

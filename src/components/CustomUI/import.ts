@@ -1,43 +1,43 @@
 import { defineAsyncComponent } from "vue";
 
 const OAuth = defineAsyncComponent(
-  () => import("@/components/CustomUI/OAuth.vue")
+  () => import("custom/OAuth.vue")
 );
 const Loader = defineAsyncComponent(
-  () => import("@/components/CustomUI/Loader.vue")
+  () => import("custom/Loader.vue")
 );
 const InputText = defineAsyncComponent(
-  () => import("@/components/CustomUI/InputText.vue")
+  () => import("custom/InputText.vue")
 );
 const TextArea = defineAsyncComponent(
-  () => import("@/components/CustomUI/TextArea.vue")
+  () => import("custom/TextArea.vue")
 );
 const InputPassword = defineAsyncComponent(
-  () => import("@/components/CustomUI/InputPassword.vue")
+  () => import("custom/InputPassword.vue")
 );
 const InputSearch = defineAsyncComponent(
-  () => import("@/components/CustomUI/InputSearch.vue")
+  () => import("custom/InputSearch.vue")
 );
 const ModalContainer = defineAsyncComponent(
-  () => import("@/components/CustomUI/ModalContainer.vue")
+  () => import("custom/ModalContainer.vue")
 );
 const MyModal = defineAsyncComponent(
-  () => import("@/components/CustomUI/MyModal.vue")
+  () => import("custom/MyModal.vue")
 );
 const CustomCounterBtn = defineAsyncComponent(
-  () => import("@/components/CustomUI/CustomCounterBtn.vue")
+  () => import("custom/CustomCounterBtn.vue")
 );
 const LocationSelect = defineAsyncComponent(
-  () => import("@/components/CustomUI/LocationSelect.vue")
+  () => import("custom/LocationSelect.vue")
 );
 const RadioBtn = defineAsyncComponent(
-  () => import("@/components/CustomUI/RadioBtn.vue")
+  () => import("custom/RadioBtn.vue")
 );
 const LoginModal = defineAsyncComponent(
-  () => import("@/components/Modals/Login.vue")
+  () => import("modals/Login.vue")
 );
 const RegistrationModal = defineAsyncComponent(
-  () => import("@/components/Modals/Registration.vue")
+  () => import("modals/Registration.vue")
 );
 export default {
   OAuth,

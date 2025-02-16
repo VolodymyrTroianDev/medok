@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
-import { getDatabase, ref, set, onValue, push, update, child, get } from "firebase/database";
+import { getDatabase, ref, set, onValue, update, child, get } from "firebase/database";
 import { useAuthenticationStore } from "@/store/authStore";
 import { useGeneralStore } from "@/store/generalStore";
 
