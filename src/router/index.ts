@@ -18,11 +18,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "Main",
     components: {
       default: Main,
-      Footer
+      Footer,
     },
     meta: {
-      title: "header.main"
-    }
+      title: "header.main",
+    },
   },
   {
     path: "/:locale/contact-us",
@@ -30,11 +30,11 @@ const routes: Array<RouteRecordRaw> = [
     components: {
       Header,
       default: ContactUs,
-      Footer
+      Footer,
     },
     meta: {
-      title: "header.contacts"
-    }
+      title: "header.contacts",
+    },
   },
   {
     path: "/:locale/blog",
@@ -42,11 +42,11 @@ const routes: Array<RouteRecordRaw> = [
     components: {
       Header,
       default: Blog,
-      Footer
+      Footer,
     },
     meta: {
-      title: "header.blog"
-    }
+      title: "header.blog",
+    },
   },
   {
     path: "/:locale/products",
@@ -54,7 +54,7 @@ const routes: Array<RouteRecordRaw> = [
     components: {
       Header,
       default: Products,
-      Footer
+      Footer,
     },
     redirect: (to) => {
       return {
@@ -70,8 +70,8 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
     meta: {
-      title: "header.product"
-    }
+      title: "header.product",
+    },
   },
   {
     path: "/:locale/profile",
@@ -79,11 +79,11 @@ const routes: Array<RouteRecordRaw> = [
     components: {
       Header,
       default: Profile,
-      Footer
+      Footer,
     },
     meta: {
-      title: "profile.title"
-    }
+      title: "profile.title",
+    },
   },
   {
     path: "/:locale/profile/edit",
@@ -91,11 +91,11 @@ const routes: Array<RouteRecordRaw> = [
     components: {
       Header,
       default: EditProfile,
-      Footer
+      Footer,
     },
     meta: {
-      title: "profile.edit"
-    }
+      title: "profile.edit",
+    },
   },
   {
     path: "/:locale/order/process-creating",
@@ -103,11 +103,11 @@ const routes: Array<RouteRecordRaw> = [
     components: {
       Header,
       default: OrderingOrder,
-      Footer
+      Footer,
     },
     meta: {
-      title: "basket.checkout"
-    }
+      title: "basket.checkout",
+    },
   },
 ];
 

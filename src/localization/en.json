@@ -60,7 +60,10 @@
     "addTitle": "Add a title",
     "titleArticle": "Title",
     "addImg": "Add a image",
-    "addDescription": "Add a description"
+    "addDescription": "Add a description",
+    "logOrRegisterStart": "Please",
+    "or": "or",
+    "logOrRegisterEnd": "to leave a comment"
   },
   "products": {
     "subTitleDashboard": "Our product",

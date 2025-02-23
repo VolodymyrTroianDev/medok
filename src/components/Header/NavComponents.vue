@@ -12,7 +12,7 @@
       <router-link
         active-class="active"
         tag="li"
-        :to="{ name: 'Blog'}"
+        :to="{ name: 'Blog' }"
         class="font-semibold text-base hover:-translate-y-1 duration-300 text-white"
       >
         {{ $t("header.blog") }}
@@ -20,7 +20,7 @@
       <router-link
         active-class="active"
         tag="li"
-        :to="{ name: 'ContactUs'}"
+        :to="{ name: 'ContactUs' }"
         class="font-semibold text-base hover:-translate-y-1 duration-300 text-white"
       >
         {{ $t("header.contacts") }}
@@ -29,12 +29,10 @@
   </nav>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .active {
-  @apply -translate-y-1 transition-all duration-300 text-main-color sm:text-white
+  @apply -translate-y-1 transition-all duration-300 text-main-color sm:text-white;
 }
 </style>

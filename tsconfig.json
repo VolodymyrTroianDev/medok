@@ -24,17 +24,13 @@
       "@vue/runtime-core",
       "@vue/test-utils"
     ],
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/types"
-    ],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
       "custom/*": ["src/components/CustomUI/*"],
       "modals/": ["src/components/Modals/*"]
     }
-
   },
   "include": [
     "src/**/*.ts",
@@ -44,7 +40,7 @@
     "vite.config.*",
     "components.d.ts",
     "auto-imports.d.ts",
-    "node_modules/unplugin-auto-import/auto-imports.d.ts",
+    "node_modules/unplugin-auto-import/auto-imports.d.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }

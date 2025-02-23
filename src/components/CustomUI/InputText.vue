@@ -17,24 +17,23 @@
 const props = defineProps({
   disabled: {
     type: Boolean,
-    required: false
+    required: false,
   },
   type: {
     type: String,
     required: false,
-    default: "text"
+    default: "text",
   },
   modelValue: {
     type: String,
-    default: ''
+    default: "",
   },
   value: {
     type: String,
-    default: ''
-  }
+    default: "",
+  },
 });
 
-defineEmits(['update:modelValue'])
+defineEmits(["update:modelValue"]);
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

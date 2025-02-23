@@ -2,7 +2,12 @@
   <Teleport to="body">
     <div class="bg-modal" v-if="props.show"></div>
     <Transition>
-      <div class="modal" :class="props.styles" v-show="props.show" v-on-click-outside="closeModal">
+      <div
+        class="modal"
+        :class="props.styles"
+        v-show="props.show"
+        v-on-click-outside="closeModal"
+      >
         <slot></slot>
       </div>
     </Transition>
@@ -10,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { vOnClickOutside } from '@vueuse/components'
+import { vOnClickOutside } from "@vueuse/components";
 
 const props = defineProps<{
   show: boolean;

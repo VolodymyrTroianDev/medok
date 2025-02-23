@@ -18,39 +18,38 @@
 const props = defineProps({
   disabled: {
     type: Boolean,
-    required: false
+    required: false,
   },
   type: {
     type: String,
     required: false,
-    default: "text"
+    default: "text",
   },
   modelValue: {
     type: String,
-    default: ''
+    default: "",
   },
   value: {
     type: String,
-    default: ''
-  }
+    default: "",
+  },
 });
 const val = ref(props.modelValue || props.value);
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(["update:modelValue"]);
 const updateValue = (e) => {
-  emit('update:modelValue', e.target.value)
+  emit("update:modelValue", e.target.value);
   formatPhoneNumber(e);
-}
+};
 const formatPhoneNumber = (event) => {
-  let input = event.target.value
-  let digits = input.replace(/\D/g, '')
+  let input = event.target.value;
+  let digits = input.replace(/\D/g, "");
 
   if (digits.length > 12) {
-    digits = digits.slice(0, 12)
+    digits = digits.slice(0, 12);
   }
 
-  val.value = `+ (${digits.slice(0, 3)})${digits.slice(3, 6)}${digits.slice(6)}`
-}
+  val.value = `+ (${digits.slice(0, 3)})${digits.slice(3, 6)}${digits.slice(6)}`;
+};
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

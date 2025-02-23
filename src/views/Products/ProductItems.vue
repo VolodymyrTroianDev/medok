@@ -58,7 +58,7 @@ const openProduct = (product) => {
 };
 
 const ProductDescription = defineAsyncComponent(
-  () => import("@/components/Modals/ProductDescription.vue")
+  () => import("@/components/Modals/ProductDescription.vue"),
 );
 </script>
 

@@ -67,7 +67,10 @@
     "reply": "Відповісти",
     "editComment": "Редагувати коментар",
     "deleteComment": "Видалити коментар",
-    "edited": "Відредаговано"
+    "edited": "Відредаговано",
+    "logOrRegisterStart": "Будь ласка",
+    "or": "або",
+    "logOrRegisterEnd": "щоб залишити коментар"
   },
   "why": {
     "subTitle": "Чому ми",

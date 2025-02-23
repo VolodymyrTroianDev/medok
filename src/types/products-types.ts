@@ -5,8 +5,8 @@ export interface ProductEntity {
   beekeepingProducts: Category;
 }
 export interface Quantity {
-  product: number,
-  price: number
+  product: number;
+  price: number;
 }
 export interface ProductItem {
   uid: string;

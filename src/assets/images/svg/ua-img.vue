@@ -27,4 +27,3 @@
     </defs>
   </svg>
 </template>
-

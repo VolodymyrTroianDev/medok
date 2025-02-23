@@ -107,10 +107,7 @@
           </div>
         </div>
         <div class="relative w-full xl:mt-2 mb-6">
-          <LocationSelect
-            @update-city="onUpdateCity"
-            class="mt-0 xl:0"
-          />
+          <LocationSelect @update-city="onUpdateCity" class="mt-0 xl:0" />
           <Field
             type="hidden"
             name="city"
@@ -141,9 +138,9 @@
           >
             <RadioBtn
               @update:model-value="
-                  (modelValue) => {
-                      onUpdateRadioBtn(modelValue);
-                  }
+                (modelValue) => {
+                  onUpdateRadioBtn(modelValue);
+                }
               "
             >
               {{ $t("basket.paymanentText") }}
@@ -160,16 +157,16 @@
           name="products"
           :value="basket.state.selectedProducts"
         />
-        <Field type="hidden" name="date" :value="new Date()"/>
-        <Field type="hidden" name="total" :value="basket.total"/>
+        <Field type="hidden" name="date" :value="new Date()" />
+        <Field type="hidden" name="total" :value="basket.total" />
       </div>
     </div>
     <div
       class="flex flex-wrap flex-col-reverse xl:flex-row xl:flex-nowrap lg:w-3/5 mx-4 lg:mx-0 gap-4 xl:pt-10"
     >
-      <BasketItem class="lg:w-3/5 lg:min-w-[500px] px-2 pt-1"/>
+      <BasketItem class="lg:w-3/5 lg:min-w-[500px] px-2 pt-1" />
       <div class="w-full xl:w-2/5 px-2 flex flex-col items-center gap-7">
-        <TotalsPrice :total="basket.total"/>
+        <TotalsPrice :total="basket.total" />
         <button class="red-btn max-w-[263px]">
           {{ $t("basket.confirmOrder") }}
         </button>

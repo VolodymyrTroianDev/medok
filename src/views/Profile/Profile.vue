@@ -7,7 +7,7 @@
   <div
     class="flex ml-200 md:ml-75 flex-wrap lg:flex-no-wrap justify-center md:justify-start sm:ml-0 px-5 lg:px-20 gap-20"
   >
-    <UpdatePhoto/>
+    <UpdatePhoto />
     <div class="flex flex-col">
       <div class="flex flex-col">
         <div class="flex items-center">
@@ -20,13 +20,11 @@
             @click="$router.push({ name: 'EditProfile' })"
           />
         </div>
-        <div
-          class="mb-5 my-2 font-normal font-medium text-xl leading-6"
-        >
+        <div class="mb-5 my-2 font-normal font-medium text-xl leading-6">
           {{ email }}
         </div>
       </div>
-      <OrderHistory/>
+      <OrderHistory />
     </div>
   </div>
 </template>

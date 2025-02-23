@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col gap-3 ps-[50px]">
-    <template v-for="replay in props.comment?.replay" :key="replay">
+  <div class="flex flex-col gap-3 ps-[50px] pe-3">
+    <template v-for="(replay, replayId) in comment?.replay" :key="replay">
       <div class="flex gap-3 justify-between">
         <div class="flex gap-3">
           <img
@@ -17,9 +17,7 @@
                   {{ replay?.author.displayName }}
                 </div>
                 <div class="text-color-a">
-                                    <span v-if="replay.edited">{{
-                                        $t("blog.edited")
-                                      }}</span>
+                  <span v-if="replay.edited">{{ $t("blog.edited") }}</span>
                   {{ formatTime(replay?.timeCreated) }}
                 </div>
               </div>
@@ -27,24 +25,21 @@
                 {{ replay.author?.email }}
               </div>
               <div class="text-black">
-                                <span
-                                  class="bg-bg-mobile-filter rounded px-2"
-                                >{{ replay.comment.displayName }}</span
-                                >
+                <span class="bg-bg-mobile-filter rounded px-2">{{
+                  replay.comment.displayName
+                }}</span>
                 {{ replay.comment?.text }}
               </div>
             </div>
             <div class="flex gap-2 justify-between">
-              <div class="flex gap-2">
-                <img
-                  src="../../assets/images/svg/like-icon.svg"
-                  class="cursor-pointer hover:scale-110 transition duration-300 ease-in-out w-4"
-                />
-                <img
-                  src="../../assets/images/svg/like-icon.svg"
-                  class="rotate-180 cursor-pointer hover:scale-110 transition duration-300 ease-in-out w-4"
-                />
-              </div>
+              <likes-counter
+                :comment="replay"
+                :comment-id
+                :user-id
+                @update-like="
+                  updateLike($event, blogId, commentId, userId, replayId)
+                "
+              />
             </div>
           </div>
         </div>
@@ -65,27 +60,45 @@
               class="w-[20px] h-[20px] cursor-pointer bg-no-repeat bg-cover hover:scale-110 transition duration-300 ease-in-out"
             />
           </div>
-          <button>
+          <Transition name="slide-fade">
+            <CommentBtnGroup
+              class="ps-[55px] pe-3"
+              v-if="replyComment && commentIdx === commentId"
+              @save-comment="
+                (textComment) => {
+                  onReplyComment(
+                    textComment,
+                    commentId,
+                    blogId,
+                    comment.author?.displayName,
+                  );
+                }
+              "
+              @cancel-action="onCancelAction"
+              :placeholder="$t('blog.addComment')"
+            >
+              <template v-slot:cancel-btn>{{ $t("reused.cancel") }}</template>
+              <template v-slot:save-btn>{{ $t("blog.reply") }}</template>
+            </CommentBtnGroup>
+          </Transition>
+          <button v-if="commentIdx !== replayId" @click="openReplyComment(replayId)">
             {{ $t("blog.reply") }}
           </button>
         </div>
       </div>
       <Transition name="slide-fade">
         <CommentBtnGroup
-          v-if="openEditComment && commentIdx === idx"
+          v-if="openEditComment && commentIdx === replayId"
           @save-comment="
-              (textComment) => {
-                  onSaveComment(textComment, idx, props.commentId);
-              }
+            (textComment) => {
+              onSaveComment(textComment, replayId, props.commentId);
+            }
           "
           @cancel-action="onCancelAction"
           :model-value="comment.text"
           :placeholder="$t('blog.addComment')"
         >
-          <template v-slot:cancel-btn>{{
-              $t("reused.cancel")
-            }}
-          </template>
+          <template v-slot:cancel-btn>{{ $t("reused.cancel") }}</template>
           <template v-slot:save-btn>{{ $t("reused.save") }}</template>
         </CommentBtnGroup>
       </Transition>
@@ -96,17 +109,33 @@
 <script setup lang="ts">
 import { formatTime } from "../../services/TimeFormat";
 
-const text = ref<string>(""),
+const openEditComment = ref<boolean>(false),
   blog = useBlogStore(),
-  auth = useAuthenticationStore(),
-  openEditComment = ref<boolean>(false),
-  replyComment = ref<boolean>(false),
-  commentIdx = ref<string>("");
+  commentIdx = ref<string>(""),
+  replyComment = ref<boolean>(false);
 
 const props = defineProps<{
   comment: {};
   commentId: string;
+  blogId: string;
+  userId: string;
 }>();
+
+const updateLike = (
+  type: string,
+  blogId: string,
+  commentId: string,
+  userId: string,
+  replayId: string,
+) => {
+  blog.updateCommentReaction(blogId, commentId, userId, type, replayId);
+};
+const onReplyComment = () => {};
+const onSaveComment = () => {};
+const openReplyComment = (idx: string) => {
+  commentIdx.value = idx;
+  replyComment.value = true;
+};
 </script>
 
 <style scoped></style>

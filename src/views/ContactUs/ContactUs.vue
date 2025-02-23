@@ -5,10 +5,7 @@
     <div class="flex flex-col gap-2 md:gap-0">
       <div class="flex flex-col">
         <div class="flex items-center">
-          <img
-            src="../../assets/images/svg/social/where-we-are.svg"
-            alt=""
-          />
+          <img src="../../assets/images/svg/social/where-we-are.svg" alt="" />
           <div class="">{{ $t("contactUs.location") }}</div>
         </div>
         <div
@@ -21,10 +18,7 @@
       </div>
       <div class="flex flex-col">
         <div class="flex items-center">
-          <img
-            src="../../assets/images/svg/social/phone.svg"
-            alt=""
-          />
+          <img src="../../assets/images/svg/social/phone.svg" alt="" />
           <div class="">{{ $t("contactUs.contactPhone") }}</div>
         </div>
         <address
@@ -46,15 +40,10 @@
       </div>
       <div class="flex flex-col">
         <div class="flex items-center">
-          <img
-            src="../../assets/images/svg/social/email.svg"
-            alt=""
-          />
+          <img src="../../assets/images/svg/social/email.svg" alt="" />
           <div class="">{{ $t("contactUs.email") }}</div>
         </div>
-        <address
-          class="pl-[25px] 2sm:pl-[88px] text-base 2md:text-start"
-        >
+        <address class="pl-[25px] 2sm:pl-[88px] text-base 2md:text-start">
           <a
             class="hover:text-main-color duration-500 cursor-pointer"
             @click="openLinks('email')"
@@ -67,54 +56,30 @@
     <div class="flex flex-col">
       <div class="flex flex-col">
         <div class="flex items-center">
-          <img
-            src="../../assets/images/svg/social/social.svg"
-            alt=""
-          />
+          <img src="../../assets/images/svg/social/social.svg" alt="" />
           {{ $t("contactUs.social") }}
         </div>
       </div>
       <div class="flex flex-col gap-10 pl-[25px] 2sm:pl-[88px]">
-        <div
-          class="flex items-center gap-5"
-          @click="openLinks('facebook')"
-        >
-          <img
-            src="../../assets/images/svg/social/facebook.svg"
-            alt=""
-          />
-          <div
-            class="hover:text-main-color duration-500 cursor-pointer"
-          >
+        <div class="flex items-center gap-5" @click="openLinks('facebook')">
+          <img src="../../assets/images/svg/social/facebook.svg" alt="" />
+          <div class="hover:text-main-color duration-500 cursor-pointer">
             medok_karpatskyj
           </div>
         </div>
-        <div
-          class="flex items-center gap-5"
-          @click="openLinks('instagram')"
-        >
-          <img
-            src="../../assets/images/svg/social/instagram.svg"
-            alt=""
-          />
-          <div
-            class="hover:text-main-color duration-500 cursor-pointer"
-          >
+        <div class="flex items-center gap-5" @click="openLinks('instagram')">
+          <img src="../../assets/images/svg/social/instagram.svg" alt="" />
+          <div class="hover:text-main-color duration-500 cursor-pointer">
             medok_karpatskyj
           </div>
         </div>
-        <div
-          class="flex items-center gap-5"
-          @click="openLinks('telegram')"
-        >
+        <div class="flex items-center gap-5" @click="openLinks('telegram')">
           <img
             src="../../assets/images/svg/social/telegram.svg"
             alt=""
             class="rounded"
           />
-          <div
-            class="hover:text-main-color duration-500 cursor-pointer"
-          >
+          <div class="hover:text-main-color duration-500 cursor-pointer">
             @medok_karpatskyj
           </div>
         </div>
@@ -139,7 +104,7 @@ const openLinks = (name: string) => {
     if (Object.hasOwnProperty.call(data.links, key)) {
       const element = data.links[key];
       if (element.name === name) {
-        window.open(`${ element.url }`);
+        window.open(`${element.url}`);
       }
     }
   }

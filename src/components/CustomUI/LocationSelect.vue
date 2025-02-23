@@ -1,35 +1,48 @@
 <template>
   <div class="max-w-[826px] w-full relative" v-on-click-outside="closeSelector">
     <div
-      class="relative flex items-center h-fit  border rounded-md p-4 gap-10 cursor-pointer color-green hover:border-orange-700"
-      @click.prevent="toggleSelector=!toggleSelector"
+      class="relative flex items-center h-fit border rounded-md p-4 gap-10 cursor-pointer color-green hover:border-orange-700"
+      @click.prevent="toggleSelector = !toggleSelector"
       :class="{
-      'border-orange-700':toggleSelector || Object.keys(selectDelivery).length > 0
-    }"
+        'border-orange-700':
+          toggleSelector || Object.keys(selectDelivery).length > 0,
+      }"
     >
-      <img src="../../assets/images/svg/basket/point-map.svg" alt="point map">
+      <img src="../../assets/images/svg/basket/point-map.svg" alt="point map" />
       <div class="flex flex-col">
-        <div class="text-color-green">{{ selectDelivery?.SettlementTypeCode }} {{ selectDelivery?.MainDescription || $t("selectCity.title") }}</div>
-        <div class="">{{ selectDelivery?.Present || $t("selectCity.example")}}</div>
-        <div class="text-color-green ">{{ selectDelivery?.Area || $t("selectCity.area")}}
-          {{ selectDelivery?.ParentRegionTypes }}</div>
+        <div class="text-color-green">
+          {{ selectDelivery?.SettlementTypeCode }}
+          {{ selectDelivery?.MainDescription || $t("selectCity.title") }}
+        </div>
+        <div class="">
+          {{ selectDelivery?.Present || $t("selectCity.example") }}
+        </div>
+        <div class="text-color-green">
+          {{ selectDelivery?.Area || $t("selectCity.area") }}
+          {{ selectDelivery?.ParentRegionTypes }}
+        </div>
       </div>
       <img
         v-if="!Object.keys(selectDelivery).length > 0"
-        src="../../assets/images/svg/basket/chevron-right.svg" class="absolute right-5 ease-in-out duration-300 z-10"
+        src="../../assets/images/svg/basket/chevron-right.svg"
+        class="absolute right-5 ease-in-out duration-300 z-10"
         :class="{
-          'rotate-90' : toggleSelector,
+          'rotate-90': toggleSelector,
         }"
-      >
+      />
       <img
         v-else
         @click="clearSelect"
-        src="../../assets/images/svg/basket/basket-close-btn.svg" class="absolute right-5 ease-in-out duration-300 z-10 w-4 h-4 hover:rotate-90"
-      >
+        src="../../assets/images/svg/basket/basket-close-btn.svg"
+        class="absolute right-5 ease-in-out duration-300 z-10 w-4 h-4 hover:rotate-90"
+      />
     </div>
     <Transition>
-      <div class="w-full absolute top-36 lg:top-32 left-0" v-if="toggleSelector">
-        <div class="tooltip w-full h-[300px] ">
+      <div
+        class="w-full absolute top-36 lg:top-32 left-0"
+        v-if="toggleSelector"
+      >
+        <div class="tooltip w-full h-[300px]">
           <div class="tooltiptext max-w-[826px] w-full text-black">
             <div class="p-4">
               <input
@@ -38,15 +51,17 @@
                 @input="searchCity"
                 class="search-city"
                 :placeholder="$t('selectCity.title')"
-              >
+              />
             </div>
             <div class="relative" v-if="runLoading">
               <span class="load"></span>
             </div>
-            <ul  class="p-0 h-[80%] overflow-y-auto">
+            <ul class="p-0 h-[80%] overflow-y-auto">
               <li
                 class="hover:bg-gray-50 hover:transition duration-300 cursor-pointer text-start py-1 w-full ps-4"
-                @click="selectAddress(data)" v-for="data in res" :key="data"
+                @click="selectAddress(data)"
+                v-for="data in res"
+                :key="data"
               >
                 {{ data.Present }}
               </li>
@@ -59,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import debounce from 'lodash.debounce'
+import debounce from "lodash.debounce";
 
 const delivery = useDeliveryStore(),
   toggleSelector = ref<boolean>(false),
@@ -69,22 +84,22 @@ const delivery = useDeliveryStore(),
   selectDelivery = ref({}),
   emit = defineEmits(["updateCity"]);
 
-const searchCity = debounce( async () => {
+const searchCity = debounce(async () => {
   runLoading.value = true;
 
-  if (city.value.length >0) {
+  if (city.value.length > 0) {
     const { data } = await delivery.searchDeliveryNovaPoshta(city.value);
     runLoading.value = false;
-    res.value = data.data[0]?.Addresses
+    res.value = data.data[0]?.Addresses;
   } else {
     res.value = [];
     runLoading.value = false;
   }
-}, 500)
+}, 500);
 
 const closeSelector = () => {
-  toggleSelector.value = false
-}
+  toggleSelector.value = false;
+};
 
 const selectAddress = (data) => {
   selectDelivery.value = data;
@@ -92,16 +107,15 @@ const selectAddress = (data) => {
   emit("updateCity", data?.Present);
   searchCity();
   closeSelector();
-}
+};
 
 const clearSelect = () => {
   selectDelivery.value = {};
   emit("updateCity", "");
-}
+};
 </script>
 
 <style scoped>
-
 .tooltip {
   position: relative;
   display: inline-block;
@@ -151,7 +165,7 @@ const clearSelect = () => {
   animation: rotation 1s linear infinite;
 }
 .load::after {
-  content: '';
+  content: "";
   box-sizing: border-box;
   position: absolute;
   left: 0;
@@ -159,7 +173,7 @@ const clearSelect = () => {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border-bottom: 4px solid #FF3D00;
+  border-bottom: 4px solid #ff3d00;
   border-left: 4px solid transparent;
 }
 @keyframes rotation {
@@ -171,6 +185,4 @@ const clearSelect = () => {
   }
 }
 </style>
-<style>
-
-</style>
+<style></style>

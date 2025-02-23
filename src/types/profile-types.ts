@@ -1,3 +1,3 @@
 export interface CropperInfo {
-  selectedImage: string | null
+  selectedImage: string | null;
 }

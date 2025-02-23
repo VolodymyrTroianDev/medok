@@ -2,7 +2,7 @@
   <div
     class="bg-header-main bg-bottom bg-cover bg-no-repeat bg-transparent w-100"
   >
-    <Header :hiddenBackground="false"/>
+    <Header :hiddenBackground="false" />
     <div class="header-component">
       <h1
         class="font-marck-script text-white text-[25px] lg:text-[48px] text-center lg:text-start"
@@ -10,7 +10,7 @@
         {{ $t("header.previewTitle") }}
       </h1>
       <div class="relative w-full md:w-1/2">
-        <img src="../../assets/images/png/preview-image.png" class=""/>
+        <img src="../../assets/images/png/preview-image.png" class="" />
         <img
           src="../../assets/images/png/bees.png"
           alt=""
@@ -29,13 +29,12 @@
       </div>
     </div>
   </div>
-  <About/>
-  <WhyUs/>
-  <Blogs/>
+  <About />
+  <WhyUs />
+  <Blogs />
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 <style scoped>
 .header-component {
   @apply md:flex

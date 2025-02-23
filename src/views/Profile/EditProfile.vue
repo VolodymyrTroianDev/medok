@@ -7,7 +7,7 @@
   <div
     class="min-h-[710px] flex items-center ml-200 md:ml-75 flex-wrap lg:flex-no-wrap justify-center md:justify-start sm:ml-0 px-5 lg:px-20 gap-20"
   >
-    <UpdatePhoto/>
+    <UpdatePhoto />
     <div
       class="w-full lg:w-1/2 flex flex-col gap-5 items-center lg:items-start"
     >
@@ -36,13 +36,13 @@
           v-model="data.password"
           :value="data.password"
           class="focus:ring-0 focus:ring-offset-0 w-full"
-        >{{ $t("profile.oldPassword") }}
+          >{{ $t("profile.oldPassword") }}
         </input-password>
         <input-password
           v-model="data.newPassword"
           :value="data.newPassword"
           class="focus:ring-0 focus:ring-offset-0 w-full"
-        >{{ $t("profile.newPassword") }}
+          >{{ $t("profile.newPassword") }}
         </input-password>
       </div>
       <button

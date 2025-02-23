@@ -3,7 +3,7 @@
     <TransitionGroup name="list" tag="ul">
       <li
         class="h-fit min-h-[200px] mix-blend-normal rounded-xl md:ml-0 md:min-h-44 w-full flex items-center shadow-custom mb-3"
-        v-for="(item,index) in basket.state.selectedProducts"
+        v-for="(item, index) in basket.state.selectedProducts"
         :key="item.uid"
       >
         <img
@@ -15,35 +15,46 @@
         />
         <div class="w-full h-full p-3">
           <div class="flex justify-between">
-            <div class="font-lato font-normal text-base leading-tight text-xl">{{ item.name }}</div>
+            <div class="font-lato font-normal text-base leading-tight text-xl">
+              {{ item.name }}
+            </div>
             <img
-              src="../../../assets/images/svg/basket/basket-close-btn.svg" alt=""
+              src="../../../assets/images/svg/basket/basket-close-btn.svg"
+              alt=""
               class="bg-no-repeat bg-center w-4 h-4 cursor-pointer"
               @click="removeProduct(item)"
-            >
+            />
           </div>
-          <div class="max-h-28 h-full overflow-y-scroll font-lato font-normal leading-tight text-gray-700 text-sm">
+          <div
+            class="max-h-28 h-full overflow-y-scroll font-lato font-normal leading-tight text-gray-700 text-sm"
+          >
             {{ item.description }}
           </div>
           <CustomCounterBtn
             :product="item"
-            @update:quantity="(quantity) => { onUpdateQuantity(quantity,index) }"
+            @update:quantity="
+              (quantity) => {
+                onUpdateQuantity(quantity, index);
+              }
+            "
           />
         </div>
       </li>
-    </TransitionGroup >
+    </TransitionGroup>
   </div>
 </template>
 
 <script setup lang="ts">
 const basket = useBasketStore();
 const removeProduct = (product) => {
-  const updateBasket = basket.state.selectedProducts.filter(item => item.uid !== product.uid);
+  const updateBasket = basket.state.selectedProducts.filter(
+    (item) => item.uid !== product.uid,
+  );
   basket.updateBasketStore(updateBasket);
-}
-const onUpdateQuantity = (data:Quantity, index) => {
-  basket.state.selectedProducts[index].quantity = data
-}
+};
+const onUpdateQuantity = (data: Quantity, index) => {
+  basket.state.selectedProducts[index].quantity = data;
+};
 </script>
 
 <style scoped>

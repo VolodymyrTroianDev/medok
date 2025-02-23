@@ -14,25 +14,19 @@
         class="w-4 h-4 cursor-pointer 500px:hidden"
       />
       <div class="bg-white border rounded w-full max-h-[135px] h-full">
-        <div
-          class="py-4 mx-5 text-center text-[14px] font-semibold border-b"
-        >
+        <div class="py-4 mx-5 text-center text-[14px] font-semibold border-b">
           {{ $t("products.filterTitle") }}
         </div>
-        <FilterRangeButton/>
+        <FilterRangeButton />
       </div>
       <div class="bg-white border rounded w-full max-h-[250px] h-full">
-        <div
-          class="py-4 mx-5 text-center text-[14px] font-semibold border-b"
-        >
+        <div class="py-4 mx-5 text-center text-[14px] font-semibold border-b">
           {{ $t("products.category") }}
         </div>
-        <ProductsCategory/>
+        <ProductsCategory />
       </div>
       <div class="bg-white border rounded w-full max-h-[250px] h-full">
-        <div
-          class="py-4 mx-5 text-center text-[14px] font-semibold border-b"
-        >
+        <div class="py-4 mx-5 text-center text-[14px] font-semibold border-b">
           {{ $t("products.recommended") }}
         </div>
       </div>
@@ -40,7 +34,7 @@
     <div
       class="flex flex-col items-center border-t-2 border-b-products max-w-[930px] w-full bg-bg-products py-5 px-10"
     >
-      <router-view :items="productsStore.filterProducts()"/>
+      <router-view :items="productsStore.filterProducts()" />
     </div>
   </div>
 </template>

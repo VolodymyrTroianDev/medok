@@ -1,56 +1,51 @@
 module.exports = {
   mode: "jit",
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      'marck-script': ["Marck Script", 'serif'],
-      'open-sans': ["Open Sans"],
+      "marck-script": ["Marck Script", "serif"],
+      "open-sans": ["Open Sans"],
     },
     extend: {
       backgroundImage: {
-        'header': "url('../assets/images/png/header/header.png')",
-        'header-main': "url('../assets/images/png/header/header-background-preview.png')",
-        'about-us-main': "url('../assets/images/png/main/main.png')",
-        'blog': "url('../assets/images/png/main/blogs/blog-bg.png')"
+        header: "url('../assets/images/png/header/header.png')",
+        "header-main":
+          "url('../assets/images/png/header/header-background-preview.png')",
+        "about-us-main": "url('../assets/images/png/main/main.png')",
+        blog: "url('../assets/images/png/main/blogs/blog-bg.png')",
       },
       colors: {
-        'counter': '#e83636',
-        'main-color': '#d15d0d',
-        'custom-blue': '#2075f5',
-        'custom-red': '#b83806',
-        'blogs-color': '#f8f8f8',
-        'bg-color': '#eee',
-        'footer': '#FFF4ED',
-        'footer-border': '#A79E99',
-        'b-products': '#d46110',
-        'color-a': '#aaa',
-        'bg-products': 'rgba(237, 145, 80, 0.06)',
-        'bg-mobile-filter': '#f5e6db',
-        'fafafa': '#fafafa',
-        'color-green': '#c8c8c8',
-        'custom-gray': '#656565',
-        'slider': '#95410a'
+        counter: "#e83636",
+        "main-color": "#d15d0d",
+        "custom-blue": "#2075f5",
+        "custom-red": "#b83806",
+        "blogs-color": "#f8f8f8",
+        "bg-color": "#eee",
+        footer: "#FFF4ED",
+        "footer-border": "#A79E99",
+        "b-products": "#d46110",
+        "color-a": "#aaa",
+        "bg-products": "rgba(237, 145, 80, 0.06)",
+        "bg-mobile-filter": "#f5e6db",
+        fafafa: "#fafafa",
+        "color-green": "#c8c8c8",
+        "custom-gray": "#656565",
+        slider: "#95410a",
       },
     },
     screens: {
-      's': '175px',
-      'sm/2': '285px',
-      'sm': '375px',
-      '2sm': '420px',
-      '500px': '500px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1440px',
-      '3xl': '1600px',
-      'full-hd': '1920px'
+      s: "175px",
+      "sm/2": "285px",
+      sm: "375px",
+      "2sm": "420px",
+      "500px": "500px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1440px",
+      "3xl": "1600px",
+      "full-hd": "1920px",
     },
   },
-  plugins: [
-    require('@tailwindcss/forms')
-  ],
-}
-
+  plugins: [require("@tailwindcss/forms")],
+};

@@ -1,15 +1,19 @@
 <template>
-  <div class="flex flex-wrap justify-center lg:justify-between items-center gap-4 lg:flex-nowrap">
-    <SelectLocalization/>
+  <div
+    class="flex flex-wrap justify-center lg:justify-between items-center gap-4 lg:flex-nowrap"
+  >
+    <SelectLocalization />
     <button
       class="relative"
-      @click="() => {
-        store.blur = true;
-        emit('openBasketModal', true)
-      }"
+      @click="
+        () => {
+          store.blur = true;
+          emit('openBasketModal', true);
+        }
+      "
       @click.stop
     >
-      <basket-img/>
+      <basket-img />
       <span
         class="w-[17px] h-[17px] absolute right-0 bg-counter text-white rounded-full bottom-[-5px] text-[12px]"
       >
@@ -19,10 +23,15 @@
     <img
       v-if="route.name === 'ProductsItems' || route.name === 'Blog'"
       @click="openFilterMenu"
-      src="../../assets/images/svg/filter-icon.svg" alt="" class="cursor-pointer 500px:hidden"
+      src="../../assets/images/svg/filter-icon.svg"
+      alt=""
+      class="cursor-pointer 500px:hidden"
+    />
+    <div
+      class="flex gap-4 items-center cursor-pointer hover:scale-105 transition ease-in-out delay-150"
+      @click="$router.push({ name: 'Profile' })"
+      v-show="auth.state.statusLogin"
     >
-    <div class="flex gap-4 items-center cursor-pointer hover:scale-105 transition ease-in-out delay-150"
-         @click="$router.push({ name: 'Profile' })" v-show="auth.state.statusLogin">
       <img
         :src="database.state.data.reloadUserInfo?.photoUrl"
         alt=""
@@ -30,28 +39,40 @@
         height="45"
         class="rounded-full bg-white"
       />
-      <div class="text-white text-base font-semibold"
-           v-show="database.state.data?.reloadUserInfo?.displayName || database.state.data?.reloadUserInfo?.email">
-        {{ database.state.data?.reloadUserInfo?.displayName || database.state.data?.reloadUserInfo?.email }}
+      <div
+        class="text-white text-base font-semibold"
+        v-show="
+          database.state.data?.reloadUserInfo?.displayName ||
+          database.state.data?.reloadUserInfo?.email
+        "
+      >
+        {{
+          database.state.data?.reloadUserInfo?.displayName ||
+          database.state.data?.reloadUserInfo?.email
+        }}
       </div>
     </div>
     <button
       v-if="!auth.state.statusLogin"
       class="text-white font-semibold transform hover:-translate-y-1 transition-all duration-300"
-      @click="() => {
-        openLoginModal = true
-        store.blur = true
-      }"
+      @click="
+        () => {
+          openLoginModal = true;
+          store.blur = true;
+        }
+      "
     >
       {{ $t("header.login") }}
     </button>
     <button
       v-if="!auth.state.statusLogin"
       class="text-white font-semibold border-2 rounded-full py-[5px] px-[13px] hover:bg-white hover:text-counter duration-300"
-      @click="() => {
-        openRegisterModal = true
-        store.blur = true
-      }"
+      @click="
+        () => {
+          openRegisterModal = true;
+          store.blur = true;
+        }
+      "
     >
       {{ $t("header.register") }}
     </button>
@@ -83,6 +104,8 @@
 </template>
 
 <script setup lang="ts">
+import { useEmitter } from "@nguyenshort/vue3-mitt";
+
 const store = useGeneralStore(),
   auth = useAuthenticationStore(),
   database = useDatabaseStore(),
@@ -98,13 +121,26 @@ const props = defineProps<{
 
 const emit = defineEmits(["openBasketModal"]);
 const openFilterMenu = (): void => {
-  store.openMobileFilterPanel = !store.openMobileFilterPanel
+  store.openMobileFilterPanel = !store.openMobileFilterPanel;
   if (store.openMobileHeader) store.openMobileHeader = false;
-}
+};
+const emitter = useEmitter();
 
+onMounted(() =>
+  emitter.on("openModal", (type) => {
+    if (type === "login") {
+      openLoginModal.value = !openLoginModal.value;
+    }
+    if (type === "register") {
+      openRegisterModal.value = !openRegisterModal.value;
+    }
+  }),
+);
+
+onUnmounted(() => emitter.off("openModal"));
 const signOut = async () => {
   await auth.logOut();
-}
+};
 
 watchEffect(() => {
   bodyOverflow.value =
@@ -119,10 +155,8 @@ watchEffect(() => {
   document.body.style.overflow = bodyOverflow.value;
 });
 const Basket = defineAsyncComponent(
-  () => import("@/components/Modals/Basket/Basket.vue")
+  () => import("@/components/Modals/Basket/Basket.vue"),
 );
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

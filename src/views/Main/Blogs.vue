@@ -1,9 +1,7 @@
 <template>
   <!-- Blogs -->
   <article class="relative">
-    <h4
-      class="text-main-color text-center md:text-xl uppercase font-medium"
-    >
+    <h4 class="text-main-color text-center md:text-xl uppercase font-medium">
       {{ $t("blog.subTitleDashboard") }}
     </h4>
     <h2
@@ -12,12 +10,10 @@
       {{ $t("blog.titleDashboard") }}
     </h2>
     <!-- Blogs Content -->
-    <div
-      class="md:mt-28 bg-blog w-full bg-cover bg-no-repeat bg-transparent"
-    >
+    <div class="md:mt-28 bg-blog w-full bg-cover bg-no-repeat bg-transparent">
       <!--      <img src="../../assets/images/png/main/blogs/blog-bg.png" class="bg-blog w-full -z-[1]">-->
       <div class="max-w-[1960px] mx-auto py-[250px] 3xl:py-[403px]">
-        <CarouselBlogs :data="blogsCard"/>
+        <CarouselBlogs :data="blogsCard" />
         <!-- Blog Cards -->
       </div>
     </div>
@@ -25,7 +21,6 @@
 </template>
 
 <script setup lang="ts">
-
 const blogsCard = [
   {
     name: "ДИВОВИЖНІ ПЕРЕВАГИ ОЦТУ ТА МЕДУ ДЛЯ ЗДОРОВ’Я",

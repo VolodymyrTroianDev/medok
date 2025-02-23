@@ -1,22 +1,42 @@
 <template>
-  <MyModal :show="props.openModal" :styles="'h-[661px]'" @close-modal="closeRegisterModal">
+  <MyModal
+    :show="props.openModal"
+    :styles="'h-[661px]'"
+    @close-modal="closeRegisterModal"
+  >
     <modal-container> {{ $t("modals.registration") }}</modal-container>
     <div class="mt-[30px]">
       <div class="flex flex-col gap-5">
-        <input-text v-model="dataRegister.name" :value="dataRegister.name">{{ $t("modals.name") }}</input-text>
-        <input-text v-model="dataRegister.surname" :value="dataRegister.surname">{{ $t("modals.surname") }}</input-text>
-        <input-text v-model="dataRegister.email" :value="dataRegister.email">{{ $t("modals.email") }}</input-text>
-        <input-password v-model="dataRegister.password" :value="dataRegister.password">{{ $t("modals.password") }}
+        <input-text v-model="dataRegister.name" :value="dataRegister.name">{{
+          $t("modals.name")
+        }}</input-text>
+        <input-text
+          v-model="dataRegister.surname"
+          :value="dataRegister.surname"
+          >{{ $t("modals.surname") }}</input-text
+        >
+        <input-text v-model="dataRegister.email" :value="dataRegister.email">{{
+          $t("modals.email")
+        }}</input-text>
+        <input-password
+          v-model="dataRegister.password"
+          :value="dataRegister.password"
+          >{{ $t("modals.password") }}
         </input-password>
-        <input-password v-model="dataRegister.confirmPassword" :value="dataRegister.confirmPassword">
+        <input-password
+          v-model="dataRegister.confirmPassword"
+          :value="dataRegister.confirmPassword"
+        >
           {{ $t("modals.confirmPassword") }}
         </input-password>
       </div>
-      <div class="" v-show="auth.Errors.register.status">{{ auth.Errors.register.text }}</div>
+      <div class="" v-show="auth.Errors.register.status">
+        {{ auth.Errors.register.text }}
+      </div>
       <button class="red-btn" @click="signIn">
         {{ $t("modals.registration") }}
       </button>
-      <OAuth/>
+      <OAuth />
       <div class="text-center">
         {{ $t("modals.account") }}
         <button
@@ -40,7 +60,7 @@ const store = useGeneralStore(),
     password: "",
     confirmPassword: "",
     name: "",
-    surname: ""
+    surname: "",
   });
 
 const props = defineProps<{
@@ -66,10 +86,10 @@ const signIn = async (): Promise<void> => {
       });
       emit("closeRegisterModal", false);
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
   }
-}
+};
 
 function isValidEmail(email: string) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -84,8 +104,7 @@ const openLoginModal = (): void => {
 const closeRegisterModal = () => {
   store.blur = false;
   emit("closeRegisterModal");
-}
+};
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

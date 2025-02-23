@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { getItem } from "../services/LocalStorage";
 
-
 export const useGeneralStore = defineStore({
   id: "GeneralStore",
   state: () => ({
@@ -11,8 +10,8 @@ export const useGeneralStore = defineStore({
     email: "",
     name: "",
     Errors: {
-      login: {status: false, text: ""},
-      register: {status: false, text: ""},
+      login: { status: false, text: "" },
+      register: { status: false, text: "" },
     },
     blur: false,
     photoProfile: null,
@@ -27,9 +26,9 @@ export const useGeneralStore = defineStore({
     openMobileFilterPanel: false,
     openMobileHeader: false,
     widthScreen: "",
-    dataLogin: {email: "", password: ""},
+    dataLogin: { email: "", password: "" },
     screenWidth: null,
-    openCropperModal:false,
+    openCropperModal: false,
     dataRegister: {
       name: "",
       surname: "",
@@ -40,8 +39,8 @@ export const useGeneralStore = defineStore({
     openFilterSideBar: false,
     openLeftSideBar: true,
     openAddArticlePanel: false,
-    openBlogDescription: false
+    openBlogDescription: false,
   }),
   getters: {},
-  actions: {}
+  actions: {},
 });

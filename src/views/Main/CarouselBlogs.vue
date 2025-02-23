@@ -3,11 +3,7 @@
     <Slide v-for="slide in props.data" :key="slide">
       <div class="carousel__item">
         <div class="blog">
-          <img
-            :src="getImageUrl(slide.img)"
-            class="blog__img"
-            height="350"
-          />
+          <img :src="getImageUrl(slide.img)" class="blog__img" height="350" />
           <h2 class="blog__title">{{ slide.title }}</h2>
           <p class="blog__desc">
             {{ slide.desription }}
@@ -18,9 +14,7 @@
                 src="../../assets/images/svg/calendar.svg"
                 class="blog__date-calendar"
               />
-              <span class="blog__date-text">{{
-                  slide.date
-                }}</span>
+              <span class="blog__date-text">{{ slide.date }}</span>
             </div>
             <button class="flex items-center text-main-color">
               {{ $t("blog.blogBtnText") }}
@@ -36,8 +30,8 @@
     </Slide>
 
     <template #addons>
-      <Navigation/>
-      <Pagination/>
+      <Navigation />
+      <Pagination />
     </template>
   </Carousel>
 </template>
@@ -79,8 +73,8 @@ const store = reactive({
 });
 const getImageUrl = (url: string) => {
   return new URL(
-    `../../assets/images/jpg/main/blogs/${ url }.jpg`,
-    import.meta.url
+    `../../assets/images/jpg/main/blogs/${url}.jpg`,
+    import.meta.url,
   ).href;
 };
 </script>

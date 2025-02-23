@@ -50,5 +50,5 @@ export default function (data, t) {
             </div>
         </div>
     </body>
-</html>`
+</html>`;
 }

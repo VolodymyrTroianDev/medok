@@ -1,5 +1,4 @@
 <template>
-
   <div class="socket">
     <div class="gel center-gel">
       <div class="hex-brick h1"></div>
@@ -188,13 +187,10 @@
       <div class="hex-brick h2"></div>
       <div class="hex-brick h3"></div>
     </div>
-
   </div>
-
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 <style>
 .socket {
   width: 200px;
@@ -233,8 +229,8 @@
 .gel {
   height: 30px;
   width: 30px;
-  transition: all .3s;
-  -webkit-transition: all .3s;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -440,66 +436,66 @@
   animation-name: pulse00;
   animation-duration: 2s;
   animation-iteration-count: infinite;
-  animation-delay: .2s;
+  animation-delay: 0.2s;
   -webkit-animation-name: pulse00;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
-  -webkit-animation-delay: .2s;
+  -webkit-animation-delay: 0.2s;
 }
 
 .r2 {
   animation-name: pulse00;
   animation-duration: 2s;
   animation-iteration-count: infinite;
-  animation-delay: .4s;
+  animation-delay: 0.4s;
   -webkit-animation-name: pulse00;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
-  -webkit-animation-delay: .4s;
+  -webkit-animation-delay: 0.4s;
 }
 
 .r3 {
   animation-name: pulse00;
   animation-duration: 2s;
   animation-iteration-count: infinite;
-  animation-delay: .6s;
+  animation-delay: 0.6s;
   -webkit-animation-name: pulse00;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
-  -webkit-animation-delay: .6s;
+  -webkit-animation-delay: 0.6s;
 }
 
 .r1 > .hex-brick {
   animation-name: fade00;
   animation-duration: 2s;
   animation-iteration-count: infinite;
-  animation-delay: .2s;
+  animation-delay: 0.2s;
   -webkit-animation-name: fade00;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
-  -webkit-animation-delay: .2s;
+  -webkit-animation-delay: 0.2s;
 }
 
 .r2 > .hex-brick {
   animation-name: fade00;
   animation-duration: 2s;
   animation-iteration-count: infinite;
-  animation-delay: .4s;
+  animation-delay: 0.4s;
   -webkit-animation-name: fade00;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
-  -webkit-animation-delay: .4s;
+  -webkit-animation-delay: 0.4s;
 }
 
 .r3 > .hex-brick {
   animation-name: fade00;
   animation-duration: 2s;
   animation-iteration-count: infinite;
-  animation-delay: .6s;
+  animation-delay: 0.6s;
   -webkit-animation-name: fade00;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
-  -webkit-animation-delay: .6s;
+  -webkit-animation-delay: 0.6s;
 }
 
 @keyframes pulse00 {
@@ -532,5 +528,4 @@
     background: #d15d0d;
   }
 }
-
 </style>

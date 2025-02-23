@@ -6,7 +6,7 @@
       @input="updateInput"
       class="input-comment"
       :placeholder="props.placeholder"
-    >
+    />
     <div class="flex justify-end gap-4 p-2">
       <button @click="cancelActions()">
         <slot name="cancel-btn"></slot>
@@ -24,25 +24,25 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  comment: { type: Object};
+  comment: { type: Object };
   idx: { type: String };
-  placeholder: { type: String, default: ""};
-  modelValue: { type: String, default: ""};
+  placeholder: { type: String; default: "" };
+  modelValue: { type: String; default: "" };
 }>();
-const emit = defineEmits(["saveComment", "cancelAction"])
+const emit = defineEmits(["saveComment", "cancelAction"]);
 const text = ref<string>(props.modelValue || ""),
   btnDisabled = ref<boolean>(true);
 const updateInput = () => {
-  if (text.value.length > 0) btnDisabled.value = false
+  if (text.value.length > 0) btnDisabled.value = false;
   else btnDisabled.value = true;
-}
+};
 const saveComment = async () => {
   emit("saveComment", text.value);
-}
+};
 const cancelActions = () => {
   text.value = "";
-  emit("cancelAction")
-}
+  emit("cancelAction");
+};
 </script>
 
 <style scoped>

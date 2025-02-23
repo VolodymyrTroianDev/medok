@@ -3,9 +3,7 @@
     <div class="font-marck-script text-center text-[54px]">
       {{ $t("blog.title") }}
     </div>
-    <div
-      class="flex lg:max-w-[1300px] mx-auto justify-between max-w-[1311px]"
-    >
+    <div class="flex lg:max-w-[1300px] mx-auto justify-between max-w-[1311px]">
       <div
         class="500px:max-w-[270px] w-full flex flex-col gap-7 border-t-2 -translate-x-full bg-bg-mobile-filter h-screen border-b-products px-5 py-6 absolute top-0 duration-500 500px:static 500px:bg-bg-products 500px:w-full 500px:-translate-x-0"
         :class="{ active: general.openMobileFilterPanel }"
@@ -27,7 +25,7 @@
             class="w-[25px] h-[27px] cursor-pointer bg-no-repeat"
           />
         </button>
-        <InputSearch/>
+        <InputSearch />
         <div class="bg-white px-3 border bg-color">
           <div class="font-semibold pl-5 pt-5">
             {{ $t("blog.category") }}
@@ -67,11 +65,11 @@
         </div>
       </div>
       <div class="max-w-[880px] w-full min-h-[710px] h-full">
-        <BlogItems/>
+        <BlogItems />
         <AddArticle
           v-if="
-              general.openAddArticlePanel &&
-              dataBase.state?.data?.userStatus === 1
+            general.openAddArticlePanel &&
+            dataBase.state?.data?.userStatus === 1
           "
         />
       </div>

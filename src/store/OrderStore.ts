@@ -1,19 +1,19 @@
-import {defineStore} from "pinia";
-import {reactive} from "vue";
-import {addDoc,setDoc, collection,doc} from "firebase/firestore";
-import {db} from "@/main";
-import {useI18n} from "vue-i18n";
-import {useAuthenticationStore} from "@/store/authStore";
+import { defineStore } from "pinia";
+import { reactive } from "vue";
+import { addDoc, setDoc, collection, doc } from "firebase/firestore";
+import { db } from "@/main";
+import { useI18n } from "vue-i18n";
+import { useAuthenticationStore } from "@/store/authStore";
 
 export const useOrderStore = defineStore("orderStore", () => {
   const state = reactive({});
-  const {t} = useI18n();
+  const { t } = useI18n();
   const auth = useAuthenticationStore();
 
   const sendEmail = async (data) => {
-    console.log(data)
+    console.log(data);
     try {
-      const docRef = await setDoc(doc(db, 'mail', auth.state.uid), {
+      const docRef = await setDoc(doc(db, "mail", auth.state.uid), {
         to: [data.email],
         message: {
           subject: `${t("message.hello")}, ${data.surname} ${data.name}`,
@@ -89,15 +89,15 @@ export const useOrderStore = defineStore("orderStore", () => {
                         </div>
                     </div>
                 </body>
-                </html>`
-        }
+                </html>`,
+        },
       });
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-  }
+  };
   return {
     state,
-    sendEmail
-  }
-})
+    sendEmail,
+  };
+});

@@ -2,26 +2,26 @@
   <div
     class="relative h-full w-full"
     :class="{
-      'blur-sm': store.blur
+      'blur-sm': store.blur,
     }"
     id="top"
   >
-    <router-view name="Header"/>
-    <router-view name="default"/>
-    <router-view name="Footer"/>
+    <router-view name="Header" />
+    <router-view name="default" />
+    <router-view name="Footer" />
     <div
-      class="fixed bottom-5 right-5 w-[40px] h-[40px] rounded-[50%] opacity-30 p-[10px]  hover:cursor-pointer hover:opacity-100 transition duration-500 bg-custom-red flex justify-center items-center"
+      class="fixed bottom-5 right-5 w-[40px] h-[40px] rounded-[50%] opacity-30 p-[10px] hover:cursor-pointer hover:opacity-100 transition duration-500 bg-custom-red flex justify-center items-center"
       @click="scrollOnTop()"
     >
       <img
         src="./assets/images/svg/arrov-top.svg"
         alt="arrov-top"
         class="h-[20px]"
-      >
+      />
     </div>
   </div>
 
-  <Loader v-if="store.statusLoader"/>
+  <Loader v-if="store.statusLoader" />
 </template>
 
 <script setup lang="ts">
@@ -39,10 +39,9 @@ const store = useGeneralStore(),
   title = useTitle(),
   router = useRouter();
 
-
 router.beforeEach((to) => {
-  title.value = `${ t(to.meta.title) } | ${ t("header.title") }`;
-})
+  title.value = `${t(to.meta.title)} | ${t("header.title")}`;
+});
 
 onMounted(async () => {
   store.statusLoader = true;
@@ -51,8 +50,7 @@ onMounted(async () => {
     setTimeout(() => {
       store.statusLoader = false;
     }, 4000);
-  } catch (e) {
-  }
+  } catch (e) {}
 });
 
 useSeoMeta({
@@ -60,20 +58,18 @@ useSeoMeta({
   description: t("article.title"),
   ogDescription: t("article.title"),
   ogTitle: t("article.title"),
-  ogImage: 'https://medok-karpatskyj.web.app/assets/blog-1-img-d7e73eb7.jpg',
-  twitterCard: 'summary_large_image',
-})
+  ogImage: "https://medok-karpatskyj.web.app/assets/blog-1-img-d7e73eb7.jpg",
+  twitterCard: "summary_large_image",
+});
 
 const scrollOnTop = () => {
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior: "smooth"
+    behavior: "smooth",
   });
-}
-
+};
 </script>
-
 
 <style lang="scss">
 .modal {

@@ -1,4 +1,4 @@
-import {defineStore} from "pinia";
+import { defineStore } from "pinia";
 import {
   getAuth,
   signOut,
@@ -7,15 +7,14 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
-  FacebookAuthProvider
+  FacebookAuthProvider,
 } from "firebase/auth";
 import {
   getStorage,
   ref,
   getDownloadURL,
-  uploadString
+  uploadString,
 } from "firebase/storage";
-
 
 export const useAuthenticationStore = defineStore("authentication", () => {
   const state = reactive<AuthStore>({
@@ -29,25 +28,23 @@ export const useAuthenticationStore = defineStore("authentication", () => {
   });
   const { t } = useI18n();
   const database = useDatabaseStore();
-  const Errors = reactive<Errors>(
-    {
-      login: {status: false, text: ""},
-      register: {status: false, text: ""},
-    }
-  )
-  const auth:any = getAuth();
+  const Errors = reactive<Errors>({
+    login: { status: false, text: "" },
+    register: { status: false, text: "" },
+  });
+  const auth: any = getAuth();
   const general = useGeneralStore();
 
   const loginUser = async (data: Login) => {
     general.statusLoader = true;
     try {
-      await signInWithEmailAndPassword(auth, data.email, data.password)
+      await signInWithEmailAndPassword(auth, data.email, data.password);
       state.statusLogin = true;
       setItem("uid", state.uid);
       general.statusLoader = false;
       checkOpenModal();
-    } catch (e:any) {
-        Errors.login.status = true;
+    } catch (e: any) {
+      Errors.login.status = true;
       switch (e.code) {
         case LoginEnum.EMAIL:
           Errors.login.text = t("errors.invalidEmail");
@@ -67,17 +64,17 @@ export const useAuthenticationStore = defineStore("authentication", () => {
         Errors.login.status = false;
       }, 3000);
     }
-  }
- const logOut = async () => {
+  };
+  const logOut = async () => {
     try {
-      await signOut(auth)
+      await signOut(auth);
       state.statusLogin = false;
       general.statusLoader = false;
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
-  const checkAuthSession = async () =>{
+  };
+  const checkAuthSession = async () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         general.statusLoader = true;
@@ -90,29 +87,29 @@ export const useAuthenticationStore = defineStore("authentication", () => {
         state.userInfo = user;
         setItem("uid", state.uid);
         general.statusLoader = false;
-      } else  {
+      } else {
         state.statusLogin = false;
         setTimeout(() => {
           general.statusLoader = false;
         }, 1000);
         logOut();
       }
-    })
-  }
+    });
+  };
   const signInWithGoogle = async () => {
     general.statusLoader = true;
     const provider = new GoogleAuthProvider();
     try {
-      const req = await signInWithPopup(getAuth(), provider)
-      if (!database.state.data?.auth) await database.createUserInfo(req.user)
+      const req = await signInWithPopup(getAuth(), provider);
+      if (!database.state.data?.auth) await database.createUserInfo(req.user);
       checkOpenModal();
     } catch (e) {
-      generateErrors("register",t("errors.serverError"));
+      generateErrors("register", t("errors.serverError"));
       generateErrors("login", t("errors.serverError"));
       general.openRegistrationModal = true;
       general.openLoginModal = true;
     }
-  }
+  };
   const signInWithFacebook = async () => {
     general.statusLoader = true;
     const provider = new FacebookAuthProvider();
@@ -121,24 +118,28 @@ export const useAuthenticationStore = defineStore("authentication", () => {
       checkOpenModal();
       general.statusLoader = false;
     } catch (e) {
-      generateErrors("register",t("errors.serverError"));
+      generateErrors("register", t("errors.serverError"));
       generateErrors("login", t("errors.serverError"));
       general.openRegistrationModal = true;
       general.openLoginModal = true;
     }
-  }
-  const register = async (data)=> {
+  };
+  const register = async (data) => {
     general.statusLoader = true;
     try {
-      const res = await createUserWithEmailAndPassword(getAuth(), data.email, data.password);
+      const res = await createUserWithEmailAndPassword(
+        getAuth(),
+        data.email,
+        data.password,
+      );
       await database.createUserInfo(res.user);
       general.statusLoader = false;
       Errors.register.status = false;
       checkOpenModal();
-    } catch (e:any) {
+    } catch (e: any) {
       Errors.register.status = true;
       general.statusLoader = false;
-      console.log(e)
+      console.log(e);
       switch (e.code) {
         case "auth/email-already-in-use":
           Errors.register.text = t("errors.emailAlready");
@@ -154,41 +155,48 @@ export const useAuthenticationStore = defineStore("authentication", () => {
         Errors.register.status = false;
       }, 3000);
     }
-  }
-  const generateErrors = (type:string, text:string) => {
+  };
+  const generateErrors = (type: string, text: string) => {
     Errors[`${type}`].status = true;
     Errors[`${type}`].text = text;
     setTimeout(() => {
       Errors[`${type}`].status = false;
       Errors[`${type}`].text = "";
     }, 3000);
-  }
-  const checkOpenModal = ()=> {
-    general.openRegistrationModal = general.openRegistrationModal ? false : general.openRegistrationModal;
-    general.openLoginModal = general.openLoginModal ? false : general.openLoginModal;
-  }
+  };
+  const checkOpenModal = () => {
+    general.openRegistrationModal = general.openRegistrationModal
+      ? false
+      : general.openRegistrationModal;
+    general.openLoginModal = general.openLoginModal
+      ? false
+      : general.openLoginModal;
+  };
   const updatePhotoProfile = async (file) => {
     const storage = getStorage();
-    const mountainImagesRef = ref(storage,`gs://medok-karpatskyj.appspot.com/images/${state.uid}.jpg`);
+    const mountainImagesRef = ref(
+      storage,
+      `gs://medok-karpatskyj.appspot.com/images/${state.uid}.jpg`,
+    );
     try {
-      await uploadString(mountainImagesRef, file, 'data_url');
+      await uploadString(mountainImagesRef, file, "data_url");
       general.openCropperModal = false;
       await downloadUrlPhoto(state.uid);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   const downloadUrlPhoto = async (uid) => {
     const storage = getStorage();
     try {
       const photo = await getDownloadURL(
-        ref(storage, `gs://medok-karpatskyj.appspot.com/images/${uid}.jpg`)
+        ref(storage, `gs://medok-karpatskyj.appspot.com/images/${uid}.jpg`),
       );
       await database.updateReloadUserInfo(uid, photo);
     } catch (e) {
       console.log(e);
     }
-  }
+  };
   return {
     state,
     Errors,
@@ -199,7 +207,6 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     signInWithFacebook,
     register,
     generateErrors,
-    updatePhotoProfile
-  }
-
-})
+    updatePhotoProfile,
+  };
+});
