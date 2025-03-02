@@ -25,6 +25,9 @@ const LoginModal = defineAsyncComponent(() => import("modals/Login.vue"));
 const RegistrationModal = defineAsyncComponent(
   () => import("modals/Registration.vue"),
 );
+const SearchImg = defineAsyncComponent(
+    () => import("../../assets/images/svg/search-img.vue"),
+);
 export default {
   OAuth,
   Loader,
@@ -39,4 +42,5 @@ export default {
   TextArea,
   LoginModal,
   RegistrationModal,
+  SearchImg
 };

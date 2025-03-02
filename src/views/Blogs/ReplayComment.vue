@@ -81,7 +81,10 @@
               <template v-slot:save-btn>{{ $t("blog.reply") }}</template>
             </CommentBtnGroup>
           </Transition>
-          <button v-if="commentIdx !== replayId" @click="openReplyComment(replayId)">
+          <button
+            v-if="commentIdx !== replayId"
+            @click="openReplyComment(replayId)"
+          >
             {{ $t("blog.reply") }}
           </button>
         </div>
@@ -121,14 +124,13 @@ const props = defineProps<{
   userId: string;
 }>();
 
-const updateLike = (
-  type: string,
-  blogId: string,
-  commentId: string,
-  userId: string,
-  replayId: string,
-) => {
-  blog.updateCommentReaction(blogId, commentId, userId, type, replayId);
+const updateLike = async (type: string, blogId: string, commentId: string, userId: string, replayId: string) => {
+  const scrollPosition = window.scrollY;
+
+  await blog.updateCommentReaction(blogId, commentId, userId, type, replayId);
+  await nextTick();
+
+  window.scrollTo(0, scrollPosition);
 };
 const onReplyComment = () => {};
 const onSaveComment = () => {};

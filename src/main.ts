@@ -25,6 +25,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/uk";
 import { createHead } from "@unhead/vue";
 import VueMitter from "@nguyenshort/vue3-mitt";
+import InlineSvg from "vue-inline-svg";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -42,7 +43,14 @@ export { db, database };
 onAuthStateChanged(auth, () => {
   if (!app) {
     app = createApp(App);
-    app.use(head).use(i18n).use(router).use(pinia).use(VueMitter).mount("#app");
+    app
+      .use(head)
+      .use(i18n)
+      .component("inline-svg", InlineSvg)
+      .use(router)
+      .use(pinia)
+      .use(VueMitter)
+      .mount("#app");
     AOS.init(configureAOS);
   }
   for (let index = 0; index < Object.keys(CustomComponets).length; index++) {

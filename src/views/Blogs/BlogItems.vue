@@ -23,7 +23,7 @@
           <span> {{ item.description }} </span>
           <div class="relative">
             <button class="relative w-[30px]">
-              <img src="../../assets/images/svg/comment.svg" />
+              <img src="../../assets/images/svg/comment.svg" alt="commentary"/>
               <span
                 v-if="item?.comment"
                 class="w-[13px] h-[13px] absolute right-0 bg-counter text-white flex items-center justify-center rounded-full bottom-[-5px] text-[10px]"
@@ -59,7 +59,7 @@ const openModal = (idx: string) => {
 };
 
 const BlogsItemsDescriptionModal = defineAsyncComponent(
-  () => import("@/views/Blogs/BlogsItemsDescriptionModal.vue"),
+  () => import("@/components/Modals/BlogsItemsDescriptionModal.vue"),
 );
 </script>
 <style scoped></style>

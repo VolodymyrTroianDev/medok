@@ -46,9 +46,9 @@
         </Transition>
         <div class="flex gap-2 justify-between">
           <likes-counter
-              :comment
-              :user-id="auth.state.uid"
-              @update-like="updateLike($event, commentId,  blogId)"
+            :comment
+            :user-id="auth.state.uid"
+            @update-like="updateLike($event, commentId, blogId)"
           />
         </div>
       </div>
@@ -73,7 +73,10 @@
           />
         </div>
 
-        <button v-if="commentIdx !== commentId" @click="openReplyComment(commentId)">
+        <button
+          v-if="commentIdx !== commentId"
+          @click="openReplyComment(commentId)"
+        >
           {{ $t("blog.reply") }}
         </button>
       </div>
@@ -100,11 +103,11 @@
       </CommentBtnGroup>
     </Transition>
     <ReplayComment
-        :comment
-        :comment-id="commentId"
-        :blog-id="blogId"
-        :user-id="auth.state.uid"
-        @onReplayComment="openReplyComment(commentId)"
+      :comment
+      :comment-id="commentId"
+      :blog-id="blogId"
+      :user-id="auth.state.uid"
+      @onReplayComment="openReplyComment(commentId)"
     />
   </div>
 </template>
@@ -123,12 +126,21 @@ const blog = useBlogStore(),
   replyComment = ref<boolean>(false),
   commentIdx = ref<string>("");
 
-const onSaveComment = async (comment: string, commentId: string, blogId: string) => {
+const onSaveComment = async (
+  comment: string,
+  commentId: string,
+  blogId: string,
+) => {
   try {
     await blog.editComment(comment, commentId, blogId);
   } catch (e) {}
 };
-const onReplyComment = async (comment: string, commentId: string, blogId: string, displayName: string) => {
+const onReplyComment = async (
+  comment: string,
+  commentId: string,
+  blogId: string,
+  displayName: string,
+) => {
   try {
     await blog.replayComment(comment, commentId, blogId, displayName);
   } catch (e) {}
@@ -152,7 +164,7 @@ const deleteComment = (idx: string, id: string) => {
 };
 const updateLike = (type: string, commentId: string, blogId: string) => {
   blog.updateCommentReaction(blogId, commentId, auth.state.uid, type);
-}
+};
 </script>
 
 <style scoped>

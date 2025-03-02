@@ -75,6 +75,7 @@ const closeBasket = () => {
 };
 const createOrder = () => {
   emit("closeBasketModal");
+  store.blur = false;
   router.push({ name: "OrderingOrder" });
 };
 const clearBasket = () => {

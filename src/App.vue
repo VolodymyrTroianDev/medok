@@ -1,13 +1,15 @@
 <template>
   <div
-    class="relative h-full w-full"
+    class="flex flex-col min-h-screen relative w-full"
     :class="{
       'blur-sm': store.blur,
     }"
     id="top"
   >
     <router-view name="Header" />
-    <router-view name="default" />
+    <div class="mb-auto">
+      <router-view name="default" />
+    </div>
     <router-view name="Footer" />
     <div
       class="fixed bottom-5 right-5 w-[40px] h-[40px] rounded-[50%] opacity-30 p-[10px] hover:cursor-pointer hover:opacity-100 transition duration-500 bg-custom-red flex justify-center items-center"

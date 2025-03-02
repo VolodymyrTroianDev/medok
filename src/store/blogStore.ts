@@ -95,11 +95,11 @@ export const useBlogStore = defineStore("blogStore", () => {
     await update(ref(db), updates);
   };
   const updateCommentReaction = async (
-      blogId: string,
-      commentId: string,
-      userId: string,
-      type: "likes" | "disLikes",
-      replayId: string | null = null
+    blogId: string,
+    commentId: string,
+    userId: string,
+    type: "likes" | "disLikes",
+    replayId: string | null = null,
   ) => {
     const basePath = `blogs/${blogId}/comment/${commentId}`;
     const targetPath = replayId ? `${basePath}/replay/${replayId}` : basePath;
@@ -116,18 +116,20 @@ export const useBlogStore = defineStore("blogStore", () => {
 
       if (type === "likes") {
         updates[`${targetPath}/likes`] = isLiked
-            ? likes.filter((user) => user !== userId)
-            : [...likes, userId];
+          ? likes.filter((user) => user !== userId)
+          : [...likes, userId];
 
         updates[`${targetPath}/disLikes`] = disLikes.filter(
-            (user) => user !== userId
+          (user) => user !== userId,
         );
       } else if (type === "disLikes") {
         updates[`${targetPath}/disLikes`] = isDisliked
-            ? disLikes.filter((user) => user !== userId)
-            : [...disLikes, userId];
+          ? disLikes.filter((user) => user !== userId)
+          : [...disLikes, userId];
 
-        updates[`${targetPath}/likes`] = likes.filter((user) => user !== userId);
+        updates[`${targetPath}/likes`] = likes.filter(
+          (user) => user !== userId,
+        );
       }
       await update(ref(db), updates);
     } catch (error) {
