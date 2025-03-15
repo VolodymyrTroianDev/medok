@@ -13,11 +13,23 @@
       class="cursor-pointer active:scale-75 transition-transform duration-150 ease-in-out absolute top-5 right-5 bg-no-repeat bg-center bg-cover"
       @click="closeModal"
     />
-    <img
-      :src="props.data.imgUrl"
-      class="object-cover mx-auto w-[300px]"
-      alt=""
-    />
+
+    <div
+        class="flex justify-center items-center w-full min-h-[250px] rounded"
+      :class="{ 'bg-gray-100': !props.data.imgUrl.length }"
+    >
+      <img
+          v-if="props.data.imgUrl.length > 0"
+          :src="props.data.imgUrl"
+          class="object-cover mx-auto rounded"
+          alt=""
+      />
+      <inline-svg
+          v-else
+          src="/src/assets/images/svg/no-image.svg"
+          class="text-main-color mx-auto"
+      />
+    </div>
     <div class="flex flex-col w-full h-full gap-2">
       <div class="py-3 flex flex-col gap-6 text-custom-gray text-sm">
         <div class="flex gap-2">
@@ -25,17 +37,23 @@
           <span>{{ formatTime(props.data.timeCreated) }}</span>
         </div>
         <span class="font-bold"> {{ props.data.description }} </span>
-        <div class="flex gap-2">
-          <button class="relative w-[30px]">
-            <img src="../../assets/images/svg/comment.svg" alt="comment" />
-            <span
-              v-if="props.data?.comment"
-              class="w-[13px] h-[13px] absolute right-0 bg-counter text-white flex items-center justify-center rounded-full bottom-[-5px] text-[10px]"
-            >
+        <div class="flex gap-2 justify-between">
+          <div class="flex gap-2 items-center">
+            <button class="relative w-[30px]">
+              <img src="../../assets/images/svg/comment.svg" alt="comment" />
+              <span
+                  v-if="props.data?.comment"
+                  class="w-[13px] h-[13px] absolute right-0 bg-counter text-white flex items-center justify-center rounded-full bottom-[-5px] text-[10px]"
+              >
               {{ Object.keys(props.data?.comment).length || 0 }}
             </span>
-          </button>
-          <div class="text-a">{{ $t("blog.comments") }}</div>
+            </button>
+            <div class="text-a">{{ $t("blog.comments") }}</div>
+          </div>
+          <div class="flex gap-2 items-center" v-if="database.state?.data?.userStatus === 1">
+            <inline-svg :src="'/src/assets/images/svg/edit-icon.svg'" alt="" class="w-[25px] h-[27px] cursor-pointer bg-no-repeat hover:scale-110 transition duration-300 ease-in-out"/>
+            <inline-svg :src="'/src/assets/images/svg/delete-icon.svg'" alt="" class="w-[25px] h-[27px] cursor-pointer bg-no-repeat hover:scale-110 transition duration-300 ease-in-out"/>
+          </div>
         </div>
         <div class="max-h-[300px] overflow-y-auto mini-scrollbar">
           <div

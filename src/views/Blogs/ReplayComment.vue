@@ -124,7 +124,13 @@ const props = defineProps<{
   userId: string;
 }>();
 
-const updateLike = async (type: string, blogId: string, commentId: string, userId: string, replayId: string) => {
+const updateLike = async (
+  type: string,
+  blogId: string,
+  commentId: string,
+  userId: string,
+  replayId: string,
+) => {
   const scrollPosition = window.scrollY;
 
   await blog.updateCommentReaction(blogId, commentId, userId, type, replayId);

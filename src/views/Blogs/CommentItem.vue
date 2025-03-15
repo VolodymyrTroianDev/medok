@@ -45,7 +45,7 @@
           </CommentBtnGroup>
         </Transition>
         <div class="flex gap-2 justify-between">
-          <likes-counter
+          <LikesCounter
             :comment
             :user-id="auth.state.uid"
             @update-like="updateLike($event, commentId, blogId)"

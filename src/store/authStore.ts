@@ -15,6 +15,7 @@ import {
   getDownloadURL,
   uploadString,
 } from "firebase/storage";
+import LoginEnum from "@/enums/LoginEnum";
 
 export const useAuthenticationStore = defineStore("authentication", () => {
   const state = reactive<AuthStore>({

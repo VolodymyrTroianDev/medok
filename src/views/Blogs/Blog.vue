@@ -23,6 +23,7 @@
           <img
             src="../../assets/images/svg/edit-icon.svg"
             class="w-[25px] h-[27px] cursor-pointer bg-no-repeat"
+            alt=""
           />
         </button>
         <InputSearch />
@@ -65,7 +66,11 @@
         </div>
       </div>
       <div class="max-w-[880px] w-full min-h-[710px] h-full">
-        <BlogItems />
+        <div
+          class="flex flex-col items-center border-t-2 border-b-products max-w-[930px] w-full bg-bg-products py-5 px-10"
+        >
+          <BlogItems />
+        </div>
         <AddArticle
           v-if="
             general.openAddArticlePanel &&

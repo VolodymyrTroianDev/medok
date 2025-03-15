@@ -57,7 +57,7 @@
 
 <script setup lang="ts">
 import { CropperInfo } from "@/types/profile-types";
-import FsLightbox from "fslightbox-vue/v3";
+import FsLightbox from "fslightbox-vue";
 
 const general = useGeneralStore();
 const authStore = useAuthenticationStore();

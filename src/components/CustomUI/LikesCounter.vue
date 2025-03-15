@@ -2,13 +2,15 @@
   <div class="flex gap-2 align-center">
     <p class="text-main-color">{{ likesCount }}</p>
     <inline-svg
-      class="cursor-pointer hover:scale-110 transition duration-300 ease-in-out text-red-950"
+      class="cursor-pointer hover:scale-110 transition duration-300 ease-in-out text-custom-gray"
+      :class="{ 'text-main-color': activeLikes }"
       src="/src/assets/images/svg/like-icon.svg"
       @click.prevent.stop="$emit('updateLike', 'likes')"
     />
     <p class="text-main-color">{{ disLikesCount }}</p>
     <inline-svg
-      class="rotate-180 cursor-pointer hover:scale-110 transition duration-300 ease-in-out fill-current text-red-950r"
+      class="rotate-180 cursor-pointer hover:scale-110 transition duration-300 ease-in-out text-custom-gray"
+      :class="{ 'text-main-color': activeDisLikes }"
       src="/src/assets/images/svg/like-icon.svg"
       @click.prevent.stop="$emit('updateLike', 'disLikes')"
     />
@@ -28,6 +30,7 @@ const likesCount = computed(() =>
 const disLikesCount = computed(() =>
   props.comment.disLikes ? props.comment.disLikes.length : 0,
 );
+
 const isActive = (type) =>
   computed(() => props.comment[type]?.includes(props.userId));
 
