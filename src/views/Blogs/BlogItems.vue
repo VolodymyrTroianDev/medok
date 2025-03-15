@@ -20,7 +20,7 @@
         />
         <inline-svg
           v-else
-          src="/src/assets/images/svg/no-image.svg"
+          src="/assets/images/svg/no-image.svg"
           class="text-main-color object-cover rounded-t"
         />
       </div>
@@ -43,6 +43,7 @@
                 {{ Object.keys(item?.comment).length || 0 }}
               </span>
             </button>
+            <inline-svg src="" />
           </div>
         </div>
       </div>
