@@ -8,11 +8,11 @@
         class="500px:max-w-[270px] w-full flex flex-col gap-7 border-t-2 -translate-x-full bg-bg-mobile-filter h-screen border-b-products px-5 py-6 absolute top-0 duration-500 500px:static 500px:bg-bg-products 500px:w-full 500px:-translate-x-0"
         :class="{ active: general.openMobileFilterPanel }"
       >
-        <img
+        <inline-svg
           @click="general.openMobileFilterPanel = false"
-          src="../../assets/images/svg/basket/basket-close-btn.svg"
+          src="/assets/images/svg/basket/basket-close-btn.svg"
           alt=""
-          class="w-4 h-4 absolute right-2 top-1 cursor-pointer 500px:hidden"
+          class="absolute right-2 top-1 cursor-pointer 500px:hidden w-[25px] h-[25px]"
         />
         <button
           class="w-full flex items-center justify-between mx-auto border rounded px-3 py-2 border-color-green bg-white"
@@ -20,8 +20,8 @@
           @click="general.openAddArticlePanel = true"
         >
           <span>{{ $t("blog.addArticle") }}</span>
-          <img
-            src="../../assets/images/svg/edit-icon.svg"
+          <inline-svg
+            src="/assets/images/svg/edit-icon.svg"
             class="w-[25px] h-[27px] cursor-pointer bg-no-repeat"
             alt=""
           />

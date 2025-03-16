@@ -13,7 +13,10 @@
       "
       @click.stop
     >
-      <basket-img />
+      <inline-svg
+        src="/assets/images/svg/basket/basket-img.svg"
+        class="w-[25px] h-[25px]"
+      />
       <span
         class="w-[17px] h-[17px] absolute right-0 bg-counter text-white rounded-full bottom-[-5px] text-[12px]"
       >
@@ -23,7 +26,7 @@
     <img
       v-if="route.name === 'ProductsItems' || route.name === 'Blog'"
       @click="openFilterMenu"
-      src="../../assets/images/svg/filter-icon.svg"
+      src="/assets/images/svg/filter-icon.svg"
       alt=""
       class="cursor-pointer 500px:hidden"
     />

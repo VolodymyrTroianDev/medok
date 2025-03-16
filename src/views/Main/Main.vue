@@ -10,19 +10,19 @@
         {{ $t("header.previewTitle") }}
       </h1>
       <div class="relative w-full md:w-1/2">
-        <img src="../../assets/images/png/preview-image.png" class="" />
+        <img src="/assets/images/png/preview-image.png" class="" />
         <img
-          src="../../assets/images/png/bees.png"
+          src="/assets/images/png/bees.png"
           alt=""
           class="bee bee1 absolute top-1 left-1 w-12 md:w-16 lg:w-20"
         />
         <img
-          src="../../assets/images/png/bees2.png"
+          src="/assets/images/png/bees2.png"
           alt=""
           class="bee bee2 absolute right-5 top-12 w-12 md:w-16 lg:w-20"
         />
         <img
-          src="../../assets/images/png/bees3.png"
+          src="/assets/images/png/bees3.png"
           alt=""
           class="bee bee3 absolute left-1/2 bottom-0 w-12 md:w-16 lg:w-20"
         />

@@ -1,7 +1,7 @@
 <template>
   <div class="input-search relative text-main-color">
     <input type="text" class="input" :placeholder="$t('blog.search')" />
-    <SearchImg class="search" />
+    <inline-svg src="/assets/images/svg/search.svg" class="search" />
   </div>
 </template>
 

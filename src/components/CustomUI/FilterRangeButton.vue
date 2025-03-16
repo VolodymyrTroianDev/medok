@@ -17,9 +17,6 @@
   <div></div>
 </template>
 <script setup lang="ts">
-import Slider from "@vueform/slider";
-import { useProductsStore } from "@/store/productsStore";
-import { useRoute, useRouter } from "vue-router";
 const productsStore = useProductsStore();
 const router = useRouter();
 const route = useRoute();

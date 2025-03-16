@@ -5,15 +5,18 @@
     @close-modal="openProductDescription = false"
   >
     <div class="description-title">{{ product?.name }}</div>
-    <img
-      src="../../assets/images/svg/basket/basket-close-btn.svg"
+    <inline-svg
+      src="/assets/images/svg/basket/basket-close-btn.svg"
       alt=""
-      class="cursor-pointer active:scale-75 transition-transform duration-150 ease-in-out absolute top-5 right-5 bg-no-repeat bg-center bg-cover"
+      class="cursor-pointer active:scale-75 transition-transform duration-150 ease-in-out absolute top-5 right-5 bg-no-repeat bg-center bg-cover w-[25px] h-[25px]"
       @click="openProductDescription = false"
     />
     <Carousel :wrap-around="true" :autoplay="5000" :items-to-show="1">
       <Slide v-for="slide in product?.carousel" :key="slide">
-        <img :src="slide" class="h-[300px] bg-no-repeat bg-center bg-cover" />
+        <inline-svg
+          :src="slide"
+          class="h-[300px] bg-no-repeat bg-center bg-cover"
+        />
       </Slide>
 
       <template #addons>

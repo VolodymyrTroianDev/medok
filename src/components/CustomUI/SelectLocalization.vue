@@ -4,11 +4,13 @@
     @click="toggleDropdown()"
     v-on-click-outside="closeDropdown"
   >
-    <UaImg
+    <inline-svg
+      src="/assets/images/svg/ua-img.svg"
       class="cursor-pointer rounded w-6"
       v-show="GeneralStore.useLanguage === 'ua'"
     />
-    <UkImg
+    <inline-svg
+      src="/assets/images/svg/uk-img.svg"
       class="cursor-pointer rounded w-6"
       v-show="GeneralStore.useLanguage === 'en'"
     />
@@ -17,11 +19,13 @@
         class="absolute left-1/2 transform -translate-x-1/2 bg-white p-2 rounded top-7"
         v-if="store.activeDropdown"
       >
-        <UaImg
+        <inline-svg
+          src="/assets/images/svg/ua-img.svg"
           class="pointer cursor-pointer rounded w-6 mb-[5px]"
           @click="selectLanguage('ua')"
         />
-        <UkImg
+        <inline-svg
+          src="/assets/images/svg/uk-img.svg"
           class="pointer cursor-pointer rounded w-6"
           @click="selectLanguage('en')"
         />
@@ -43,7 +47,6 @@ const store = reactive({
 });
 const selectLanguage = async (locales: string) => {
   setItem("language", locales);
-  console.log();
 
   if (locale.value !== locales) {
     locale.value = locales;

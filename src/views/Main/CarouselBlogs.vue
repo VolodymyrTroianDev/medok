@@ -10,16 +10,16 @@
           </p>
           <div class="blog__footer">
             <div class="blog__date">
-              <img
-                src="../../assets/images/svg/calendar.svg"
+              <inline-svg
+                src="/assets/images/svg/calendar.svg"
                 class="blog__date-calendar"
               />
               <span class="blog__date-text">{{ slide.date }}</span>
             </div>
             <button class="flex items-center text-main-color">
               {{ $t("blog.blogBtnText") }}
-              <img
-                src="../../assets/images/svg/arrow-img.svg"
+              <inline-svg
+                src="/assets/images/svg/icons/arrow-img.svg"
                 alt=""
                 class="ms-2 mt-1"
               />

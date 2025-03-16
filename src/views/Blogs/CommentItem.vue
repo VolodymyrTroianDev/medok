@@ -58,14 +58,14 @@
           v-if="comment.id === auth.state.uid"
         >
           <img
-            src="../../assets/images/svg/edit-icon.svg"
+            src="/assets/images/svg/edit-icon.svg"
             class="w-[20px] h-[20px] cursor-pointer bg-no-repeat bg-cover hover:scale-110 transition duration-300 ease-in-out"
             :alt="$t('blog.editComment')"
             :title="$t('blog.editComment')"
             @click="editComment(commentId)"
           />
           <img
-            src="../../assets/images/svg/delete-icon.svg"
+            src="/assets/images/svg/delete-icon.svg"
             :alt="$t('blog.deleteComment')"
             :title="$t('blog.deleteComment')"
             @click="deleteComment(commentId, blogId)"

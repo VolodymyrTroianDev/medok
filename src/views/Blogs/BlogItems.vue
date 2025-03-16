@@ -9,8 +9,8 @@
       @click="openModal(index)"
     >
       <div
-        class="flex justify-center items-center  min-w-[245px] min-h-[145px] max-h-[200px] object-cover rounded-t"
-        :class="{'bg-gray-100': !item.imgUrl.length}"
+        class="flex justify-center items-center min-w-[245px] min-h-[145px] max-h-[200px] object-cover rounded-t"
+        :class="{ 'bg-gray-100': !item.imgUrl.length }"
       >
         <img
           v-if="item.imgUrl.length > 0"
@@ -21,7 +21,7 @@
         <inline-svg
           v-else
           src="/assets/images/svg/no-image.svg"
-          class="text-main-color object-cover rounded-t"
+          class="text-main-color object-cover rounded-t w-7"
         />
       </div>
 
@@ -29,13 +29,21 @@
         <span class="truncate">{{ item.title }}</span>
         <div class="py-3 flex flex-col gap-6 text-custom-gray text-sm pe-3">
           <div class="flex gap-2">
-            <img src="../../assets/images/svg/calendar.svg" alt="" />
+            <inline-svg
+              src="/assets/images/svg/calendar.svg"
+              alt=""
+              class="w-5"
+            />
             <span> {{ formatTime(item.timeCreated) }}</span>
           </div>
           <span> {{ item.description }} </span>
           <div class="d-flex relative justify-between">
             <button class="relative w-[30px]">
-              <img src="../../assets/images/svg/comment.svg" alt="commentary" />
+              <inline-svg
+                src="/assets/images/svg/comment.svg"
+                alt="commentary"
+                class="w-[21px]"
+              />
               <span
                 v-if="item?.comment"
                 class="w-[13px] h-[13px] absolute right-0 bg-counter text-white flex items-center justify-center rounded-full bottom-[-5px] text-[10px]"
@@ -57,14 +65,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import moment from "moment";
-import "moment/locale/uk";
 import { formatTime } from "@/services/TimeFormat";
 
 const { openBlogDescription } = toRefs(useGeneralStore());
 const descriptionModalIdx = ref<string>("");
 
-moment.locale("uk");
 const blogStore = useBlogStore();
 const openModal = (idx: string) => {
   openBlogDescription.value = !openBlogDescription.value;

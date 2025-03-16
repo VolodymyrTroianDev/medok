@@ -1,52 +1,54 @@
 <template>
-  <div class="input-text text-[14px] md:text-[1em]">
+  <div class="input-text text-[14px] md:text-[1em] relative">
     <input
-      type="password"
-      :disabled="props.disabled"
       ref="passwordInput"
+      v-model="modelValue"
       required
-      title="введіть пароль"
-      :value="modelValue || value"
-      @input="$emit('update:modelValue', $event.target.value)"
+      :disabled
+      :type="passwordShow ? 'text' : 'password'"
+      class="w-full p-2 border rounded transition-all duration-500 ease-in-out focus:ring-2 focus:ring-blue-300 focus:border-blue-500"
     />
-    <img
-      src="../../assets/images/svg/password-control.svg"
-      class="password-control cursor-pointer"
-      @click="togglePassword()"
-      v-show="store.passwordShow"
-    />
-    <img
-      src="../../assets/images/svg/view.svg"
-      class="password-control cursor-pointer"
-      @click="togglePassword()"
-      v-show="!store.passwordShow"
-    />
+
+    <transition name="fade">
+      <inline-svg
+        v-if="passwordShow"
+        src="public/assets/images/svg/password-control.svg"
+        class="password-control cursor-pointer w-[23px] h-[23px] absolute top-3 right-3 transition-opacity duration-300 ease-in-out opacity-100"
+        alt=""
+        @click="togglePassword()"
+      />
+    </transition>
+
+    <transition name="fade">
+      <inline-svg
+        v-if="!passwordShow"
+        src="public/assets/images/svg/view.svg"
+        class="password-control cursor-pointer w-[23px] h-[23px] absolute top-3 right-3 transition-opacity duration-300 ease-in-out opacity-100"
+        alt=""
+        @click="togglePassword()"
+      />
+    </transition>
+
     <div class="input-text__title"><slot></slot></div>
   </div>
 </template>
 
-<script lang="ts" setup>
-const passwordInput = ref();
-const store = reactive({
-  passwordShow: false,
-});
-const props = defineProps({
-  disabled: {
-    type: Boolean,
-    required: false,
-  },
-  modelValue: {
-    type: String,
-    default: "",
-  },
-  value: {
-    type: String,
-    default: "",
-  },
-});
+<script setup lang="ts">
+import { changeInput } from "@/services/ChangeTypeInputPassword";
+import { ref } from "vue";
+
+const passwordInput = ref<HTMLInputElement>(),
+  passwordShow = ref<boolean>(false);
+
+const { disabled, title } = defineProps<{
+  disabled?: boolean;
+  title?: string;
+}>();
+
 defineEmits(["update:modelValue"]);
+const modelValue = defineModel();
 const togglePassword = () => {
-  store.passwordShow = !store.passwordShow;
+  passwordShow.value = !passwordShow.value;
   changeInput(passwordInput);
 };
 </script>
@@ -57,11 +59,23 @@ const togglePassword = () => {
       font-size: 14px;
       color: var(--placeholder-color);
     }
+    transition: all 0.5s ease;
   }
   & .password-control {
     position: absolute;
     top: 10px;
     right: 10px;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
   }
+}
+.fade-enter-active,
+.fade-leave-active {
+  @apply transition-opacity duration-300 ease-in-out;
+}
+.fade-enter,
+.fade-leave-to {
+  @apply opacity-0;
 }
 </style>

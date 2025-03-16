@@ -14,13 +14,13 @@
           <div class="font-medium text-2xl leading-10 text-gray-900">
             {{ name }}
           </div>
-          <img
-            src="../../assets/images/svg/edit-icon.svg"
+          <inline-svg
+            src="/assets/images/svg/edit-icon.svg"
             class="w-[25px] h-[27px] cursor-pointer bg-no-repeat ml-5"
             @click="$router.push({ name: 'EditProfile' })"
           />
         </div>
-        <div class="mb-5 my-2 font-normal font-medium text-xl leading-6">
+        <div class="mb-5 my-2 font-medium text-xl leading-6">
           {{ email }}
         </div>
       </div>

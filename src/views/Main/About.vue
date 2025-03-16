@@ -1,7 +1,7 @@
 <template>
   <article class="relative w-full">
     <img
-      src="../../assets/images/png/main/main.png"
+      src="/assets/images/png/main/main.png"
       alt=""
       class="absolute top-[-290px] z-[-1] w-full max-h-[1550px] sm:h-[1550px] sm/2:h-[1385px]"
     />
@@ -18,11 +18,7 @@
       class="px-5 flex gap-5 flex-wrap items-center justify-center max-w-[900px] mb-10 mx-auto lg:flex-nowrap lg:gap-0"
       data-aos="zoom-in-up"
     >
-      <img
-        src="../../assets/images/png/main/about-ill-1.png"
-        class="w-1/2"
-        alt=""
-      />
+      <img src="/assets/images/png/main/about-ill-1.png" class="w-1/2" alt="" />
       <div class="ml-4">
         <h3 class="text-2xl mb-[25px] text-center lg:text-start">
           {{ $t("about.itemTitle1") }}
@@ -34,11 +30,7 @@
       class="px-5 flex gap-5 flex-wrap items-center justify-center max-w-[900px] mb-10 mx-auto lg:flex-nowrap lg:gap-0"
       data-aos="zoom-in-up"
     >
-      <img
-        src="../../assets/images/png/main/about-ill-2.png"
-        class="w-1/2"
-        alt=""
-      />
+      <img src="/assets/images/png/main/about-ill-2.png" class="w-1/2" alt="" />
       <div class="ml-4">
         <h3 class="text-2xl mb-[25px] text-center lg:text-start">
           {{ $t("about.itemTitle2") }}
@@ -52,7 +44,7 @@
     >
       <div class="w-[120px] sm:w-[200px] 2sm:w-[240px] lg:w-1/2">
         <img
-          src="../../assets/images/png/main/about-ill-3.png"
+          src="/assets/images/png/main/about-ill-3.png"
           class="mx-auto mx-w-[350px]"
           alt=""
         />
@@ -69,8 +61,4 @@
 
 <script setup lang="ts"></script>
 
-<style scoped>
-/*.about_us {*/
-/*  @apply*/
-/*}*/
-</style>
+<style scoped></style>

@@ -8,19 +8,19 @@
       {{ $t("profile.status") }}
     </div>
     <div class="flex gap-2">
-      <img src="../../assets/images/svg/profile/confirmed.svg" alt="" />
+      <inline-svg src="/assets/images/svg/profile/confirmed.svg" alt="" />
       <div class="font-normal text-xs leading-4">
         {{ $t("profile.confirmed") }}
       </div>
     </div>
     <div class="flex gap-2">
-      <img src="../../assets/images/svg/profile/is-expected.svg" alt="" />
+      <inline-svg src="/assets/images/svg/profile/is-expected.svg" alt="" />
       <div class="font-normal text-xs leading-4">
         {{ $t("profile.isExpected") }}
       </div>
     </div>
     <div class="flex gap-2">
-      <img src="../../assets/images/svg/profile/rejected.svg" alt="" />
+      <inline-svg src="/assets/images/svg/profile/rejected.svg" alt="" />
       <div class="font-normal text-xs leading-4">
         {{ $t("profile.rejected") }}
       </div>

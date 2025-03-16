@@ -16,7 +16,7 @@
       @click="scrollOnTop()"
     >
       <img
-        src="./assets/images/svg/arrov-top.svg"
+        src="../public/assets/images/svg/icons/arrov-top.svg"
         alt="arrov-top"
         class="h-[20px]"
       />

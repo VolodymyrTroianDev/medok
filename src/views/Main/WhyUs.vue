@@ -21,7 +21,10 @@
           class="max-w-[320px] flex flex-col items-center gap-3"
           data-aos="fade-up"
         >
-          <img src="../../assets/images/svg/main/why-item-img.svg" class="" />
+          <inline-svg
+            src="/assets/images/svg/main/why-item-img.svg"
+            class="w-[82px]"
+          />
           <h3 class="font-medium">Lorem ipsum</h3>
           <p class="text-center">
             Sed ut perspiciatis unde omnis iste natus volup tatem acceptantium
@@ -32,7 +35,10 @@
           class="max-w-[320px] flex flex-col items-center gap-3"
           data-aos="fade-up"
         >
-          <img src="../../assets/images/svg/main/why-item-img.svg" class="" />
+          <inline-svg
+            src="/assets/images/svg/main/why-item-img.svg"
+            class="w-[82px]"
+          />
           <h3 class="font-medium">Lorem ipsum</h3>
           <p class="text-center">
             Sed ut perspiciatis unde omnis iste natus volup tatem acceptantium
@@ -43,7 +49,10 @@
           class="max-w-[320px] flex flex-col items-center gap-3"
           data-aos="fade-up"
         >
-          <img src="../../assets/images/svg/main/why-item-img.svg" class="" />
+          <inline-svg
+            src="/assets/images/svg/main/why-item-img.svg"
+            class="w-[82px]"
+          />
           <h3 class="font-medium">Lorem ipsum</h3>
           <p class="text-center">
             Sed ut perspiciatis unde omnis iste natus volup tatem acceptantium
@@ -54,7 +63,10 @@
           class="max-w-[320px] flex flex-col items-center gap-3"
           data-aos="fade-up"
         >
-          <img src="../../assets/images/svg/main/why-item-img.svg" class="" />
+          <inline-svg
+            src="/assets/images/svg/main/why-item-img.svg"
+            class="w-[82px]"
+          />
           <h3 class="font-medium">Lorem ipsum</h3>
           <p class="text-center">
             Sed ut perspiciatis unde omnis iste natus volup tatem acceptantium
@@ -63,10 +75,7 @@
         </div>
       </div>
     </div>
-    <img
-      src="../../assets/images/png/main/why-ill.png"
-      class="hidden lg:block"
-    />
+    <img src="/assets/images/png/main/why-ill.png" class="hidden lg:block" />
   </article>
 </template>
 

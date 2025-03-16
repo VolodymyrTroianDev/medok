@@ -15,13 +15,13 @@
         />
         <div class="w-full h-full p-3">
           <div class="flex justify-between">
-            <div class="font-lato font-normal text-base leading-tight text-xl">
+            <div class="font-lato font-normal leading-tight text-xl">
               {{ item.name }}
             </div>
-            <img
-              src="../../../assets/images/svg/basket/basket-close-btn.svg"
+            <inline-svg
+              src="/assets/images/svg/basket/basket-close-btn.svg"
               alt=""
-              class="bg-no-repeat bg-center w-4 h-4 cursor-pointer"
+              class="bg-no-repeat bg-center cursor-pointer w-[25px] h-[25px]"
               @click="removeProduct(item)"
             />
           </div>

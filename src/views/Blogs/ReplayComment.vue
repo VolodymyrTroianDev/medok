@@ -47,14 +47,14 @@
           <div
             class="flex max-h-[30px] max-w-[100px] items-center gap-1 justify-end w-full"
           >
-            <img
-              src="../../assets/images/svg/edit-icon.svg"
+            <inline-svg
+              src="/assets/images/svg/edit-icon.svg"
               class="w-[20px] h-[20px] cursor-pointer bg-no-repeat bg-cover hover:scale-110 transition duration-300 ease-in-out"
               :alt="$t('blog.editComment')"
               :title="$t('blog.editComment')"
             />
-            <img
-              src="../../assets/images/svg/delete-icon.svg"
+            <inline-svg
+              src="/assets/images/svg/delete-icon.svg"
               :alt="$t('blog.deleteComment')"
               :title="$t('blog.deleteComment')"
               class="w-[20px] h-[20px] cursor-pointer bg-no-repeat bg-cover hover:scale-110 transition duration-300 ease-in-out"

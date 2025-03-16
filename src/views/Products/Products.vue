@@ -7,11 +7,11 @@
       class="flex flex-col w-screen items-end gap-[20px] border-t-2 -translate-x-full max-w-[300px] bg-bg-mobile-filter h-screen border-b-products px-5 py-6 absolute top-0 duration-500 500px:static 500px:max-w-[300px] 500px:bg-bg-products 500px:w-full 500px:-translate-x-0"
       :class="{ active: general.openMobileFilterPanel }"
     >
-      <img
+      <inline-svg
         @click="general.openMobileFilterPanel = false"
-        src="../../assets/images/svg/basket/basket-close-btn.svg"
+        src="/assets/images/svg/basket/basket-close-btn.svg"
         alt=""
-        class="w-4 h-4 cursor-pointer 500px:hidden"
+        class="cursor-pointer 500px:hidden w-[25px] h-[25px]"
       />
       <div class="bg-white border rounded w-full max-h-[135px] h-full">
         <div class="py-4 mx-5 text-center text-[14px] font-semibold border-b">

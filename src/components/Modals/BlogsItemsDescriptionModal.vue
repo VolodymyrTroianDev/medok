@@ -10,50 +10,68 @@
     <inline-svg
       src="/assets/images/svg/basket/basket-close-btn.svg"
       alt=""
-      class="cursor-pointer active:scale-75 transition-transform duration-150 ease-in-out absolute top-5 right-5
-      bg-no-repeat bg-center bg-cover text-main-color w-[25px] h-[25px]"
+      class="cursor-pointer active:scale-75 transition-transform duration-150 ease-in-out absolute top-5 right-5 bg-no-repeat bg-center bg-cover text-main-color w-[20px] h-[20px]"
       @click="closeModal"
     />
 
     <div
-        class="flex justify-center items-center w-full min-h-[250px] rounded"
+      class="flex justify-center items-center w-full min-h-[250px] rounded"
       :class="{ 'bg-gray-100': !props.data.imgUrl.length }"
     >
       <img
-          v-if="props.data.imgUrl.length > 0"
-          :src="props.data.imgUrl"
-          class="object-cover mx-auto rounded"
-          alt=""
+        v-if="props.data.imgUrl.length > 0"
+        :src="props.data.imgUrl"
+        class="object-cover mx-auto rounded"
+        alt=""
       />
       <inline-svg
         v-else
-        src="/src/assets/images/svg/no-image.svg"
-        class="text-main-color mx-auto"
+        src="/assets/images/svg/no-image.svg"
+        class="text-main-color mx-auto w-7"
       />
     </div>
     <div class="flex flex-col w-full h-full gap-2">
       <div class="py-3 flex flex-col gap-6 text-custom-gray text-sm">
         <div class="flex gap-2">
-          <img src="../../assets/images/svg/calendar.svg" alt="" />
+          <inline-svg
+            src="/assets/images/svg/calendar.svg"
+            alt=""
+            class="w-5 h-5"
+          />
           <span>{{ formatTime(props.data.timeCreated) }}</span>
         </div>
         <span class="font-bold"> {{ props.data.description }} </span>
         <div class="flex gap-2 justify-between">
           <div class="flex gap-2 items-center">
             <button class="relative w-[30px]">
-              <img src="../../assets/images/svg/comment.svg" alt="comment" />
+              <inline-svg
+                src="/assets/images/svg/comment.svg"
+                alt="comment"
+                class="w-[25px]"
+              />
               <span
-                  v-if="props.data?.comment"
-                  class="w-[13px] h-[13px] absolute right-0 bg-counter text-white flex items-center justify-center rounded-full bottom-[-5px] text-[10px]"
+                v-if="props.data?.comment"
+                class="w-[13px] h-[13px] absolute right-0 bg-counter text-white flex items-center justify-center rounded-full bottom-[-5px] text-[10px]"
               >
-              {{ Object.keys(props.data?.comment).length || 0 }}
-            </span>
+                {{ Object.keys(props.data?.comment).length || 0 }}
+              </span>
             </button>
             <div class="text-a">{{ $t("blog.comments") }}</div>
           </div>
-          <div class="flex gap-2 items-center" v-if="database.state?.data?.userStatus === 1">
-            <inline-svg :src="'/src/assets/images/svg/edit-icon.svg'" alt="" class="w-[25px] h-[27px] cursor-pointer bg-no-repeat hover:scale-110 transition duration-300 ease-in-out"/>
-            <inline-svg :src="'/src/assets/images/svg/delete-icon.svg'" alt="" class="w-[25px] h-[27px] cursor-pointer bg-no-repeat hover:scale-110 transition duration-300 ease-in-out"/>
+          <div
+            class="flex gap-2 items-center"
+            v-if="database.state?.data?.userStatus === 1"
+          >
+            <inline-svg
+              src="/assets/images/svg/edit-icon.svg"
+              alt=""
+              class="w-[25px] h-[27px] cursor-pointer bg-no-repeat hover:scale-110 transition duration-300 ease-in-out"
+            />
+            <inline-svg
+              src="/assets/images/svg/delete-icon.svg"
+              alt=""
+              class="w-[25px] h-[27px] cursor-pointer bg-no-repeat hover:scale-110 transition duration-300 ease-in-out"
+            />
           </div>
         </div>
         <div class="max-h-[300px] overflow-y-auto mini-scrollbar">
@@ -66,7 +84,7 @@
               alt=""
               width="45"
               height="45"
-              class="rounded-full bg-white h-[45px]"
+              class="rounded-full bg-white"
             />
             <CommentBtnGroup
               @save-comment="
@@ -109,7 +127,6 @@
 </template>
 
 <script lang="ts" setup>
-import moment from "moment/moment";
 import { formatTime } from "@/services/TimeFormat";
 import { useEmitter } from "@nguyenshort/vue3-mitt";
 
@@ -119,8 +136,6 @@ const database = useDatabaseStore(),
   emit = defineEmits(["closeModal"]),
   emitter = useEmitter(),
   { openBlogDescription } = toRefs(useGeneralStore());
-
-moment.locale("uk");
 
 const openModal = (type) => {
   emitter.emit("openModal", type);

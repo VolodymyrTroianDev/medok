@@ -5,7 +5,11 @@
     <div class="flex flex-col gap-2 md:gap-0">
       <div class="flex flex-col">
         <div class="flex items-center">
-          <img src="../../assets/images/svg/social/where-we-are.svg" alt="" />
+          <inline-svg
+            src="/assets/images/svg/social/where-we-are.svg"
+            alt=""
+            class="w-[89px] h-[89px]"
+          />
           <div class="">{{ $t("contactUs.location") }}</div>
         </div>
         <div
@@ -18,7 +22,11 @@
       </div>
       <div class="flex flex-col">
         <div class="flex items-center">
-          <img src="../../assets/images/svg/social/phone.svg" alt="" />
+          <inline-svg
+            src="/assets/images/svg/social/phone.svg"
+            alt=""
+            class="w-[89px] h-[89px]"
+          />
           <div class="">{{ $t("contactUs.contactPhone") }}</div>
         </div>
         <address
@@ -40,7 +48,11 @@
       </div>
       <div class="flex flex-col">
         <div class="flex items-center">
-          <img src="../../assets/images/svg/social/email.svg" alt="" />
+          <inline-svg
+            src="/assets/images/svg/social/email.svg"
+            alt=""
+            class="w-[89px] h-[89px]"
+          />
           <div class="">{{ $t("contactUs.email") }}</div>
         </div>
         <address class="pl-[25px] 2sm:pl-[88px] text-base 2md:text-start">
@@ -56,28 +68,40 @@
     <div class="flex flex-col">
       <div class="flex flex-col">
         <div class="flex items-center">
-          <img src="../../assets/images/svg/social/social.svg" alt="" />
+          <inline-svg
+            src="/assets/images/svg/social/social.svg"
+            alt=""
+            class="w-[89px] h-[89px]"
+          />
           {{ $t("contactUs.social") }}
         </div>
       </div>
       <div class="flex flex-col gap-10 pl-[25px] 2sm:pl-[88px]">
         <div class="flex items-center gap-5" @click="openLinks('facebook')">
-          <img src="../../assets/images/svg/social/facebook.svg" alt="" />
+          <inline-svg
+            src="/assets/images/svg/social/facebook.svg"
+            alt=""
+            class="w-[31px] h-[31px]"
+          />
           <div class="hover:text-main-color duration-500 cursor-pointer">
             medok_karpatskyj
           </div>
         </div>
         <div class="flex items-center gap-5" @click="openLinks('instagram')">
-          <img src="../../assets/images/svg/social/instagram.svg" alt="" />
+          <inline-svg
+            src="/assets/images/svg/social/instagram.svg"
+            alt=""
+            class="w-[31px] h-[31px]"
+          />
           <div class="hover:text-main-color duration-500 cursor-pointer">
             medok_karpatskyj
           </div>
         </div>
         <div class="flex items-center gap-5" @click="openLinks('telegram')">
-          <img
-            src="../../assets/images/svg/social/telegram.svg"
+          <inline-svg
+            src="/assets/images/svg/social/telegram.svg"
             alt=""
-            class="rounded"
+            class="rounded w-[31px] h-[31px]"
           />
           <div class="hover:text-main-color duration-500 cursor-pointer">
             @medok_karpatskyj

@@ -4,10 +4,10 @@
     styles="h-fit"
     @close-modal.self="closeModal"
   >
-    <img
-      src="../../assets/images/svg/basket/basket-close-btn.svg"
+    <inline-svg
+      src="/assets/images/svg/basket/basket-close-btn.svg"
       alt="close"
-      class="absolute top-4 right-4 h-5 w-5 cursor-pointer"
+      class="absolute top-4 right-4 cursor-pointer w-[25px] h-[25px]"
       @click="closeModal"
     />
     <cropper

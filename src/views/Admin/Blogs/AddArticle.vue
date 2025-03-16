@@ -5,11 +5,11 @@
     @close-modal="general.openAddArticlePanel = false"
   >
     <div class="flex flex-col gap-5">
-      <img
+      <inline-svg
         @click="general.openAddArticlePanel = false"
-        src="../../../assets/images/svg/basket/basket-close-btn.svg"
+        src="/assets/images/svg/basket/basket-close-btn.svg"
         alt=""
-        class="w-4 h-4 absolute right-3 top-3 cursor-pointer"
+        class="absolute right-3 top-3 cursor-pointer w-[25px] h-[25px]"
       />
       <label class="text-custom-gray">
         {{ $t("blog.addTitle") }}

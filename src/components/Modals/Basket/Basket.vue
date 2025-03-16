@@ -5,18 +5,18 @@
       :class="{ active: props.openModal }"
       v-on-click-outside="closeBasket"
     >
-      <img
-        class="absolute right-0 p-5 cursor-pointer"
-        src="../../../assets/images/svg/basket/basket-close-btn.svg"
+      <inline-svg
+        class="absolute right-0 p-5 cursor-pointer w-[25px] h-[25px]"
+        src="/assets/images/svg/basket/basket-close-btn.svg"
         alt=""
         @click="closeBasket"
       />
       <div class="font-marck-script text-center text-[48px] mt-[30px]">
         {{ $t("basket.basket") }}
       </div>
-      <img
+      <inline-svg
         v-show="basket.state.inBasket.length === 0"
-        src="../../../assets/images/svg/basket/empty-icon.svg"
+        src="/assets/images/svg/basket/empty-icon.svg"
         alt=""
         class="w-full h-full"
       />

@@ -7,20 +7,20 @@
     <ModalContainer> {{ $t("modals.auth") }}</ModalContainer>
     <div class="mt-[30px]">
       <div class="flex flex-col gap-[22px]">
-        <input-text
+        <InputText
           :value="dataLogin.email"
           v-model="dataLogin.email"
           class="focus:ring-0 focus:ring-offset-0"
         >
           {{ $t("modals.email") }}
-        </input-text>
-        <input-password
+        </InputText>
+        <InputPassword
           :value="dataLogin.password"
           v-model="dataLogin.password"
           class="focus:ring-0 focus:ring-offset-0"
         >
           {{ $t("modals.password") }}
-        </input-password>
+        </InputPassword>
       </div>
       <div class="flex justify-between mt-5">
         <div class="flex items-center gap-2">
@@ -54,9 +54,10 @@
 </template>
 
 <script lang="ts" setup>
+import { Login } from "@/types/auth-types";
+
 const store = useGeneralStore(),
   auth = useAuthenticationStore(),
-  { t } = useI18n(),
   dataLogin = ref<Login>({
     email: "",
     password: "",
