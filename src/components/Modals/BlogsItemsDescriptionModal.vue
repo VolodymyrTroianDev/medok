@@ -8,7 +8,7 @@
       {{ props.data.title }}
     </div>
     <inline-svg
-      src="/public/assets/images/svg/basket/basket-close-btn.svg"
+      src="/assets/images/svg/basket/basket-close-btn.svg"
       alt=""
       class="cursor-pointer active:scale-75 transition-transform duration-150 ease-in-out absolute top-5 right-5
       bg-no-repeat bg-center bg-cover text-main-color w-[25px] h-[25px]"
@@ -26,9 +26,9 @@
           alt=""
       />
       <inline-svg
-          v-else
-          src="/src/assets/images/svg/no-image.svg"
-          class="text-main-color mx-auto"
+        v-else
+        src="/src/assets/images/svg/no-image.svg"
+        class="text-main-color mx-auto"
       />
     </div>
     <div class="flex flex-col w-full h-full gap-2">
