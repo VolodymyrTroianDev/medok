@@ -34,7 +34,7 @@
               alt=""
               class="w-5"
             />
-            <span> {{ formatTime(item.timeCreated) }}</span>
+            <span>{{ formatTime(item.timeCreated) }}</span>
           </div>
           <span> {{ item.description }} </span>
           <div class="d-flex relative justify-between">
@@ -45,13 +45,11 @@
                 class="w-[21px]"
               />
               <span
-                v-if="item?.comment"
-                class="w-[13px] h-[13px] absolute right-0 bg-counter text-white flex items-center justify-center rounded-full bottom-[-5px] text-[10px]"
+                class="w-[16px] h-[16px] absolute right-0 bg-counter text-white flex items-center justify-center rounded-full bottom-[-5px] text-[12px]"
               >
-                {{ Object.keys(item?.comment).length || 0 }}
+                {{ item.comment ? Object.keys(item.comment)?.length : 0 }}
               </span>
             </button>
-            <inline-svg src="" />
           </div>
         </div>
       </div>

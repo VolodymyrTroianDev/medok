@@ -16,7 +16,9 @@
         />
         <button
           class="w-full flex items-center justify-between mx-auto border rounded px-3 py-2 border-color-green bg-white"
-          v-if="dataBase.state?.data?.userStatus === 1"
+          v-if="
+            auth.state.statusLogin && dataBase.state?.data?.userStatus === 1
+          "
           @click="general.openAddArticlePanel = true"
         >
           <span>{{ $t("blog.addArticle") }}</span>
@@ -69,7 +71,7 @@
         <div
           class="flex flex-col items-center border-t-2 border-b-products max-w-[930px] w-full bg-bg-products py-5 px-10"
         >
-          <BlogItems />
+          <BlogItem />
         </div>
         <AddArticle
           v-if="
@@ -83,8 +85,9 @@
 </template>
 
 <script setup lang="ts">
-const dataBase = useDatabaseStore();
-const general = useGeneralStore();
+const dataBase = useDatabaseStore(),
+  general = useGeneralStore(),
+  auth = useAuthenticationStore();
 </script>
 
 <style scoped lang="scss">

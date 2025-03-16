@@ -82,9 +82,7 @@
             <img
               :src="database.state.data.reloadUserInfo?.photoUrl"
               alt=""
-              width="45"
-              height="45"
-              class="rounded-full bg-white"
+              class="rounded-full bg-white w-[45px] h-[45px]"
             />
             <CommentBtnGroup
               @save-comment="
@@ -156,15 +154,3 @@ const closeModal = () => {
   emit("closeModal");
 };
 </script>
-<style scoped>
-.search-city {
-  all: unset;
-  width: 100%;
-  text-align: start;
-  border-bottom: 1px solid #d46110;
-}
-
-.search-city:focus {
-  --tw-ring-color: transparent;
-}
-</style>

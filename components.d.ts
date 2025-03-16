@@ -12,6 +12,7 @@ declare module 'vue' {
     Basket: typeof import('./src/components/Modals/Basket/Basket.vue')['default']
     BasketItem: typeof import('./src/components/Modals/Basket/BasketItem.vue')['default']
     Blog: typeof import('./src/views/Blogs/Blog.vue')['default']
+    BlogItem: typeof import('./src/views/Blogs/BlogItem.vue')['default']
     BlogItems: typeof import('./src/views/Blogs/BlogItems.vue')['default']
     Blogs: typeof import('./src/views/Main/Blogs.vue')['default']
     BlogsItemsDescriptionModal: typeof import('./src/components/Modals/BlogsItemsDescriptionModal.vue')['default']
