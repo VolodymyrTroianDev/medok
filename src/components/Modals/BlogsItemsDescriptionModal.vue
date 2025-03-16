@@ -7,10 +7,11 @@
     <div class="description-title text-center font-bold text-[19px]">
       {{ props.data.title }}
     </div>
-    <img
-      src="../../assets/images/svg/basket/basket-close-btn.svg"
+    <inline-svg
+      src="/public/assets/images/svg/basket/basket-close-btn.svg"
       alt=""
-      class="cursor-pointer active:scale-75 transition-transform duration-150 ease-in-out absolute top-5 right-5 bg-no-repeat bg-center bg-cover"
+      class="cursor-pointer active:scale-75 transition-transform duration-150 ease-in-out absolute top-5 right-5
+      bg-no-repeat bg-center bg-cover text-main-color w-[25px] h-[25px]"
       @click="closeModal"
     />
 
