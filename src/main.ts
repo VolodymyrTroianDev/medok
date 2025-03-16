@@ -26,6 +26,8 @@ import "dayjs/locale/uk";
 import { createHead } from "@unhead/vue";
 import VueMitter from "@nguyenshort/vue3-mitt";
 import InlineSvg from "vue-inline-svg";
+import Vue3Toastify, { ToastContainerOptions } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -50,6 +52,9 @@ onAuthStateChanged(auth, () => {
       .use(router)
       .use(pinia)
       .use(VueMitter)
+      .use(Vue3Toastify, {
+        autoClose: 3000,
+      } as ToastContainerOptions)
       .mount("#app");
     AOS.init(configureAOS);
   }

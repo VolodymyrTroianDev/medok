@@ -60,7 +60,9 @@
           </div>
           <div
             class="flex gap-2 items-center"
-            v-if="database.state?.data?.userStatus === 1"
+            v-if="
+              auth.state.statusLogin && database.state?.data?.userStatus === 1
+            "
           >
             <inline-svg
               src="/assets/images/svg/edit-icon.svg"

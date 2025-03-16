@@ -170,7 +170,8 @@
     "required": "This field is required"
   },
   "message": {
-    "hello": "Hello"
+    "hello": "Hello",
+    "authForLike": "Do you like this comment? Log in so we can take your opinion into account."
   },
   "other": {
     "descriptions": "Descriptions",

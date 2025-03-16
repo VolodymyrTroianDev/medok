@@ -57,14 +57,14 @@
           class="flex max-h-[30px] max-w-[100px] items-center gap-1 justify-end w-full"
           v-if="comment.id === auth.state.uid"
         >
-          <img
+          <inline-svg
             src="/assets/images/svg/edit-icon.svg"
             class="w-[20px] h-[20px] cursor-pointer bg-no-repeat bg-cover hover:scale-110 transition duration-300 ease-in-out"
             :alt="$t('blog.editComment')"
             :title="$t('blog.editComment')"
             @click="editComment(commentId)"
           />
-          <img
+          <inline-svg
             src="/assets/images/svg/delete-icon.svg"
             :alt="$t('blog.deleteComment')"
             :title="$t('blog.deleteComment')"
@@ -114,6 +114,7 @@
 
 <script setup lang="ts">
 import { formatTime } from "../../services/TimeFormat";
+import { toast } from "vue3-toastify";
 
 const props = defineProps<{
   comments: {};
@@ -121,6 +122,7 @@ const props = defineProps<{
 }>();
 
 const blog = useBlogStore(),
+  { t } = useI18n(),
   auth = useAuthenticationStore(),
   openEditComment = ref<boolean>(false),
   replyComment = ref<boolean>(false),
@@ -163,7 +165,15 @@ const deleteComment = (idx: string, id: string) => {
   blog.deleteComment(idx, id);
 };
 const updateLike = (type: string, commentId: string, blogId: string) => {
-  blog.updateCommentReaction(blogId, commentId, auth.state.uid, type);
+  if (!auth.state.statusLogin) {
+    toast(t("message.authForLike"), {
+      theme: "dark",
+      type: "default",
+      dangerouslyHTMLString: true,
+    });
+  } else {
+    blog.updateCommentReaction(blogId, commentId, auth.state.uid, type);
+  }
 };
 </script>
 
