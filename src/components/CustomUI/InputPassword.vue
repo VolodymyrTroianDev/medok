@@ -22,7 +22,7 @@
     <transition name="fade">
       <inline-svg
         v-if="!passwordShow"
-        src="public/assets/images/svg/view.svg"
+        src="assets/images/svg/view.svg"
         class="password-control cursor-pointer w-[23px] h-[23px] absolute top-3 right-3 transition-opacity duration-300 ease-in-out opacity-100"
         alt=""
         @click="togglePassword()"

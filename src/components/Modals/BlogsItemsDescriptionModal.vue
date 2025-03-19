@@ -61,7 +61,10 @@
           <div
             class="flex gap-2 items-center"
             v-if="
-              auth.state.statusLogin && database.state?.data?.userStatus === 1
+              (auth.state.statusLogin &&
+                database.state?.data?.role === 'admin') ||
+              (auth.state.statusLogin &&
+                database.state?.data?.role === 'superadmin')
             "
           >
             <inline-svg

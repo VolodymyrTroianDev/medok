@@ -17,7 +17,10 @@
         <button
           class="w-full flex items-center justify-between mx-auto border rounded px-3 py-2 border-color-green bg-white"
           v-if="
-            auth.state.statusLogin && dataBase.state?.data?.userStatus === 1
+            (auth.state.statusLogin &&
+              dataBase.state?.data?.role === 'admin') ||
+            (auth.state.statusLogin &&
+              dataBase.state?.data?.role === 'superadmin')
           "
           @click="general.openAddArticlePanel = true"
         >
@@ -75,8 +78,12 @@
         </div>
         <AddArticle
           v-if="
-            general.openAddArticlePanel &&
-            dataBase.state?.data?.userStatus === 1
+            (general.openAddArticlePanel &&
+              auth.state.statusLogin &&
+              auth.state.statusLogin &&
+              dataBase.state?.data?.role === 'admin') ||
+            (auth.state.statusLogin &&
+              dataBase.state?.data?.role === 'superadmin')
           "
         />
       </div>

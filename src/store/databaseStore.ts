@@ -28,6 +28,7 @@ export const useDatabaseStore = defineStore("databaseStore", () => {
     get(child(dbRef, `users/${auth.state.uid}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
+          state.data = snapshot.val();
         } else {
           console.log("No data available");
         }
@@ -49,6 +50,7 @@ export const useDatabaseStore = defineStore("databaseStore", () => {
           providerData: {},
           reloadUserInfo: {},
           userStatus: 2,
+          role: "user",
         });
     } catch (e) {
       console.error(e);
@@ -66,6 +68,7 @@ export const useDatabaseStore = defineStore("databaseStore", () => {
       reloadUserInfo: data.reloadUserInfo,
       auth: true,
       userStatus: 2,
+      role: "user",
     });
   };
 

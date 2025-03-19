@@ -128,8 +128,8 @@ const openFilterMenu = (): void => {
   if (store.openMobileHeader) store.openMobileHeader = false;
 };
 const emitter = useEmitter();
-
-onMounted(() =>
+onMounted(async () => {
+  await database.updateDatabase();
   emitter.on("openModal", (type) => {
     if (type === "login") {
       openLoginModal.value = !openLoginModal.value;
@@ -137,8 +137,8 @@ onMounted(() =>
     if (type === "register") {
       openRegisterModal.value = !openRegisterModal.value;
     }
-  }),
-);
+  });
+});
 
 onUnmounted(() => emitter.off("openModal"));
 const signOut = async () => {

@@ -8,11 +8,11 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        header: "url('../assets/images/png/header/header.png')",
+        header: "url('/assets/images/png/header/header.png')",
         "header-main":
-          "url('../assets/images/png/header/header-background-preview.png')",
-        "about-us-main": "url('../assets/images/png/main/main.png')",
-        blog: "url('../assets/images/png/main/blogs/blog-bg.png')",
+          "url('/assets/images/png/header/header-background-preview.png')",
+        "about-us-main": "url('/assets/images/png/main/main.png')",
+        blog: "url('/assets/images/png/main/blogs/blog-bg.png')",
       },
       colors: {
         counter: "#e83636",
